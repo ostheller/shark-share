@@ -2,26 +2,45 @@
 
 class Users extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+	// loads www.example.com/ on intial load
 	public function index()
+	{
+		$this->load->view('landing_page');
+	}
+
+	// user logs in
+	public function login()
+	{
+		$this->load->view('user_dashboard');
+	}
+
+	// user signs up, returns to landing page
+	public function sign_up()
+	{
+		$this->load->view('landing_page');
+	}
+
+	// login successful, loads the user dashboard page
+	public function login_success()
+	{
+		$this->load->view('user_dashboard');
+	}
+
+	// login successful, user is an admin, loads the admin dashboard page
+	public function admin_login_success()
+	{
+		$this->load->view('admin_dashboard');
+	}
+
+	// load the user dashboard page when user is logged in
+	public function view_user_dashboard()
+	{
+		$this->load->view('user_dashboard');
+	}
+
+	// load the admin dashboard page when an admin user is logged in
+	public function view_admin_dashboard()
 	{
 		$this->load->view('user_dashboard');
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

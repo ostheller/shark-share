@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 </head>
 <body>
 
-<?php $this->load->view('partials/navbar'); ?>
+<?php $this->load->view('partials/navbar_login'); ?>
   
 <div class="container-fluid text-center">    
   <div class="row content">
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>THIS IS THE USER DASHBOARD</h1>
+      <h1>THIS IS THE LANDING PAGE</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <hr>
       <h3>Test</h3>
