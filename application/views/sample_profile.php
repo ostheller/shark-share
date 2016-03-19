@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 </head>
 <body>
 
-<?php $this->load->view('partials/navbar_login'); ?>
+<?php $this->load->view('partials/navbar'); ?>
   
 <div class="container-fluid text-center">    
   <div class="row content">
