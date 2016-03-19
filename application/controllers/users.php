@@ -8,6 +8,12 @@ class Users extends CI_Controller {
 		$this->load->view('landing_page');
 	}
 
+// page missing, 404
+	public function load_404()
+	{
+		$this->load->view('404');
+	}
+
 // user logs in
 	public function login()
 	{

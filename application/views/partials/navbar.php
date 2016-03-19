@@ -15,6 +15,7 @@
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
+      <form class="navbar-form" role="search">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Put Cart Here</a></li>
       </ul>

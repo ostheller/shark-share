@@ -1,46 +1,29 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/*
-| -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	http://codeigniter.com/user_guide/general/routing.html
-|
-| -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There area two reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router what URI segments to use if those provided
-| in the URL cannot be matched to a valid route.
-|
-*/
 
+// These are the reserved routes
 $route['default_controller'] = "users";
-$route['404_override'] = '';
+$route['404_override'] = 'users/load_404';
 
+////////////////////////// Load Pages //////////////////////////////////////
 
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */
+// [All the routes below lead to functions that control privacy, i.e. if logged in or not]
+// Load the user dashboard
+$route['dashboard'] = 'users/view_user_dashboard';
+// Load the admin dashboard
+$route['admin'] = 'users/view_admin_dashboard';
+// Load the search page [from browse or typing in url, not showing search results]
+$route['search'] = 'samples/browse';
+// Load the upload page
+$route['upload'] = 'sample/view_upload_page';
+// Load the checkout/email page
+$route['checkout'] = 'samples/view_checkout';
+// Load a sample profile page
+$route['sample/(:num)'] = 'samples/view_sample/$1';
+// Load a person profile page
+$route['user/(:any)'] = 'users/view_user/$1';
+// Load a collection page
+$route['collection/(:any)'] = 'samples/view_collection/$1';
+
+////////////////////////// Process Forms //////////////////////////////////////
+
+?>

@@ -40,13 +40,25 @@ class Samples extends CI_Controller {
 
 	}
 
+// user wants to visit the checkout page
+	public function view_checkout()
+	{
+		$this->load->view('checkout');
+	}
+
+// user wants to visit the upload sample page
+	public function view_upload_page()	
+	{
+		$this->load->view('upload');
+	}
+
 // uploading samples to a user's collection, if successful redirect to upload_success, otherwise no
 	public function upload()
 	{
 		
 	}
 
-// uploading samples to a user's collection, if successful redirect to 
+// upload was successful, reloads the collection after drawing the data to show updated collection
 	public function upload_success()
 	{
 		$this->load->view('user_collection');
