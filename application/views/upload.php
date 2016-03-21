@@ -1,6 +1,3 @@
-<?php $this->load->view('partials/header'); ?>
-<?php $this->load->view('partials/navbar'); ?>
-  
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -29,5 +26,3 @@
     </div>
   </div>
 </div>
-
-<?php $this->load->view('partials/footer'); ?>

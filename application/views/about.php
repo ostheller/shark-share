@@ -1,6 +1,4 @@
-<?php $this->load->view('partials/header'); ?>
-<?php $this->load->view('partials/navbar_login'); ?>
-  <div class="container-fluid text-center">    
+ <div class="container-fluid text-center">    
     <div class="row content">
       <div class="col-sm-2 sidenav">
         <p><a href="#">Link</a></p>
@@ -24,4 +22,3 @@
       </div>
     </div>
   </div>
-<?php $this->load->view('partials/footer'); ?>
