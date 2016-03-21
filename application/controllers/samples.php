@@ -89,7 +89,7 @@ class Samples extends CI_Controller {
         }
 	}
 
-//upload was successful, redirects back to the page
+//upload was successful, pulls the data from the sheet and loads the values onto the upload screen
 	public function upload_success()
 	{
 		$this->load->model('sample');
@@ -100,5 +100,31 @@ class Samples extends CI_Controller {
 		$this->load->view('partials/navbar');
 		$this->load->view('upload', $data);
         $this->load->view('partials/footer');
-	}	
+	}
+
+	//user chooses to submit their data to the database
+	public function submit_data()
+	{
+		$this->load->model('sample');
+		$path = $this->session->userdata('file_path');
+		$data = $this->sample->get_data($path);
+		if ($this->sample->submit_data($data)) {
+			$this->session->set_userdata('file_path', NULL);
+			$message = 'your data is in the database, thank you!';
+
+			$this->load->view('partials/header');
+			$this->load->view('partials/navbar');
+			$this->load->view('upload', $message);
+	        $this->load->view('partials/footer');
+		} else {
+			$message = 'your data failed to upload, try again or check your spreadsheet for errors';
+			$this->load->view('partials/header');
+			$this->load->view('partials/navbar');
+			$this->load->view('upload', $message);
+	        $this->load->view('partials/footer');
+		}
+
+
+	}
+
 }

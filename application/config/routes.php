@@ -19,6 +19,7 @@ $route['search'] = 'samples/browse';
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
 $route['upload/success'] = 'samples/upload_success';
+$route['upload/submit'] = 'samples/submit_data';
 $route['upload'] = 'samples/view_upload_page';
 
 ////////////////////////// Checkout Page //////////////////////////////////////

@@ -18,11 +18,30 @@
       $inputFileName = $this->session->userdata('file_uploaded');
       echo 'Your file: ' . $inputFileName . ' was uploaded successfully'; 
       }
-    if (isset($header)) {
-      echo '<pre>' . var_export($header, true) . '</pre>';
-      echo '<pre>' . var_export($values, true) . '</pre>';
-    }
-?>
+    if (isset($header)) { ?>
+      <a href="/upload/submit"><button>Submit to Database</button></a>
+      <table class = "table">
+         <caption>Uploaded Sheet</caption>
+         
+         <thead>
+            <tr>
+              <?php foreach ($header[1] as $col => $value) { ?>
+               <th><?= $value ?></th>
+               <?php } ?>
+            </tr>
+         </thead>
+         
+         <tbody>
+            <tr>
+              <?php foreach ($values as $row) { 
+                foreach ($row as $cells => $cell) { ?>
+                <td><?= $cell ?></td>
+
+                <?php } ?> </tr> <?php }?>
+            
+         </tbody>    
+      </table>
+    <?php } ?>
       <h3>Test</h3>
       <p>Lorem ipsum...</p>
     </div>

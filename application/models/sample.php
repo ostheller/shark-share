@@ -27,6 +27,16 @@ class Sample extends CI_Model {
 		$data['values'] = $arr_data;
 		return $data;
 	}
+
+	public function submit_data($data) {
+		//var_export($data);
+		$query = "INSERT INTO users(first_name, last_name) VALUES (?,?)";        
+         for ($i=2; $i < count($data['values']) ; $i++) { 
+         	$values = array($data['values'][$i]['B'], $data['values'][$i]['C']);
+         	$this->db->query($query, $values);  
+         }
+         
+	}
 }
 
 ?>
