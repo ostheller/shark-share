@@ -18,8 +18,8 @@ $route['search'] = 'samples/browse';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
+$route['upload/success'] = 'samples/upload_success';
 $route['upload'] = 'samples/view_upload_page';
-$route['upload_success'] = 'samples/upload_success';
 
 ////////////////////////// Checkout Page //////////////////////////////////////
 // Load the checkout/email page

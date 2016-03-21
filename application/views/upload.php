@@ -15,7 +15,13 @@
 <?php if (isset($message)) { echo $message; } ?>
 <?php
     if ($this->session->userdata('file_uploaded') != FALSE) { 
-      echo 'Your file: ' . $this->session->userdata('file_uploaded') . ' was uploaded successfully'; }
+      $inputFileName = $this->session->userdata('file_uploaded');
+      echo 'Your file: ' . $inputFileName . ' was uploaded successfully'; 
+      }
+    if (isset($header)) {
+      echo '<pre>' . var_export($header, true) . '</pre>';
+      echo '<pre>' . var_export($values, true) . '</pre>';
+    }
 ?>
       <h3>Test</h3>
       <p>Lorem ipsum...</p>
