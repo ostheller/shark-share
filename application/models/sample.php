@@ -35,7 +35,7 @@ class Sample extends CI_Model {
          	$values = array($data['values'][$i]['B'], $data['values'][$i]['C']);
          	$this->db->query($query, $values);  
          }
-         
+        return TRUE;
 	}
 }
 

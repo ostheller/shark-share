@@ -13,6 +13,7 @@
     <input type="submit" value="Upload File" name="submit">
 </form>      <hr>
 <?php if (isset($message)) { echo $message; } ?>
+<?php if ($this->session->userdata('message') != FALSE) { echo $this->session->userdata('message'); } ?>
 <?php
     if ($this->session->userdata('file_uploaded') != FALSE) { 
       $inputFileName = $this->session->userdata('file_uploaded');

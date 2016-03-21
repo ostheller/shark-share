@@ -108,14 +108,13 @@ class Samples extends CI_Controller {
 		$this->load->model('sample');
 		$path = $this->session->userdata('file_path');
 		$data = $this->sample->get_data($path);
-		if ($this->sample->submit_data($data)) {
-			$this->session->set_userdata('file_path', NULL);
+		$result = $this->sample->submit_data($data); 
+		if ($result == TRUE)
+		{
+			$this->session->set_userdata('file_uploaded', FALSE);
+			$this->session->set_userdata('message', 'Your data is in the database, thank you!');
 			$message = 'your data is in the database, thank you!';
-
-			$this->load->view('partials/header');
-			$this->load->view('partials/navbar');
-			$this->load->view('upload', $message);
-	        $this->load->view('partials/footer');
+			redirect('upload');
 		} else {
 			$message = 'your data failed to upload, try again or check your spreadsheet for errors';
 			$this->load->view('partials/header');
