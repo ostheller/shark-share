@@ -11,6 +11,14 @@ class Users extends CI_Controller {
 		$this->load->view('partials/footer');
 	}
 
+	public function view_landing_page()
+	{
+		$this->load->view('partials/header');
+		$this->load->view('partials/navbar_login');
+		$this->load->view('landing_page');
+		$this->load->view('partials/footer');
+	}
+
 // page missing, 404
 	public function load_404()
 	{
@@ -26,6 +34,16 @@ class Users extends CI_Controller {
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');
 		$this->load->view('user_dashboard');
+		$this->load->view('partials/footer');
+	}
+
+// user logs out
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		$this->load->view('partials/header');
+		$this->load->view('partials/navbar_login');
+		$this->load->view('landing_page');
 		$this->load->view('partials/footer');
 	}
 

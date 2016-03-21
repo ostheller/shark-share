@@ -25,6 +25,12 @@
         </div>
         </form>
       </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li><a href="/upload">GO TO UPLOAD PAGE</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Put Cart Here</a></li>
       </ul>

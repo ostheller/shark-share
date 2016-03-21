@@ -13,6 +13,10 @@
     <input type="submit" value="Upload File" name="submit">
 </form>      <hr>
 <?php if (isset($message)) { echo $message; } ?>
+<?php
+    if ($this->session->userdata('file_uploaded') != FALSE) { 
+      echo 'Your file: ' . $this->session->userdata('file_uploaded') . ' was uploaded successfully'; }
+?>
       <h3>Test</h3>
       <p>Lorem ipsum...</p>
     </div>

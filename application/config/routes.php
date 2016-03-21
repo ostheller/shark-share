@@ -4,9 +4,9 @@
 $route['default_controller'] = "users";
 $route['404_override'] = '';
 
-////////////////////////// User Dashboard //////////////////////////////////////
-// Load the user dashboard
-$route['dashboard'] = 'users/view_user_dashboard';
+////////////////////////// Landing page //////////////////////////////////////
+// Load the landing page
+$route['logout'] = 'users/logout';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard

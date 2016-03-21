@@ -77,7 +77,7 @@ class Samples extends CI_Controller {
 		$target_dir = "assets/uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        		//$this->session->set_userdata('file_uploaded', $target_file);
+        		$this->session->set_userdata('file_uploaded', basename($_FILES["fileToUpload"]["name"]));
         		redirect('upload_success');
         } else {
         	$message = 'There was a problem with your upload';
@@ -88,13 +88,9 @@ class Samples extends CI_Controller {
         }
 	}
 
-// upload was successful, reloads the collection after drawing the data to show updated collection
+// upload was successful, redirects back to the page
 	public function upload_success()
 	{
-		//$message = $this->session->userdata('file_uploaded');
-		$this->load->view('partials/header');
-		$this->load->view('partials/navbar');
-		$this->load->view('upload');
-		$this->load->view('partials/footer');
+		redirect('upload');
 	}	
 }
