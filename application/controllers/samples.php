@@ -53,14 +53,21 @@ class Samples extends CI_Controller {
 	}
 
 // uploading samples to a user's collection, if successful redirect to upload_success, otherwise no
-	public function upload()
+	public function upload_batch()
 	{
-		
+		$target_dir = "assets/uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        		redirect('samples/upload_success');
+        } else {
+        	$message = 'There was a problem with your upload';
+         	$this->load->view('upload', $message);
+        }
 	}
 
 // upload was successful, reloads the collection after drawing the data to show updated collection
 	public function upload_success()
 	{
-		$this->load->view('user_collection');
+		redirect('upload');
 	}	
 }
