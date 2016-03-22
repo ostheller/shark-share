@@ -5,13 +5,25 @@ $route['default_controller'] = "logins";
 $route['404_override'] = '';
 
 ////////////////////////// Landing page //////////////////////////////////////
-// Load the landing page == the default route, includes the form to login
+// NB: Load the landing page == the default route, includes the form to login
+// User clicks on register
+$route['register'] = 'logins/registration_page';
+// User submits registration form
+$route['validate'] = 'logins/registration_validation';
 // Logout the user
 $route['logout'] = 'logins/logout';
 
+////////////////////////// Setup Account //////////////////////////////////////
+
+// The new user gets to set up their account
+$route['user/new'] = 'users/setup_profile';
+
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
-$route['admin'] = 'users/view_admin_dashboard';
+$route['admin'] = 'admins/view_admin_dashboard';
+// View more information about a new user
+// Accept a user
+// Deny a user
 
 ////////////////////////// User Dashboard //////////////////////////////////////
 // Load the admin dashboard

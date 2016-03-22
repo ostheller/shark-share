@@ -25,13 +25,21 @@ class Logins extends CI_Controller {
 // method for posting login form data and running validation checks
 	public function login_validation()
 	{
-		$user_sess = $this->login->login_user($this->input->post()); 
-        $this->session->set_userdata($user_sess);
-        // if admin, go to admin dashboard
-        if ($this->session->userdata('admin') === TRUE) {
-        	redirect('/admin');
+		$data = $this->input->post();
+		$user_sess = $this->login->login_user($data); 
+        // if the validation fails
+        if ($user_sess === false) {
+			$this->session->set_flashdata('errors', 'Incorrect email/password.');
+        	redirect('/');
         } else {
-        	redirect('/dashboard');
+        	// put the data into session
+        	$this->session->set_userdata($user_sess);
+	        // if admin, go to admin dashboard, users to user dashboard
+	        if ($this->session->userdata('admin') === TRUE) {
+	        	redirect('/admin');
+	        } else {
+	        	redirect('/dashboard');
+        	}
         }
     } // end of method
 
@@ -47,16 +55,15 @@ class Logins extends CI_Controller {
 // method for posting registration form data and running validation checks
 	public function registration_validation()
 	{
-		if ($this->login->register_user($this->input->post()) === false) {
+		$data = $this->input->post();
+		$user_sess = $this->login->register_user($data); 
+		if ($user_sess === false) {
 			$this->registration_page();
 	    } // end if
 	    else
 	    {
-	    	$user_sess = $this->login->login_user($this->input->post()); 
-	        $this->session->set_userdata($user_sess);
-	        $this->session->set_userdata('new_user', true); 
-	        var_dump($this->session->userdata());
-	        die();
+	    	// set the user data
+	        $this->session->set_userdata('potential_candidate', true);
 	        redirect('/');
 	    }
 	} // end of method
