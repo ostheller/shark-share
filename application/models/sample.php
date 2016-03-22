@@ -1,6 +1,7 @@
 <?php
 class Sample extends CI_Model {
 
+// method to read the data out of the excel file and put it into an array
 	public function get_data($file) {
 
 		$objPHPExcel = PHPExcel_IOFactory::load($file);
@@ -28,15 +29,17 @@ class Sample extends CI_Model {
 		return $data;
 	}
 
+// method to submit the data in the array into the database
 	public function submit_data($data) {
-		//var_export($data);
-		$query = "INSERT INTO users(first_name, last_name) VALUES (?,?)";        
+		$query = "INSERT INTO users(first_name, last_name) VALUES (?,?)";
+
+		// need to loop through each of the rows to insert        
          for ($i=2; $i < count($data['values']) ; $i++) { 
+         	/* the data is embedded in an array with keys 1,2,3 for each row
+         	and then each row is an array with keys A,B,C for columns */
          	$values = array($data['values'][$i]['B'], $data['values'][$i]['C']);
          	$this->db->query($query, $values);  
          }
         return TRUE;
 	}
-}
-
-?>
+} // end of model ?>

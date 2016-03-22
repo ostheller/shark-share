@@ -21,9 +21,29 @@
       <ul class="nav navbar-nav">
         <li><a href="/upload">GO TO UPLOAD PAGE</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
+         <?= form_open('login_attempt', $form); ?>
+           <div class="form-group">
+            <?php $email = array(
+              'type'=> 'text', 
+              'class'=>'form-control', 
+              'name' => 'email', 
+              'placeholder' => 'Email');?>
+               <?= form_input($email)?>
+            </div>
+            <div class="form-group">
+            <?php $password = array(
+              'type'=> 'password', 
+              'class'=>'form-control', 
+              'name' => 'password', 
+              'placeholder' => 'Password');?> 
+            <?= form_password($password)?>
+              </div>
+            <?php $submit = array(
+              'type'=> 'submit', 
+              'class'=>'btn btn-success',);?>
+            <?= form_submit($submit, 'Sign In'); ?>
+          <?= form_close(); ?>
     </div>
   </div>
 </nav>
