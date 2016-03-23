@@ -48,11 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'aa26jw30s62tf1.ciugazzetrtr.us-east-1.rds.amazonaws.com:3306';
+$db['default']['hostname'] = 'aa26jw30s62tf1.ciugazzetrtr.us-east-1.rds.amazonaws.com';
 $db['default']['username'] = 'mostheller';
 $db['default']['password'] = 'testpassword';
 $db['default']['database'] = 'shark_share';
 $db['default']['dbdriver'] = 'mysqli';
+$db['default']['port'] = '3306';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
