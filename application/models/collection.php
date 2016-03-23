@@ -8,7 +8,7 @@ deleting samples from a collection */
 /* !!!!!!!!!!!!!!!!!! Uploading !!!!!!!!!!!!!!!!!! */
 
 // method to read the data out of the excel file and put it into an array
-	public function get_data($file) {
+	public function extract_data_xlsx($file) {
 
 		$objPHPExcel = PHPExcel_IOFactory::load($file);
 		 

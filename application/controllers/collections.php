@@ -9,6 +9,16 @@ class Collections extends CI_Controller {
 // could be theirs or anothers' collection, depends on what we pass it
 	public function view_collection()
 	{
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// they cannot see this page
+			redirect('/restricted');
+		} else { 
+		// they are logged in (get the navbar without the login form)
+			$this->load->view('partials/header');
+			$this->load->view('partials/navbar');
+			$this->load->view('landing_page');
+			$this->load->view('partials/footer');
+		}
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');
 		$this->load->view('user_collection');
@@ -20,7 +30,8 @@ class Collections extends CI_Controller {
 // user wants to visit the upload sample page
 	public function view_upload_page()	
 	{
-		$this->load->view('partials/header');
+		$header['title'] = 'Upload';
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');
 		$this->load->view('upload');
 		$this->load->view('partials/footer');
@@ -47,11 +58,12 @@ class Collections extends CI_Controller {
 //upload was successful, pulls the data from the sheet and loads the values onto the upload screen
 	public function upload_success()
 	{
-		$this->load->model('sample');
+		$this->load->model('collection');
 		$path = $this->session->userdata('file_path');
-		$data = $this->sample->get_data($path);
+		$data = $this->collection->extract_data_xlsx($path);
+		$header['title'] = 'Upload';
 
-		$this->load->view('partials/header');
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');
 		$this->load->view('upload', $data);
         $this->load->view('partials/footer');
@@ -60,10 +72,10 @@ class Collections extends CI_Controller {
 //user chooses to submit their data to the database
 	public function submit_data()
 	{
-		$this->load->model('sample');
+		$this->load->model('collection');
 		$path = $this->session->userdata('file_path');
-		$data = $this->sample->get_data($path);
-		$result = $this->sample->submit_data($data); 
+		$data = $this->collection->extract_data_xlsx($path);
+		$result = $this->collection->submit_data($data); 
 		if ($result == TRUE)
 		{
 			$this->session->set_userdata('file_uploaded', FALSE);

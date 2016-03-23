@@ -10,8 +10,9 @@ class Samples extends CI_Controller {
 	{
 		$post = $this->input->post();
 		$data = $this->sample->search($post);
-		
-		$this->load->view('partials/header');
+		$data['title'] = 'Search';
+
+		$this->load->view('partials/header', $data);
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
@@ -21,8 +22,9 @@ class Samples extends CI_Controller {
 	public function advanced_search()
 	{
 		$post = $this->input->post();
-		$data = $this->sample->search($post);
-		
+		$data = $this->sample->advanced_search($post);
+		$data['title'] = 'Search';
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
@@ -32,9 +34,14 @@ class Samples extends CI_Controller {
 //user clicks browse, pulls the data and loads the search results page
 	public function browse()
 	{
+		// get samples for them to browse based on their set up preferences
+		$user = $this->session->userdata('id');
+		$data = $this->sample->browse($user);
+		$data['title'] = 'Search';
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');
-		$this->load->view('search');
+		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
 	} // end of method
 
@@ -43,9 +50,13 @@ class Samples extends CI_Controller {
 // user wants to see a sample's profile page
 	public function view_sample()
 	{
+		$user = $this->session->userdata('id');
+		$data = $this->sample->browse($user);
+		$title = 'View ' . $data['genus'] . ' ' . $data['species'];
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');		
-		$this->load->view('sample_profile');
+		$this->load->view('sample_profile', array($data, $title));
 		$this->load->view('partials/footer');
 	} // end of method
 

@@ -18,9 +18,6 @@
             <ul class="nav navbar-nav">
         <li><a href="/logout">Logout</a></li>
       </ul>
-      <ul class="nav navbar-nav">
-        <li><a href="/upload">GO TO UPLOAD PAGE</a></li>
-      </ul>
       <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
          <?= form_open('login_attempt', $form); ?>
            <div class="form-group">

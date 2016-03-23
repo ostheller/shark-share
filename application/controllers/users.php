@@ -12,34 +12,39 @@ class Users extends CI_Controller {
 		// check that the user is logged in
 		if ($this->session->userdata('logged_in') === TRUE) {
 			// we request the data we need from the model
-
+			$data['title'] = 'Dashboard';
 			// now we load the view
-			$this->load->view('partials/header');
+			$this->load->view('partials/header', $data);
 			$this->load->view('partials/navbar');
 			$this->load->view('user_dashboard', $data);
 			$this->load->view('partials/footer');
 		// if they are not logged in, redirect away;
 		} else { 
 			redirect('/');		
-		} // end of method
+		}
+	} // end of method
 
 /* !!!!!!!!!!!!!!!!!! Methods concerning the profile, and user editing of their own profiles !!!!!!!!!!!!!!!!!! */
 
 // method for new users to set up their initial profile pages
-
-// method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
-	public function view_user()
+	public function setup_profile()
 	{
-		$this->load->view('partials/header');
+		$data['title'] = 'New Profile';
+
+		$this->load->view('partials/header', $data);
 		$this->load->view('partials/navbar');
 		$this->load->view('user_profile');
 		$this->load->view('partials/footer');
 	} // end of method
 
-// method for users and admins to visit their own collections when they type in 'collection'
+// method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
 	public function view_user()
 	{
-		$this->load->view('partials/header');
+		$user = $this->session->userdata('id');
+		$data = $this->sample->view($user);
+		$data['title'] = 'View ' . $data['first'] . ' ' . $data['last'];
+
+		$this->load->view('partials/header', $data);
 		$this->load->view('partials/navbar');
 		$this->load->view('user_profile');
 		$this->load->view('partials/footer');
@@ -53,4 +58,45 @@ class Users extends CI_Controller {
 
 // method to upload files for profile pictures
 
+/* !!!!!!!!!!!!!!!!!! Methods concerning site navigation !!!!!!!!!!!!!!!!!! */
+
+// method to view the help page
+	public function view_help()
+	{
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in (get the navbar WITHthe login form)
+			$data['title'] = 'Help';
+
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('help');
+			$this->load->view('partials/footer');
+		} else { 
+		// they are logged in (get the navbar without the login form)
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar');
+			$this->load->view('help');
+			$this->load->view('partials/footer');
+		}
+	} // end of method
+
+// method to deal with UNAUTHORIZED access to a page
+	public function restricted()
+	{
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in (get the navbar WITHthe login form)
+			$data['title'] = 'Access Restricted';
+
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('restricted');
+			$this->load->view('partials/footer');
+		} else { 
+		// they are logged in (get the navbar without the login form)
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar');
+			$this->load->view('restricted');
+			$this->load->view('partials/footer');
+		}
+	} // end of method
 }

@@ -5,16 +5,23 @@ $route['default_controller'] = "logins";
 $route['404_override'] = '';
 
 ////////////////////////// Landing page //////////////////////////////////////
-// NB: Load the landing page == the default route, includes the form to login
+// NB: Load the landing page == the default route (includes the form to login)
+// User submits the login form
+$route['login'] = 'logins/login_validation';
 // User clicks on register
 $route['register'] = 'logins/registration_page';
 // User submits registration form
 $route['validate'] = 'logins/registration_validation';
-// Logout the user
+// Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
 
-////////////////////////// Setup Account //////////////////////////////////////
+// User clicks on the help page
+$route['help'] = 'users/view_help';
 
+// User tries to access a page they don't have permission to see
+$route['restricted'] = 'users/restricted';
+
+////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
 $route['user/new'] = 'users/setup_profile';
 
@@ -35,9 +42,9 @@ $route['search'] = 'samples/browse';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
-$route['upload/success'] = 'samples/upload_success';
-$route['upload/submit'] = 'samples/submit_data';
-$route['upload'] = 'samples/view_upload_page';
+$route['upload/success'] = 'collections/upload_success';
+$route['upload/submit'] = 'collections/submit_data';
+$route['upload'] = 'collections/view_upload_page';
 
 ////////////////////////// Checkout Page //////////////////////////////////////
 // Load the checkout/email page

@@ -15,12 +15,13 @@ new users into the database. It covers the logical steps in the flow of login/re
         } // end if credentials match
         else 
         {
+            $this->session->set_flashdata('errors', 'Incorrect email/password.');
             return false
         }
     } // end of method
 
 // Method to validate the registration of one user
-    public function register_user()
+    public function registration_validation()
     {
         // validate the attempt
         $this->form_validation->set_rules("first_name", "First Name", "required|alpha|trim");
@@ -34,25 +35,45 @@ new users into the database. It covers the logical steps in the flow of login/re
                 $this->session->set_flashdata('errors', validation_errors());
                 return false;
             }  // end if failure
-            else // success! let's put them in the database AS POTENTIAL CANDIDATES NEEDING VERIFICATION FROM ADMINS!
-            {
-                $query = "INSERT INTO potential_users (first_name, last_name, email, password, description, user_level, created_at, updated_at) VALUES (?,?,?,?,?,1,NOW(),NOW())";
-                $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password'),$this->input->post('description'));
-                if ($this->db->query($query, $values)) {
-                    return true;
-                } 
-                else {
-                    return false; 
-                }
+            else {
+                return true;
             }
         } // end of method
 
+// Method for putting POTENTIAL candidates into a probation table waiting for validation from admins
+/* we could put a login keyword/password in their table that we could use as the link in the email we 
+send when they are accepted. they would have to click that link would that long keyword that we would 
+check against the database before they are allowed to setup their profile */
+    public function on_probation()
+    {
+        $query = "INSERT INTO potential_users (first_name, last_name, email, password, description, user_level, created_at, updated_at) VALUES (?,?,?,?,?,1,NOW(),NOW())";
+        $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password'),$this->input->post('description'));
+        if ($this->db->query($query, $values)) {
+            return true;
+        } 
+        else {
+            return false; 
+        }
+    } // end of method
+
+// Method for sending an email to someone
+    public function generate_email()
+    {
+
+    } // end of method
+
 // Method to register one user to the database for the first time (automatic user level of 1, normal)
-     public function insert_one()
-     {
-         $query = "INSERT INTO users (first_name, last_name, email, password, description, user_level, created_at, updated_at) VALUES (?,?,?,?,?,1,NOW(),NOW())";
-         $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password'),$this->input->post('description')); 
-         return $this->db->query($query, $values);
-     } // end insert one
+    public function create()
+    {
+        $query = "INSERT INTO users (first_name, last_name, email, password, description, user_level, created_at, updated_at) VALUES (?,?,?,?,?,1,NOW(),NOW())";
+        $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password'),$this->input->post('description')); 
+        return $this->db->query($query, $values);
+    } // end insert one
+
+// Method to remove a user from the probationary table
+    public function destroy()
+    {
+        return true
+    } // end insert one
 
 } // end of model ?>

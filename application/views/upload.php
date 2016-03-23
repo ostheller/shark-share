@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>THIS IS THE Upload</h1>
-<form action="/samples/upload_batch" method="post" enctype="multipart/form-data">
+<form action="/collections/upload_batch" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload File" name="submit">

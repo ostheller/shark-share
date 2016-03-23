@@ -29,7 +29,6 @@ class Logins extends CI_Controller {
 		$user_sess = $this->login->login_user($data); 
         // if the validation fails
         if ($user_sess === false) {
-			$this->session->set_flashdata('errors', 'Incorrect email/password.');
         	redirect('/');
         } else {
         	// put the data into session
@@ -52,13 +51,22 @@ class Logins extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
+// method for terms and conditions form submittal
+	// public function accept_terms()
+	// {
+	// 	// if they accept the terms, continue
+	// 	if ();
+	// 	// else fail
+	// 	redirect('/')
+	// } // end of method
+
 // method for posting registration form data and running validation checks
 	public function registration_validation()
 	{
 		$data = $this->input->post();
-		$user_sess = $this->login->register_user($data); 
+		$user_sess = $this->login->rregistration_validation($data); 
 		if ($user_sess === false) {
-			$this->registration_page();
+			redirect('/');
 	    } // end if
 	    else
 	    {

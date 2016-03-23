@@ -15,23 +15,25 @@
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
-      <div class="nav navbar-nav">
-        <form class="navbar-form" role="search">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-      </div>
       <ul class="nav navbar-nav">
         <li><a href="/logout">Logout</a></li>
       </ul>
-      <ul class="nav navbar-nav">
-        <li><a href="/upload">GO TO UPLOAD PAGE</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
+         <?= form_open('keyword_search', $form); ?>
+           <div class="form-group">
+            <?php $keyword = array(
+              'type'=> 'text', 
+              'class'=>'form-control', 
+              'name' => 'keyword', 
+              'placeholder' => 'Search for samples');?>
+               <?= form_input($keyword)?>
+            </div>
+            <?php $submit = array(
+              'type'=> 'submit', 
+              'class'=>'btn btn-success',);?>
+            <?= form_submit($submit, 'Search'); ?>
+          <?= form_close(); ?>
+      <ul class="nav navbar-nav navbar-right pull">
         <li><a href="#">Put Cart Here</a></li>
       </ul>
     </div>
