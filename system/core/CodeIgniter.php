@@ -50,7 +50,7 @@
  * ------------------------------------------------------
  */
 	require(BASEPATH.'core/Common.php');
-
+	require(APPPATH.'/vendor/autoload.php';
 /*
  * ------------------------------------------------------
  *  Load the framework constants

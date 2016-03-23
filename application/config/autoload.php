@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array(APPPATH.'third_party/aws');
+$autoload['packages'] = array();
 
 
 /*
