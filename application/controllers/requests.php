@@ -17,6 +17,7 @@ class Requests extends CI_Controller {
 // user wants to visit the checkout page
 	public function view_checkout()
 	{
+		$header['title'] = 'Checkout';
 		$this->load->view('partials/header');
 		$this->load->view('partials/navbar');
 		$this->load->view('checkout');

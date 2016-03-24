@@ -27,7 +27,18 @@ class Users extends CI_Controller {
 /* !!!!!!!!!!!!!!!!!! Methods concerning the profile, and user editing of their own profiles !!!!!!!!!!!!!!!!!! */
 
 // method for new users to set up their initial profile pages
-	public function setup_profile()
+	public function view_setup_profile()
+	{
+		$data['title'] = 'New Profile';
+
+		$this->load->view('partials/header', $data);
+		$this->load->view('partials/navbar');
+		$this->load->view('user_profile');
+		$this->load->view('partials/footer');
+	} // end of method
+
+// method for submitting the form data for their profile, sets flash data for confirmation & goes to dashboard
+	public function view_setup_profile()
 	{
 		$data['title'] = 'New Profile';
 

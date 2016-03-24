@@ -23,7 +23,9 @@ $route['restricted'] = 'users/restricted';
 
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
-$route['user/new'] = 'users/setup_profile';
+$route['user/new'] = 'users/view_setup_profile';
+// Submit the form for setting their preferences
+$route['user/new/submit'] = 'users/create_profile';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
@@ -42,9 +44,13 @@ $route['search'] = 'samples/browse';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
-$route['upload/success'] = 'collections/upload_success';
-$route['upload/submit'] = 'collections/submit_data';
 $route['upload'] = 'collections/view_upload_page';
+// Submit the form to  upload the excel document into the assets folder
+$route['upload/submit'] = 'collections/upload_batch';
+// Excel sheet upload was successful, pull data and view for confirmation
+$route['success'] = 'collections/upload_success';
+// Submit the form to
+$route['upload/submit'] = 'collections/submit_data';
 
 ////////////////////////// Checkout Page //////////////////////////////////////
 // Load the checkout/email page
@@ -52,7 +58,11 @@ $route['checkout'] = 'samples/view_checkout';
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
-$route['sample/(:num)'] = 'samples/view_sample/$1';
+$route['samples/(:num)'] = 'samples/view_sample/$1';
+// Submit the form to edit a sample
+$route['samples/(:num)/update'] = 'samples/update/$1';
+// Delete a sample
+$route['samples/delete/(:num)'] = 'samples/delete/$1';
 
 ////////////////////////// User Page //////////////////////////////////////
 // Load a person profile page
@@ -60,6 +70,7 @@ $route['user/(:any)'] = 'users/view_user/$1';
 
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page
-$route['collection/(:any)'] = 'samples/view_collection/$1';
+$route['collection/(:any)'] = 'collections/view_collection/$1';
+// Choosing samples to delete uses the method on the samples controller above
 
 ?>

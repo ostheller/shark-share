@@ -10,22 +10,22 @@ class Samples extends CI_Controller {
 	{
 		$post = $this->input->post();
 		$data = $this->sample->search($post);
-		$data['title'] = 'Search';
+		$header['title'] = 'Search';
 
-		$this->load->view('partials/header', $data);
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
 	} // end of method
 
-// user uses the advanced search functionality
+// user uses the advanced search
 	public function advanced_search()
 	{
 		$post = $this->input->post();
 		$data = $this->sample->advanced_search($post);
-		$data['title'] = 'Search';
+		$header['title'] = 'Search';
 
-		$this->load->view('partials/header');
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
@@ -37,9 +37,9 @@ class Samples extends CI_Controller {
 		// get samples for them to browse based on their set up preferences
 		$user = $this->session->userdata('id');
 		$data = $this->sample->browse($user);
-		$data['title'] = 'Search';
+		$header['title'] = 'Search';
 
-		$this->load->view('partials/header');
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
@@ -48,16 +48,27 @@ class Samples extends CI_Controller {
 /* !!!!!!!!!!!!!!!!!! Methods concerning the ONE SAMPLE !!!!!!!!!!!!!!!!!! */
 
 // user wants to see a sample's profile page
-	public function view_sample()
+	public function view_sample($id)
 	{
 		$user = $this->session->userdata('id');
 		$data = $this->sample->browse($user);
-		$title = 'View ' . $data['genus'] . ' ' . $data['species'];
+		$header['title'] = 'View ' . $data['genus'] . ' ' . $data['species'];
 
-		$this->load->view('partials/header');
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar');		
-		$this->load->view('sample_profile', array($data, $title));
+		$this->load->view('sample_profile', $data);
 		$this->load->view('partials/footer');
 	} // end of method
 
+// user wants to edit their own single sample
+	public function update($id)
+	{
+
+	}
+
+// user wants to delete selected sample(s)
+	public function delete()
+	{
+
+	}
 }

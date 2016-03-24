@@ -9,20 +9,23 @@ class Collections extends CI_Controller {
 // could be theirs or anothers' collection, depends on what we pass it
 	public function view_collection()
 	{
+		$header['title'] = 'Collection'
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// they cannot see this page
 			redirect('/restricted');
-		} else { 
-		// they are logged in (get the navbar without the login form)
-			$this->load->view('partials/header');
+		} else if { 
+		// they are logged in but it's not their collection
+			
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
-			$this->load->view('landing_page');
+			$this->load->view('user_collection', $data);
+			$this->load->view('partials/footer');
+		} else {
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar');
+			$this->load->view('user_collection', $data);
 			$this->load->view('partials/footer');
 		}
-		$this->load->view('partials/header');
-		$this->load->view('partials/navbar');
-		$this->load->view('user_collection');
-		$this->load->view('partials/footer');
 	} // end of method
 
 /* !!!!!!!!!!!!!!!!!! Uploading !!!!!!!!!!!!!!!!!! */
@@ -48,7 +51,9 @@ class Collections extends CI_Controller {
         		redirect('upload/success');
         } else {
         	$message = 'There was a problem with your upload';
-         	$this->load->view('partials/header');
+         	$header['title'] = 'Upload';
+
+         	$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
          	$this->load->view('upload', $message);
          	$this->load->view('partials/footer');
@@ -84,7 +89,9 @@ class Collections extends CI_Controller {
 			redirect('upload');
 		} else {
 			$message = 'your data failed to upload, try again or check your spreadsheet for errors';
-			$this->load->view('partials/header');
+			$header['title'] = 'Upload';
+
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
 			$this->load->view('upload', $message);
 	        $this->load->view('partials/footer');

@@ -9,13 +9,15 @@ class Logins extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// if they are not logged in (get the navbar WITHthe login form)
-			$this->load->view('partials/header');
+			$header['title'] = 'Shark Share';
+
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('landing_page');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
-			$this->load->view('partials/header');
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
 			$this->load->view('landing_page');
 			$this->load->view('partials/footer');
