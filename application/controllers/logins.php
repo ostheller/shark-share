@@ -74,19 +74,24 @@ class Logins extends CI_Controller {
 	    {
 	    	// put the data in session for now, put in database after accept t&c
 	    	$this->session->set_userdata('potential_data', $data);
-	    	redirect('/terms');	        
+	    	$this->session->set_userdata('proceed', TRUE);
+	    	redirect('/register/terms');	        
 	    }
 	} // end of method
 
 // method for viewing the terms&conditions page after passing registration checks
 	public function view_terms()
 	{
-		$header['title'] = 'Terms and Conditions';
+		if ($this->session->userdata('proceed') === TRUE) {
+			$header['title'] = 'Terms and Conditions';
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar_login');
-		$this->load->view('registration/2');
-		$this->load->view('partials/footer');
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/2');
+			$this->load->view('partials/footer');
+		} else {
+			redirect('/restricted');
+		}
 	} // end of method
 
 // method for processing the form data 
@@ -94,9 +99,6 @@ class Logins extends CI_Controller {
 	{
 		$this->load->model('login');
 		$data = $this->input->post();
-		// $user_sess = $this->login->terms_validation($data); 
-		// 	var_dump($user_sess);
-	 //        die();
 		if ($data['responsibility'] === 'accept' && $data['acknowledgment'] === 'accept' && $data['shipping'] === 'accept') {
 			// put the data in the database
 	        $person = $this->session->userdata('potential_data');
@@ -104,13 +106,9 @@ class Logins extends CI_Controller {
 	        // flag this user as having completed registration, IS NOT not logged in
 	       	$this->session->set_userdata('potential_candidate', true);
 	        // go to the third registration page
-	        $header['title'] = 'Registration Complete';
-			$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar_login');
-			$this->load->view('registration/3');
-			$this->load->view('partials/footer');
+	        redirect('register/complete');
 	    } // end if
-	    else
+	    else // reload the terms page w/errors
 	    {
 	    	$header['title'] = 'Terms and Conditions';
 
@@ -120,6 +118,21 @@ class Logins extends CI_Controller {
 			$this->load->view('partials/footer');
 	    }
 	} // end of method
+
+// method for visiting the  
+	public function visit_welcome_page()
+	{			
+		if ($this->session->userdata('potential_candidate') === true) {
+			$header['title'] = 'Registration Complete';
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/3');
+			$this->load->view('partials/footer');
+		} else {
+			redirect('/restricted');
+		}
+	}
+
 
 // method for arriving on the initial landing page AFTER being logged OUT (dump session)
    	public function logout()

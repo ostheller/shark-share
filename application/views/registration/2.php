@@ -1,4 +1,4 @@
-<?php echo form_open('accept'); ?>
+<?php echo form_open('register/accept'); ?>
 
 <ul>
 <li><h5>Accept Responibility Terms</h5>

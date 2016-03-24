@@ -1,4 +1,4 @@
-<?php echo form_open('validate'); ?>
+<?php echo form_open('register/validate'); ?>
 
 <h5>First Name</h5>
 <input type="text" name="first_name" value="<?php echo set_value('first_name'); ?>" size="50" />

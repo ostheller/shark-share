@@ -11,11 +11,13 @@ $route['login'] = 'logins/login_validation';
 // User clicks on register
 $route['register'] = 'logins/registration_page';
 // User submits registration form
-$route['validate'] = 'logins/registration_validation';
+$route['register/validate'] = 'logins/registration_validation';
 // User passes registration, goes to next page
-$route['terms'] = 'logins/view_terms';
+$route['register/terms'] = 'logins/view_terms';
 // User submits terms of service form
-$route['accept'] = 'logins/terms_confirmation';
+$route['register/accept'] = 'logins/terms_confirmation';
+// User passes terms form, goes to final page
+$route['register/complete'] = 'logins/visit_welcome_page';
 // Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
 

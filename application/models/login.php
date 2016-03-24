@@ -46,6 +46,7 @@ new users into the database. It covers the logical steps in the flow of login/re
             }
         } // end of method
 
+// This method is not being used but remains in case minds are changed
 // Method to ensure all boxes are checked
     // public function terms_validation()
     // {
