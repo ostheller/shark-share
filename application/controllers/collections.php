@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+// Hi Molly, I'm controlling EVERYTHING and will soon conquer the world! MWAHAHAHAHA!
 class Collections extends CI_Controller {
 /* this controller is for COLLECTIONS OF SAMPLES, e.g. collection viewing, management, uploads */
 
