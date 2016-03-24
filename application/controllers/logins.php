@@ -61,37 +61,64 @@ class Logins extends CI_Controller {
 		$this->load->model('login');
 		$data = $this->input->post();
 		$user_sess = $this->login->registration_validation($data); 
+		// if there are validation errors
 		if ($user_sess === false) {
 			$header['title'] = 'Registration Errors';
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
-			$this->load->view('registration/'.$data['page']);
+			$this->load->view('registration/1');
 			$this->load->view('partials/footer');
-	    } // end if
+	    } // if there are no errors
 	    else
 	    {
-	    	// set the user data
-	        
+	    	// put the data in session for now, put in database after accept t&c
+	    	$this->session->set_userdata('potential_data', $data);
+	    	redirect('/terms');	        
 	    }
+	} // end of method
+
+// method for viewing the terms&conditions page after passing registration checks
+	public function view_terms()
+	{
+		$header['title'] = 'Terms and Conditions';
+
+		$this->load->view('partials/header', $header);
+		$this->load->view('partials/navbar_login');
+		$this->load->view('registration/2');
+		$this->load->view('partials/footer');
 	} // end of method
 
 // method for processing the form data 
 	public function terms_confirmation()
 	{
+		$this->load->model('login');
 		$data = $this->input->post();
-		$user_sess = $this->login->rregistration_validation($data); 
+		var_dump($data);
+		die();
+		$user_sess = $this->login->terms_validation($data); 
+		
 		if ($user_sess === false) {
-			$this->load->view('partials/header');
+			$header['title'] = 'Terms and Conditions';
+
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
-			$this->load->view('registration/'.$data['page']);
+			$this->load->view('registration/2');
 			$this->load->view('partials/footer');
 	    } // end if
 	    else
 	    {
-	    	// set the user data
-	        $this->session->set_userdata('potential_candidate', true);
-	        redirect('/');
+	    	// put the data in the database
+	        $person = $this->session->userdata('potential_data');
+	        $this->login->on_probation($person);
+	        // flag this user as having completed registration, IS NOT not logged in
+	       	$this->session->set_userdata('potential_candidate', true);
+	        // go to the third registration page
+	        $header['title'] = 'Registration Complete';
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/3');
+			$this->load->view('partials/footer');
 	    }
 	} // end of method
 
