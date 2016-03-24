@@ -9,17 +9,18 @@ class Admins extends CI_Controller {
 		// check to see if they have the clearance
 		if ($this->session->userdata('admin') === TRUE && $this->session->userdata('logged_in') === TRUE) {
         	// we request the data we need from the model
-			$this->sample->
+			//$this->sample->
 			// now we load the view
-        	$this->load->view('partials/header');
+        	$header['title'] = 'Admin Dashboard';
+        	$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
 			$this->load->view('admin_dashboard', $data);
 			$this->load->view('partials/footer');
         // if they don't have clearance but are indeed logged in, redirect to dashboard
         } else if ($this->session->userdata('logged_in') === TRUE) {
-        	redirect('/dashboard')
+        	redirect('/dashboard');
         } else {
-        	redirect('/')
+        	redirect('/restricted');
         }
 	} // end of method 
 

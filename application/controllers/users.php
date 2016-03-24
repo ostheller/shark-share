@@ -38,7 +38,7 @@ class Users extends CI_Controller {
 	} // end of method
 
 // method for submitting the form data for their profile, sets flash data for confirmation & goes to dashboard
-	public function view_setup_profile()
+	public function set_preferences()
 	{
 		$data['title'] = 'New Profile';
 

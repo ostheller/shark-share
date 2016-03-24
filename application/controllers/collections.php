@@ -7,13 +7,13 @@ class Collections extends CI_Controller {
 
 // user wants to see a collection, pulls the data and loads the collection page. 
 // could be theirs or anothers' collection, depends on what we pass it
-	public function view_collection()
+	public function view_collection($id)
 	{
-		$header['title'] = 'Collection'
-		if ($this->session->userdata('logged_in') != TRUE) {
+		$header['title'] = 'Collection';
+		if ($this->session->userdata('logged_in' != TRUE)) {
 		// they cannot see this page
 			redirect('/restricted');
-		} else if { 
+		} else if ($this->session->userdata('id') != $id) { 
 		// they are logged in but it's not their collection
 			
 			$this->load->view('partials/header', $header);

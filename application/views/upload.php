@@ -1,8 +1,11 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <?php if ($this->session->userdata('admin' === true)) {
+        echo '<p><a href="/admin">Admin Dashboard</a></p>
+        <p><a href="/dashboard">Dashboard</a></p>';}
+        else { echo '<p><a href="/dashboard">Dashboard</a></p>';} ?>
+      <p><a href="/user/"<?=$this->session->userdata('id')?>"'">Profile</a></p>
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 

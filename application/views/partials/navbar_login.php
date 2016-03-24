@@ -19,7 +19,7 @@
         <li><a href="/logout">Logout</a></li>
       </ul>
       <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
-         <?= form_open('login_attempt', $form); ?>
+         <?= form_open('login', $form); ?>
            <div class="form-group">
             <?php $email = array(
               'type'=> 'text', 
@@ -41,6 +41,7 @@
               'class'=>'btn btn-success',);?>
             <?= form_submit($submit, 'Sign In'); ?>
           <?= form_close(); ?>
+          <?php echo $errors ?></li>
     </div>
   </div>
 </nav>

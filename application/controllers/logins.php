@@ -7,10 +7,14 @@ class Logins extends CI_Controller {
 // index function that drops the user at the landing page which has the login form on the navbar
 	public function index()
 	{
+		$header['title'] = 'Shark Share';
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// if they are not logged in (get the navbar WITHthe login form)
-			$header['title'] = 'Shark Share';
-
+			if ($this->session->userdata('login_attempt_failed') === true) {
+				$header['errors'] = 'Incorrect email/password';
+			} else {
+				$header['errors'] = NULL;
+			}
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('landing_page');
@@ -27,18 +31,25 @@ class Logins extends CI_Controller {
 // method for posting login form data and running validation checks
 	public function login_validation()
 	{
+		$this->load->model('login');
 		$data = $this->input->post();
-		$user_sess = $this->login->login_user($data); 
+		$user_sess = $this->login->login_user($data);
         // if the validation fails
         if ($user_sess === false) {
-        	redirect('/');
+        	$this->session->set_userdata('login_attempt_failed', true);
+        	reload();
         } else {
-        	// put the data into session
-        	$this->session->set_userdata($user_sess);
-	        // if admin, go to admin dashboard, users to user dashboard
-	        if ($this->session->userdata('admin') === TRUE) {
-	        	redirect('/admin');
-	        } else {
+        	// check admin status
+        	if ($user_sess['user_level'] === 1) {
+				$session_data = array(
+						'admin' => true,
+						'logged_in' => true
+					);
+				$this->session->set_userdata($user_sess, $session_data);
+				redirect('/admin');
+			} else { // user
+				$this->session->set_userdata('logged_in', true);
+				$this->session->set_userdata($user_sess);
 	        	redirect('/dashboard');
         	}
         }

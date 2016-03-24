@@ -7,7 +7,7 @@ new users into the database. It covers the logical steps in the flow of login/re
 // Method to validate the login of one user
     public function login_user() 
     {
-        $query = "SELECT id, first_name, last_name, description, image_name, user_level, created_at FROM users WHERE email = ? AND password = ?";
+        $query = "SELECT id, first_name, user_level FROM users WHERE email = ? AND password = ?";
         $values = array($this->input->post('email'), $this->input->post('password'));
         $user = $this->db->query($query, $values)->row_array();
         if (!empty($user)) {
