@@ -12,6 +12,8 @@ $route['login'] = 'logins/login_validation';
 $route['register'] = 'logins/registration_page';
 // User submits registration form
 $route['validate'] = 'logins/registration_validation';
+// User submits terms of service form
+$route['accept'] = 'logins/terms_confirmation';
 // Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
 

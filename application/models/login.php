@@ -16,7 +16,7 @@ new users into the database. It covers the logical steps in the flow of login/re
         else 
         {
             $this->session->set_flashdata('errors', 'Incorrect email/password.');
-            return false
+            return false;
         }
     } // end of method
 
@@ -27,9 +27,15 @@ new users into the database. It covers the logical steps in the flow of login/re
         $this->form_validation->set_rules("first_name", "First Name", "required|alpha|trim");
         $this->form_validation->set_rules("last_name", "Last Name", "trim|required|alpha");
         $this->form_validation->set_rules("email", "Email", "trim|required|valid_email|is_unique[users.email]");
-        $this->form_validation->set_rules("password", "Password", "trim|required|min_length[7]");
-        $this->form_validation->set_rules("confirm_password", "Confirm Password", "required|matches[password]");
         $this->form_validation->set_rules('is_unique', 'That email address is already registered.');
+        $this->form_validation->set_rules("password", "Password", "trim|required|min_length[7]|md5");
+        $this->form_validation->set_rules("passconf", "Confirm Password", "required|matches[password]");
+        $this->form_validation->set_rules('institution', "Institution", "required|alpha|trim");
+        $this->form_validation->set_rules('research', "Field of Research", "required|alpha|trim");
+        $this->form_validation->set_rules('city', "City", "required|alpha|trim");
+        $this->form_validation->set_rules('country', "Country", "required|trim");
+        $this->form_validation->set_rules('reference', "Name of Reference", "required|alpha|trim");
+        $this->form_validation->set_rules('reference_email', "Email of Reference", "required|valid_email|trim");
             if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
             {
                 $this->session->set_flashdata('errors', validation_errors());
@@ -73,7 +79,7 @@ check against the database before they are allowed to setup their profile */
 // Method to remove a user from the probationary table
     public function destroy()
     {
-        return true
+        return true;
     } // end insert one
 
 } // end of model ?>

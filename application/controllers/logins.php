@@ -47,28 +47,45 @@ class Logins extends CI_Controller {
 // method for arriving on the registration page
 	public function registration_page()
 	{
-		$this->load->view('partials/header');
+		$header['title'] = 'Register';
+
+		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar_login');
-		$this->load->view('register');
+		$this->load->view('registration/1');
 		$this->load->view('partials/footer');
 	} // end of method
-
-// method for terms and conditions form submittal
-	// public function accept_terms()
-	// {
-	// 	// if they accept the terms, continue
-	// 	if ();
-	// 	// else fail
-	// 	redirect('/')
-	// } // end of method
 
 // method for posting registration form data and running validation checks
 	public function registration_validation()
 	{
+		$this->load->model('login');
+		$data = $this->input->post();
+		$user_sess = $this->login->registration_validation($data); 
+		if ($user_sess === false) {
+			$header['title'] = 'Registration Errors';
+
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/'.$data['page']);
+			$this->load->view('partials/footer');
+	    } // end if
+	    else
+	    {
+	    	// set the user data
+	        
+	    }
+	} // end of method
+
+// method for processing the form data 
+	public function terms_confirmation()
+	{
 		$data = $this->input->post();
 		$user_sess = $this->login->rregistration_validation($data); 
 		if ($user_sess === false) {
-			redirect('/');
+			$this->load->view('partials/header');
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/'.$data['page']);
+			$this->load->view('partials/footer');
 	    } // end if
 	    else
 	    {
