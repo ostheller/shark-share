@@ -47,20 +47,20 @@ new users into the database. It covers the logical steps in the flow of login/re
         } // end of method
 
 // Method to ensure all boxes are checked
-    public function terms_validation()
-    {
-        $this->form_validation->set_rules("responsiblity", "Responsibility", "required");
-        $this->form_validation->set_rules("acknowledgment", "Acknowledgment", "required");
-        $this->form_validation->set_rules("shipping", "Shipping Terms", "required");
-        if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
-            {
-                $this->session->set_flashdata('errors', validation_errors());
-                return false;
-            }  // end if failure
-            else {
-                return true;
-            }
-        } // end of method
+    // public function terms_validation()
+    // {
+    //     $this->form_validation->set_rules("responsiblity", "Responsibility", "required");
+    //     $this->form_validation->set_rules("acknowledgment", "Acknowledgment", "required");
+    //     $this->form_validation->set_rules("shipping", "Shipping Terms", "required");
+    //     if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
+    //         {
+    //             $this->session->set_flashdata('errors', validation_errors());
+    //             return false;
+    //         }  // end if failure
+    //         else {
+    //             return true;
+    //         }
+    //     } // end of method
 
 // Method for putting POTENTIAL candidates into a probation table waiting for validation from admins
 /* we could put a login keyword/password in their table that we could use as the link in the email we 
@@ -68,12 +68,13 @@ send when they are accepted. they would have to click that link would that long 
 check against the database before they are allowed to setup their profile */
     public function on_probation()
     {
-        $query = "INSERT INTO potential_users (first_name, last_name, email, password, description, user_level, created_at, updated_at) VALUES (?,?,?,?,?,1,NOW(),NOW())";
-        $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password'),$this->input->post('description'));
+        $query = "INSERT INTO potential_users (first_name) VALUES (?)";
+        $values = array($this->input->post('first_name'));
         if ($this->db->query($query, $values)) {
             return true;
         } 
         else {
+            $this->session->set_flashdata('errors', 'Failed to connect to database');
             return false; 
         }
     } // end of method

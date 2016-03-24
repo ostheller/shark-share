@@ -94,21 +94,11 @@ class Logins extends CI_Controller {
 	{
 		$this->load->model('login');
 		$data = $this->input->post();
-		var_dump($data);
-		die();
-		$user_sess = $this->login->terms_validation($data); 
-		
-		if ($user_sess === false) {
-			$header['title'] = 'Terms and Conditions';
-
-			$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar_login');
-			$this->load->view('registration/2');
-			$this->load->view('partials/footer');
-	    } // end if
-	    else
-	    {
-	    	// put the data in the database
+		// $user_sess = $this->login->terms_validation($data); 
+		// 	var_dump($user_sess);
+	 //        die();
+		if ($data['responsibility'] === 'accept' && $data['acknowledgment'] === 'accept' && $data['shipping'] === 'accept') {
+			// put the data in the database
 	        $person = $this->session->userdata('potential_data');
 	        $this->login->on_probation($person);
 	        // flag this user as having completed registration, IS NOT not logged in
@@ -118,6 +108,15 @@ class Logins extends CI_Controller {
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('registration/3');
+			$this->load->view('partials/footer');
+	    } // end if
+	    else
+	    {
+	    	$header['title'] = 'Terms and Conditions';
+
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/2');
 			$this->load->view('partials/footer');
 	    }
 	} // end of method
