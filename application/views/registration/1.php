@@ -33,7 +33,6 @@
 <h5>Email of Reference</h5>
 <input type="text" name="reference_email" value="<?php echo set_value('reference_email'); ?>" size="50" />
 <?php echo form_error('reference_email'); ?>
-<input type="hidden" name="page" value="1" />
 
 <div><input type="submit" value="Submit" /></div>
 
