@@ -41,7 +41,7 @@
               'class'=>'btn btn-success',);?>
             <?= form_submit($submit, 'Sign In'); ?>
           <?= form_close(); ?>
-          <?php echo $errors ?></li>
+          <?php if (isset($errors)) {echo $errors; } ?></li>
     </div>
   </div>
 </nav>

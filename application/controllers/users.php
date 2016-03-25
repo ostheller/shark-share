@@ -51,8 +51,9 @@ class Users extends CI_Controller {
 // method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
 	public function view_user()
 	{
+		$this->load->model('user');
 		$user = $this->session->userdata('id');
-		$data = $this->sample->view($user);
+		$data = $this->user->view($user);
 		$data['title'] = 'View ' . $data['first'] . ' ' . $data['last'];
 
 		$this->load->view('partials/header', $data);

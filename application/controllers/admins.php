@@ -20,7 +20,7 @@ class Admins extends CI_Controller {
         } else if ($this->session->userdata('logged_in') === TRUE) {
         	redirect('/dashboard');
         } else {
-        	redirect('/restricted');
+        	redirect('/');
         }
 	} // end of method 
 
