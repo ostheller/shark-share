@@ -52,7 +52,7 @@ $route['search'] = 'samples/browse';
 // Load the upload page
 $route['upload'] = 'collections/view_upload_page';
 // Submit the form to  upload the excel document into the assets folder
-$route['upload/submit'] = 'collections/upload_batch';
+//$route['upload/submit'] = 'collections/upload_batch';
 // Excel sheet upload was successful, pull data and view for confirmation
 $route['upload/success'] = 'collections/upload_success';
 // Submit the form to
