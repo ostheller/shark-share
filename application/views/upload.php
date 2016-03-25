@@ -23,7 +23,7 @@
       echo 'Your file: ' . $inputFileName . ' was uploaded successfully'; 
       }
     if (isset($header)) { ?>
-      <a href="/upload/submit"><button>Submit to Database</button></a>
+      <a href="/upload/submit/final"><button>Submit to Database</button></a>
       <table class = "table">
          <caption>Uploaded Sheet</caption>
          
