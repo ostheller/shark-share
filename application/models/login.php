@@ -89,7 +89,7 @@ check against the database before they are allowed to setup their profile */
 // Method to register one user to the database for the first time (automatic user level of 1, normal)
     public function create()
     {
-        $query = "INSERT INTO users (first_name, last_name, email, password, user_level, created_at, updated_at) VALUES (?,?,?,?,0,NOW(),NOW())";
+        $query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)";
         $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password')); 
         return $this->db->query($query, $values);
     } // end insert one
