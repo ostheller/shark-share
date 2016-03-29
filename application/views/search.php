@@ -6,18 +6,36 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>THIS IS THE Search</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
+      <h1>THIS IS THE Search</h1>      <hr>
+      <table class = "table">
+         <caption>Results</caption>
+         
+         <thead>
+            <tr>
+              <th>sampleType<th>
+              <th>preservationMedium<th>
+              <th>Photos Available<th>
+              <th>comments<th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            <tr>
+              <?php { ?>
+                <td><?php echo $sampleType; ?><td>
+                <td><?php echo $preservationMedium; ?><td>
+                <td><?php if ($photos == 0) {echo 'No';} else {echo 'Yes';} ?><td>
+                <td><?php echo $comments; ?><td>
+                <?php } ?> </tr>            
+         </tbody>    
+      </table>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p>Content</p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p>Content</p>
       </div>
     </div>
   </div>

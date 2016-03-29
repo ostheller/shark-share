@@ -1,8 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Model {
-/* this model's methods interact with the database to verify logins, create registration profiles, insert 
-new users into the database. It covers the logical steps in the flow of login/registration */
+/* this model's methods interact with the database to verify logins, create registration profiles, insert new users into the database. It covers the logical steps in the flow of login/registration */
 
 // Method to validate the login of one user
     public function login_user() 

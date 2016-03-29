@@ -8,6 +8,7 @@ class Samples extends CI_Controller {
 // user enters a keyword search
 	public function search()
 	{
+		$this->load->model('sample');
 		$post = $this->input->post();
 		$data = $this->sample->search($post);
 		$header['title'] = 'Search';
@@ -21,6 +22,7 @@ class Samples extends CI_Controller {
 // user uses the advanced search
 	public function advanced_search()
 	{
+		$this->load->model('sample');
 		$post = $this->input->post();
 		$data = $this->sample->advanced_search($post);
 		$header['title'] = 'Search';
@@ -35,8 +37,9 @@ class Samples extends CI_Controller {
 	public function browse()
 	{
 		// get samples for them to browse based on their set up preferences
-		$user = $this->session->userdata('id');
-		$data = $this->sample->browse($user);
+		$this->load->model('sample');
+		//$user = $this->session->userdata('id');
+		$data = $this->sample->browse();
 		$header['title'] = 'Search';
 
 		$this->load->view('partials/header', $header);

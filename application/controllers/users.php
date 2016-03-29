@@ -49,12 +49,11 @@ class Users extends CI_Controller {
 	} // end of method
 
 // method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
-	public function view_user()
+	public function view_user($id)
 	{
 		$this->load->model('user');
-		$user = $this->session->userdata('id');
-		$data = $this->user->view($user);
-		$data['title'] = 'View ' . $data['first'] . ' ' . $data['last'];
+		$data = $this->user->view($id);
+		$data['title'] = $data['first_name'] . ' ' . $data['last_name'];
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('partials/navbar');
@@ -72,11 +71,31 @@ class Users extends CI_Controller {
 
 /* !!!!!!!!!!!!!!!!!! Methods concerning site navigation !!!!!!!!!!!!!!!!!! */
 
+// method to view the about page
+	public function view_about()
+	{
+		$data['title'] = 'About';
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in (get the navbar WITH the login form)
+
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar_login');
+			$this->load->view('about');
+			$this->load->view('partials/footer');
+		} else { 
+		// they are logged in (get the navbar without the login form)
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/navbar');
+			$this->load->view('about');
+			$this->load->view('partials/footer');
+		}
+	} // end of method
+
 // method to view the help page
 	public function view_help()
 	{
 		if ($this->session->userdata('logged_in') != TRUE) {
-		// if they are not logged in (get the navbar WITHthe login form)
+		// if they are not logged in (get the navbar WITH the login form)
 			$data['title'] = 'Help';
 
 			$this->load->view('partials/header', $data);

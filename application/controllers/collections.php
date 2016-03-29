@@ -40,6 +40,15 @@ class Collections extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
+// user wants to download the template we use to upload samples
+	public function get_template()
+	{
+		$data = file_get_contents("assets/downloads/template.xlsx"); // Read the file's contents
+		$name = 'template.xlsx';
+
+		force_download($name, $data);
+	} // end of method
+
 // uploading samples to a user's collection, if successful redirect to upload_success, otherwise no
 	public function upload_batch()
 	{

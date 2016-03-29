@@ -1,9 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Collection extends CI_Model {
-/* this model's methods interact with the database to upload batches of samples (and assign 
-them into a particular user's collection), pulling the data for viewing a particular collection,
-deleting samples from a collection */
+/* this model's methods interact with the database to upload batches of samples (and assign them into a particular user's collection), pulling the data for viewing a particular collection, deleting samples from a collection */
 
 /* !!!!!!!!!!!!!!!!!! Uploading !!!!!!!!!!!!!!!!!! */
 
@@ -37,7 +35,7 @@ deleting samples from a collection */
 
 // method to submit the data in the array into the database
 	public function submit_data($data) {
-		$query = "INSERT INTO users(first_name, last_name) VALUES (?,?)";
+		$query = "INSERT INTO samples(preservationMedium, comments) VALUES (?,?)";
 
 		// need to loop through each of the rows to insert        
          for ($i=2; $i < count($data['values']) ; $i++) { 

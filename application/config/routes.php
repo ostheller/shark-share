@@ -21,12 +21,6 @@ $route['register/complete'] = 'logins/visit_welcome_page';
 // Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
 
-// User clicks on the help page
-$route['help'] = 'users/view_help';
-
-// User tries to access a page they don't have permission to see
-$route['restricted'] = 'users/restricted';
-
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
 $route['user/new'] = 'users/view_setup_profile';
@@ -58,9 +52,9 @@ $route['upload/success'] = 'collections/upload_success';
 // Submit the form to
 $route['upload/submit/final'] = 'collections/submit_data';
 
-////////////////////////// Checkout Page //////////////////////////////////////
-// Load the checkout/email page
-$route['checkout'] = 'samples/view_checkout';
+////////////////////////// Request Samples Page //////////////////////////////////////
+// Load the request samples page
+$route['request'] = 'samples/view_request_samples';
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
@@ -79,4 +73,12 @@ $route['user/(:any)'] = 'users/view_user/$1';
 $route['collection/(:any)'] = 'collections/view_collection/$1';
 // Choosing samples to delete uses the method on the samples controller above
 
+////////////////////////// About, FYI, Restricted //////////////////////////////////////
+// User clicks on the about page
+$route['about'] = 'users/view_about';
+// User clicks on the help page
+$route['help'] = 'users/view_help';
+
+// User tries to access a page they don't have permission to see
+$route['restricted'] = 'users/restricted';
 ?>
