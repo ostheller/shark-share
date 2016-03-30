@@ -12,9 +12,11 @@ class Admins extends CI_Controller {
 			//$this->sample->
 			// now we load the view
         	$header['title'] = 'Admin Dashboard';
+        	$requests['count'] = count($this->session->userdata['requested_sample_id']);
+
         	$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar');
-			$this->load->view('admin_dashboard', $data);
+			$this->load->view('partials/navbar', $requests);
+			$this->load->view('admin_dashboard');
 			$this->load->view('partials/footer');
         // if they don't have clearance but are indeed logged in, redirect to dashboard
         } else if ($this->session->userdata('logged_in') === TRUE) {

@@ -3,8 +3,7 @@
     <div class="col-sm-2 sidenav">
       <p><a href="/upload">Upload</a></p>
        <p><a href="/user/<?=$this->session->userdata('id')?>">Profile</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <?php if($this->session->userdata['admin'] == TRUE) echo '<p><a href="/admin">Return to Admin Dashboard</a></p>'; ?>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>User Dashboard</h1>

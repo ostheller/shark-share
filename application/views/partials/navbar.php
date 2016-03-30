@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/dashboard">Home</a></li>
-        <li><a href="/search">Browse</a></li>
+        <li><a href="/browse">Browse</a></li>
         <li><a href="/collection/<?php echo $this->session->userdata('id'); ?>">Collection</a></li>
         <li><a href="/user/<?php echo $this->session->userdata('id'); ?>">Profile</a></li>
         <li><a href="/logout">Logout</a></li>
@@ -32,7 +32,7 @@
             <?= form_submit($submit, 'Search'); ?>
           <?= form_close(); ?>
       <ul class="nav navbar-nav navbar-right pull">
-        <li><a href="/request">Request Samples</a></li>
+        <li><a href="/request">Request Samples <?php if(isset($count)) echo '(' . $count .')'; ?></a></li>
       </ul>
     </div>
   </div>

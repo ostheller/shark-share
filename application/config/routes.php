@@ -39,8 +39,14 @@ $route['admin'] = 'admins/view_admin_dashboard';
 $route['dashboard'] = 'users/view_user_dashboard';
 
 ////////////////////////// Search Page //////////////////////////////////////
-// Load the search page [from browse or typing in url, not showing search results]
-$route['search'] = 'samples/browse';
+// Load the search page from browse or typing in url, not showing search results]
+$route['browse'] = 'samples/browse';
+
+// Process the search form data & view the page
+$route['search'] = 'samples/search';
+
+// Add sample sto the basket
+$route['samples/request'] = 'samples/request_sample';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
@@ -54,7 +60,7 @@ $route['upload/submit/final'] = 'collections/submit_data';
 
 ////////////////////////// Request Samples Page //////////////////////////////////////
 // Load the request samples page
-$route['request'] = 'samples/view_request_samples';
+$route['request'] = 'users/view_request_samples';
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page

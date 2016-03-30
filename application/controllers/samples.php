@@ -33,13 +33,12 @@ class Samples extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
-//user clicks browse, pulls the data and loads the search results page
-	public function browse()
+// load the view page
+	public function view_search()
 	{
-		// get samples for them to browse based on their set up preferences
 		$this->load->model('sample');
-		//$user = $this->session->userdata('id');
-		$data = $this->sample->browse();
+		$post = $this->input->post();
+		$data = $this->sample->advanced_search($post);
 		$header['title'] = 'Search';
 
 		$this->load->view('partials/header', $header);
@@ -48,17 +47,35 @@ class Samples extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
+//user clicks browse, pulls the data and loads the search results page
+	public function browse()
+	{
+		// get samples for them to browse based on their set up preferences
+		$this->load->model('sample');
+		//$user = $this->session->userdata('id');
+		$data = $this->sample->browse();
+		$header['title'] = 'Search';
+		$requests['count'] = count($this->session->userdata['requested_sample_id']);
+
+		$this->load->view('partials/header', $header);
+		$this->load->view('partials/navbar', $requests);
+		$this->load->view('search', array('data' => $data));
+		$this->load->view('partials/footer');
+	} // end of method
+
 /* !!!!!!!!!!!!!!!!!! Methods concerning the ONE SAMPLE !!!!!!!!!!!!!!!!!! */
 
 // user wants to see a sample's profile page
 	public function view_sample($id)
 	{
-		$user = $this->session->userdata('id');
-		$data = $this->sample->browse($user);
-		$header['title'] = 'View ' . $data['genus'] . ' ' . $data['species'];
+		$this->load->model('sample');
+		$data = $this->sample->view($id);
+		//$header['title'] = 'View ' . $data['genus'] . ' ' . $data['species'];
+		$header['title'] = $data['sampleType'];
+		$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar');		
+		$this->load->view('partials/navbar', $requests);		
 		$this->load->view('sample_profile', $data);
 		$this->load->view('partials/footer');
 	} // end of method
@@ -67,11 +84,19 @@ class Samples extends CI_Controller {
 	public function update($id)
 	{
 
-	}
+	} // end of method
 
 // user wants to delete selected sample(s)
 	public function delete()
 	{
 
-	}
+	} // end of method
+
+// user wants to request a sample
+	public function request_sample()
+	{
+		foreach ($this->input->post() as $key) {
+			array_push($this->session->userdata['requested_sample_id'], $key);
+		}
+	} // end of method
 }

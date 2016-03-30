@@ -12,11 +12,12 @@ class Users extends CI_Controller {
 		// check that the user is logged in
 		if ($this->session->userdata('logged_in') === TRUE) {
 			// we request the data we need from the model
-			$data['title'] = 'Dashboard';
+			$header['title'] = 'Dashboard';
+			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 			// now we load the view
-			$this->load->view('partials/header', $data);
-			$this->load->view('partials/navbar');
-			$this->load->view('user_dashboard', $data);
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar', $requests);
+			$this->load->view('user_dashboard');
 			$this->load->view('partials/footer');
 		// if they are not logged in, redirect away;
 		} else { 
@@ -26,13 +27,14 @@ class Users extends CI_Controller {
 
 /* !!!!!!!!!!!!!!!!!! Methods concerning the profile, and user editing of their own profiles !!!!!!!!!!!!!!!!!! */
 
-// method for new users to set up their initial profile pages
+// method for new users to see the page where they can set up their initial profile pages
 	public function view_setup_profile()
 	{
-		$data['title'] = 'New Profile';
+		$header['title'] = 'New Profile';
+		$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
-		$this->load->view('partials/header', $data);
-		$this->load->view('partials/navbar');
+		$this->load->view('partials/header', $header);
+		$this->load->view('partials/navbar', $requests);
 		$this->load->view('user_profile');
 		$this->load->view('partials/footer');
 	} // end of method
@@ -40,10 +42,10 @@ class Users extends CI_Controller {
 // method for submitting the form data for their profile, sets flash data for confirmation & goes to dashboard
 	public function set_preferences()
 	{
-		$data['title'] = 'New Profile';
-
-		$this->load->view('partials/header', $data);
-		$this->load->view('partials/navbar');
+		$header['title'] = 'New Profile';
+		$requests['count'] = count($this->session->userdata['requested_sample_id']);
+		$this->load->view('partials/header', $header);
+		$this->load->view('partials/navbar', $requests);
 		$this->load->view('user_profile');
 		$this->load->view('partials/footer');
 	} // end of method
@@ -53,11 +55,12 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$data = $this->user->view($id);
-		$data['title'] = $data['first_name'] . ' ' . $data['last_name'];
+		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
+		$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
-		$this->load->view('partials/header', $data);
-		$this->load->view('partials/navbar');
-		$this->load->view('user_profile');
+		$this->load->view('partials/header', $header);
+		$this->load->view('partials/navbar', $requests);
+		$this->load->view('user_profile', $data);
 		$this->load->view('partials/footer');
 	} // end of method
 
@@ -74,18 +77,19 @@ class Users extends CI_Controller {
 // method to view the about page
 	public function view_about()
 	{
-		$data['title'] = 'About';
+		$header['title'] = 'About';
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// if they are not logged in (get the navbar WITH the login form)
 
-			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('about');
 			$this->load->view('partials/footer');
 		} else { 
+			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 		// they are logged in (get the navbar without the login form)
-			$this->load->view('partials/header', $data);
-			$this->load->view('partials/navbar');
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar', $requests);
 			$this->load->view('about');
 			$this->load->view('partials/footer');
 		}
@@ -96,17 +100,35 @@ class Users extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// if they are not logged in (get the navbar WITH the login form)
-			$data['title'] = 'Help';
+			$header['title'] = 'Help';
 
-			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('help');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
-			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
 			$this->load->view('help');
+			$this->load->view('partials/footer');
+		}
+	} // end of method
+
+	// method to view the request samples page
+	public function view_request_samples()
+	{
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in this is restricted
+			redirect('/restricted');
+		} else { 
+		// they are logged in (get the navbar without the login form)
+			$data = $this->session->userdata['requested_sample_id'];
+
+			$header['title'] = 'Request Samples';
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar');
+			$this->load->view('requests', array('id' => $data));
 			$this->load->view('partials/footer');
 		}
 	} // end of method
@@ -116,15 +138,15 @@ class Users extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') != TRUE) {
 		// if they are not logged in (get the navbar WITHthe login form)
-			$data['title'] = 'Access Restricted';
+			$header['title'] = 'Access Restricted';
 
-			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
 			$this->load->view('restricted');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
-			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
 			$this->load->view('restricted');
 			$this->load->view('partials/footer');

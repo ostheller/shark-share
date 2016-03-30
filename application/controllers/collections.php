@@ -10,6 +10,7 @@ class Collections extends CI_Controller {
 	public function view_collection($id)
 	{
 		$header['title'] = 'Collection';
+		$data = array();
 		if ($this->session->userdata('logged_in' != TRUE)) {
 		// they cannot see this page
 			redirect('/restricted');

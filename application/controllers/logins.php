@@ -40,16 +40,17 @@ class Logins extends CI_Controller {
         	reload();
         } else {
         	// check admin status
-        	if ($user_sess['user_level'] === 1) {
-				$session_data = array(
-						'admin' => true,
-						'logged_in' => true
-					);
-				$this->session->set_userdata($user_sess, $session_data);
+        	if ($user_sess['user_level'] == 1) {
+				$user_sess['admin'] = TRUE;
+				$user_sess['logged_in'] = TRUE;
+				$user_sess['requested_sample_id'] = array();
+				$this->session->set_userdata($user_sess);
 				redirect('/admin');
 			} else { // user
-				$this->session->set_userdata('logged_in', true);
-				$this->session->set_userdata($user_sess);
+				$user_sess['admin'] = FALSE;
+				$user_sess['logged_in'] = TRUE;
+				$user_sess['requested_sample_id'] = array();
+				$this->session->set_userdata($user_sess, $session_data);
 	        	redirect('/dashboard');
         	}
         }

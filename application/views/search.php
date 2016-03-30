@@ -6,27 +6,32 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>THIS IS THE Search</h1>      <hr>
+      <h1>Search Samples</h1>      <hr>
       <table class = "table">
          <caption>Results</caption>
-         
+         <form action="samples/request" method="post" id="request_form"></form>
          <thead>
             <tr>
+              <th>id<th>
               <th>sampleType<th>
               <th>preservationMedium<th>
               <th>Photos Available<th>
               <th>comments<th>
+              <th><input type="submit" value="Request Samples"> <th>
             </tr>
          </thead>
-         
          <tbody>
             <tr>
-              <?php { ?>
-                <td><?php echo $sampleType; ?><td>
-                <td><?php echo $preservationMedium; ?><td>
-                <td><?php if ($photos == 0) {echo 'No';} else {echo 'Yes';} ?><td>
-                <td><?php echo $comments; ?><td>
-                <?php } ?> </tr>            
+              <?php foreach ($data as $row) { ?>
+                <td><a href="/samples/<?=$row['id']?>"><?php echo $row['id']; ?></a><td>
+                <td><?php echo $row['sampleType']; ?><td>
+                <td><?php echo $row['preservationMedium']; ?><td>
+                <td><?php if ($row['photos'] == 0) {echo 'No';} else {echo 'Yes';} ?><td>
+                <td><?php echo $row['comments']; ?><td>
+                <td><input type="checkbox" name='id<?= $row['id']?>' value="<?= $row['id']?>" /></td>
+                </tr> 
+                
+                <?php } echo form_close(); ?>            
          </tbody>    
       </table>
     </div>
