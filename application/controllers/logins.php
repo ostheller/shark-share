@@ -40,7 +40,7 @@ class Logins extends CI_Controller {
         	reload();
         } else {
         	// check admin status
-        	if ($user_sess['user_level'] == 1) {
+        	if ($user_sess['level'] == 1) {
 				$user_sess['admin'] = TRUE;
 				$user_sess['logged_in'] = TRUE;
 				$user_sess['requested_sample_id'] = array();

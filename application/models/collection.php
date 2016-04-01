@@ -35,13 +35,13 @@ class Collection extends CI_Model {
 
 // method to submit the data in the array into the database
 	public function submit_data($data) {
-		$query = "INSERT INTO samples(preservationMedium, comments) VALUES (?,?)";
+		$query = "INSERT INTO taxonomy (taxonomy_genus, taxonomy_species, taxonomy_family, taxonomy_order) VALUES (?,?,?,?)";
 
 		// need to loop through each of the rows to insert        
          for ($i=2; $i < count($data['values']) ; $i++) { 
          	/* the data is embedded in an array with keys 1,2,3 for each row
          	and then each row is an array with keys A,B,C for columns */
-         	$values = array($data['values'][$i]['B'], $data['values'][$i]['C']);
+         	$values = array($data['values'][$i]['B'], $data['values'][$i]['C'], $data['values'][$i]['E'], $data['values'][$i]['F']);
          	$this->db->query($query, $values);  
          }
         return TRUE;
