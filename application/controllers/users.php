@@ -57,7 +57,7 @@ class Users extends CI_Controller {
 		$data = $this->user->view($id);
 		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
 		$requests['count'] = count($this->session->userdata['requested_sample_id']);
-
+		var_dump($data);
 		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar', $requests);
 		$this->load->view('user_profile', $data);

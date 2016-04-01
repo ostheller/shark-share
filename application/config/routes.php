@@ -84,7 +84,7 @@ $route['collection/(:any)'] = 'collections/view_collection/$1';
 $route['about'] = 'users/view_about';
 // User clicks on the help page
 $route['help'] = 'users/view_help';
-
 // User tries to access a page they don't have permission to see
 $route['restricted'] = 'users/restricted';
+
 ?>

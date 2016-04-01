@@ -33,6 +33,12 @@ class Collection extends CI_Model {
 		return $data;
 	}
 
+// method to validate the data prior to submission
+	public function validate_data() 
+	{
+
+	} // end of method
+
 // method to submit the data in the array into the database
 	public function submit_data($data) {
 		$query = "INSERT INTO taxonomy (taxonomy_genus, taxonomy_species, taxonomy_family, taxonomy_order) VALUES (?,?,?,?)";

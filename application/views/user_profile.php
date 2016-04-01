@@ -10,7 +10,7 @@
       <?php if($this->session->userdata['id'] == $id) echo '<p>This is your profile. <a href="#">Edit it.</a></p>'; ?>
       <hr>
       <h3>Test</h3>
-      <p>Lorem ipsum...</p>
+      <p><?= $status ?> from <?= $name?>, <?= $city?></p>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
