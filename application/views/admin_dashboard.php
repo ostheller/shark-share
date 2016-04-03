@@ -4,6 +4,7 @@
       <p><a href="/dashboard">User View</a></p>
       <p><a href="/upload">Upload</a></p>
       <p><a href="/user/<?=$this->session->userdata('id')?>">Profile</a></p>
+      <p><a href="/taxonomy">Manage Site Taxonomy</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>Admin Dashboard</h1>

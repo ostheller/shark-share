@@ -9,7 +9,10 @@ class Collections extends CI_Controller {
 	public function view_collection($id)
 	{
 		$header['title'] = 'Collection';
-		$data = array();
+		$this->load->model('collection');
+		$this->load->model('user');
+		$samples = $this->collection->view($id);
+		$user = $this->user->view($id);
 		if ($this->session->userdata('logged_in' != TRUE)) {
 		// they cannot see this page
 			redirect('/restricted');
@@ -18,12 +21,12 @@ class Collections extends CI_Controller {
 			
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', $data);
+			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
 		} else {
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', $data);
+			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
 		}
 	} // end of method

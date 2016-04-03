@@ -55,8 +55,24 @@ $route['upload'] = 'collections/view_upload_page';
 $route['upload/submit'] = 'collections/upload_batch';
 // Excel sheet upload was successful, pull data and view for confirmation
 $route['upload/success'] = 'collections/upload_success';
-// Submit the form to
+// Submit the form to db
 $route['upload/submit/final'] = 'collections/submit_data';
+
+////////////////////////// Taxonomy Page //////////////////////////////////////
+// Load the taxonomy page
+$route['taxonomy'] = 'taxonomies/view_taxonomy';
+// View current taxonomy
+$route['taxonomy/view'] = 'taxonomies/show_taxonomy';
+// Submit the form to upload the excel document into the assets folder
+$route['taxonomy/submit'] = 'taxonomies/upload_batch';
+// Excel sheet upload was successful, pull data and view for confirmation
+$route['taxonomy/success'] = 'taxonomies/upload_success';
+// Submit the form to db
+$route['taxonomy/submit/final'] = 'taxonomies/submit_taxonomy_data';
+// Update taxonomy data
+$route['taxonomy/update'] = 'taxonomies/update_data';
+// Delete taxonomy row
+$route['taxonomy/delete'] = 'taxonomies/delete_data';
 
 ////////////////////////// Request Samples Page //////////////////////////////////////
 // Load the request samples page

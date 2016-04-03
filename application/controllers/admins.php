@@ -42,4 +42,5 @@ class Admins extends CI_Controller {
 
 // method for admins to remove users and return to the admin dashboard
 
-}
+
+} // end of controller
