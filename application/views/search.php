@@ -7,9 +7,26 @@
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>Search Samples</h1>      <hr>
+      <form>
+        Genus:
+        <input type="text" name="genus">
+        Species:
+        <input type="text" name="species">
+        Sample Type:
+        <input type="text" name="type">
+        Location:
+        <input type="text" name="location">
+        Sharer Name:
+        <input type="text" name="name">
+        Institution:
+        <input type="text" name="institution">
+        Sex
+        <input type="radio" name="gender" value="male"> Male<br>
+        <input type="radio" name="gender" value="female"> Female<br>
+      </form>
       <table class = "table">
          <caption>Results</caption>
-         <form action="samples/request" method="post" id="request_form"></form>
+          <form action="samples/request" method="post" id="request_form"></form>
          <thead>
             <tr>
               <th>id<th>
