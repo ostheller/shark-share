@@ -70,13 +70,13 @@ class Samples extends CI_Controller {
 	{
 		$this->load->model('sample');
 		$data = $this->sample->view($id);
-		//$header['title'] = 'View ' . $data['genus'] . ' ' . $data['species'];
-		$header['title'] = $data['sampleType'];
+		if (empty($data)) { $header['title'] = 'Sample Not Found'; }
+		else {$header['title'] = 'View ' . $data['Genus'] . ' ' . $data['Species']; }		
 		$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar', $requests);		
-		$this->load->view('sample_profile', $data);
+		$this->load->view('sample_profile', array('data' => $data));
 		$this->load->view('partials/footer');
 	} // end of method
 
