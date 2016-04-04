@@ -1,3 +1,7 @@
+<script src="<?= base_url();?>/assets/js/custom/landing_page.js"></script>
+<link href="<?= base_url();?>/assets/css/custom/landing_page.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
