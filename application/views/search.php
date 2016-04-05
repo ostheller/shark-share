@@ -42,8 +42,10 @@
          <thead>
             <tr>
               <th>id<th>
-              <th>sampleType<th>
-              <th>preservationMedium<th>
+              <th>genus<th>
+              <th>species<th>
+              <th>sample type<th>
+              <th>preservation medium<th>
               <th>Photos Available<th>
               <th>comments<th>
               <th><input type="submit" value="Request Samples"> <th>
@@ -53,10 +55,12 @@
             <tr>
               <?php foreach ($data as $row) { ?>
                 <td><a href="/samples/<?=$row['id']?>"><?php echo $row['id']; ?></a><td>
-                <td><?php echo $row['sampleType']; ?><td>
-                <td><?php echo $row['preservationMedium']; ?><td>
-                <td><?php if ($row['photos'] == 0) {echo 'No';} else {echo 'Yes';} ?><td>
-                <td><?php echo $row['comments']; ?><td>
+                <td><?php echo $row['Genus']; ?><td>
+                <td><?php echo $row['Species']; ?><td>
+                <td><?php echo $row['Sample Type']; ?><td>
+                <td><?php echo $row['Preservation Medium']; ?><td>
+                <td><?php if ($row['Photo Available'] == 0) {echo 'No';} else {echo 'Yes';} ?><td>
+                <td><?php echo $row['Comments']; ?><td>
                 <td><input type="checkbox" name='id<?= $row['id']?>' value="<?= $row['id']?>" /></td>
                 </tr> 
                 
