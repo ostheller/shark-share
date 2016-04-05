@@ -50,22 +50,21 @@ class Login extends CI_Model {
             }
         } // end of method
 
-// This method is not being used but remains in case minds are changed
-// Method to ensure all boxes are checked
-    // public function terms_validation()
-    // {
-    //     $this->form_validation->set_rules("responsiblity", "Responsibility", "required");
-    //     $this->form_validation->set_rules("acknowledgment", "Acknowledgment", "required");
-    //     $this->form_validation->set_rules("shipping", "Shipping Terms", "required");
-    //     if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
-    //         {
-    //             $this->session->set_flashdata('errors', validation_errors());
-    //             return false;
-    //         }  // end if failure
-    //         else {
-    //             return true;
-    //         }
-    //     } // end of method
+ //Method to ensure all boxes are checked
+    public function terms_validation()
+    {
+        $this->form_validation->set_rules("responsiblity", "Responsibility", "required");
+        $this->form_validation->set_rules("acknowledgment", "Acknowledgment", "required");
+        $this->form_validation->set_rules("shipping", "Shipping Terms", "required");
+        if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
+            {
+                $this->session->set_flashdata('errors', validation_errors());
+                return false;
+            }  // end if failure
+            else {
+                return true;
+            }
+        } // end of method
 
 // Method for putting POTENTIAL candidates into a probation table waiting for validation from admins, including a token for registering later */
     public function on_probation($person)
@@ -102,6 +101,13 @@ class Login extends CI_Model {
         $query = "SELECT * FROM potential_users WHERE id = ?";
         return $this->db->query($query, $values)->row_array();
     } // end of method
+
+// method to find the user with the email generated token in order to set up their profile
+    public function check_token($token)
+    {
+        $query = "SELECT * FROM potential_users WHERE token = ?"
+        return $this->db->query($query, $token)->row_array();
+    }
 
 // Method to validate the registration of one user
     public function creation_validation()

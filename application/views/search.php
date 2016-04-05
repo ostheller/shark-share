@@ -17,13 +17,21 @@
         Species:
         <input type="text" name="species">
         Sample Type:
-        <input type="text" name="type">
+        <select name="sample_type_id">
+          <?php foreach ($sample_types as $sample_type) { ?>
+            <option value="<?= $sample_type['id'] ?>"><?= $sample_type['type'] ?> (<?= $country['name'] ?>)</option>
+          <?php } ?>
+        </select>
         Location:
-        <input type="text" name="location">
-        Sharer Name:
+        <input type="text" name="location"><br>
+        Contributer Name:
         <input type="text" name="name">
         Institution:
-        <input type="text" name="institution">
+        <select name="institution_id">
+          <?php foreach ($institutions as $institution) { ?>
+            <option value="<?= $institution['id'] ?>"><?= $institution['name'] ?></option>
+          <?php } ?>
+        </select>
         Sex
         <input type="radio" name="gender" value="male"> Male<br>
         <input type="radio" name="gender" value="female"> Female<br>

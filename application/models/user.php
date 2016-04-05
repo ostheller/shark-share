@@ -15,25 +15,6 @@ class User extends CI_Model {
         return $this->db->query($query, $values)->row_array();
 	}
 
-// method to find the user with the email generated token in order to set up their profile
-	public function check_token($token)
-	{
-		$query = "SELECT * FROM potential_users WHERE token = ?"
-		return $this->db->query($query, $token)->row_array();
-	}
-
-// method to create user
-	public function create($user)
-	{
-		$query = ""
-		$values = array();
-		if($this->db->query($query, $user)) {
-			return $this->db->insert_id();
-		} else { 
-			return FALSE;
-		}
-	}
-
 // method to associate tagged preferences
 	public function create_tags($post)
 	{

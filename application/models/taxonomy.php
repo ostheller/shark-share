@@ -40,13 +40,24 @@ public function extract_taxonomy_data_xlsx($file) {
 
 // method to submit new taxonomy information in the array into the database
 	public function submit_taxonomy_data($data) {
-		$query = "INSERT INTO taxonomy (taxonomy_genus, taxonomy_species, taxonomy_family, taxonomy_order) VALUES (?,?,?,?)";
+		$query = "INSERT INTO taxonomy (
+			species_ID_shark_references = ?,
+			taxonomy_genus = ?, 
+			taxonomy_species = ?,
+			author = ?
+			taxonomy_family = ?, 
+			taxonomy_order = ?) VALUES (?,?,?,?)";
 
 		// need to loop through each of the rows to insert        
          for ($i=2; $i < count($data['values']) ; $i++) { 
          	/* the data is embedded in an array with keys 1,2,3 for each row
          	and then each row is an array with keys A,B,C for columns */
-         	$values = array($data['values'][$i]['A'], $data['values'][$i]['B'], $data['values'][$i]['C'], $data['values'][$i]['D'], $data['values'][$i]['E'], $data['values'][$i]['F']);
+         	$values = array($data['values'][$i]['A'], 
+         		$data['values'][$i]['B'], 
+         		$data['values'][$i]['C'], 
+         		$data['values'][$i]['D'], 
+         		$data['values'][$i]['E'], 
+         		$data['values'][$i]['F']);
          	$this->db->query($query, $values);  
          }
         return TRUE;
@@ -55,10 +66,14 @@ public function extract_taxonomy_data_xlsx($file) {
 
 // method to update existing taxonomy information in the array into the database
 	public function update_taxonomy_data($data) {
-		$query = "UPDATE `sharkshare`.`taxonomy`
+		$query = "UPDATE taxonomy
 			SET
-			`species_ID_shark_references` = ?,
-			`author` = ?
+			species_ID_shark_references = ?,
+			taxonomy_genus = ?, 
+			taxonomy_species = ?,
+			author = ?
+			taxonomy_family = ?, 
+			taxonomy_order = ?
 			WHERE `id` = ?";
 
 		// need to loop through each of the rows to insert        
@@ -66,24 +81,15 @@ public function extract_taxonomy_data_xlsx($file) {
          	$id = $i - 1;
          	/* the data is embedded in an array with keys 1,2,3 for each row
          	and then each row is an array with keys A,B,C for columns */
-         	$values = array($data['values'][$i]['A'], $data['values'][$i]['D'], $id);
+         	$values = array($data['values'][$i]['A'], 
+         		$data['values'][$i]['B'], 
+         		$data['values'][$i]['C'], 
+         		$data['values'][$i]['D'], 
+         		$data['values'][$i]['E'], 
+         		$data['values'][$i]['F'], 
+         		$id);
          	$this->db->query($query, $values);  
          }
         return TRUE;
 	} // end of method
-
-
-// method to submit new taxonomy information in the array into the database
-	// public function delete_taxonomy_data($data) {
-	// 	$query = "INSERT INTO taxonomy (taxonomy_genus, taxonomy_species, taxonomy_family, taxonomy_order) VALUES (?,?,?,?)";
-
-	// 	// need to loop through each of the rows to insert        
- //         for ($i=2; $i < count($data['values']) ; $i++) { 
- //         	 the data is embedded in an array with keys 1,2,3 for each row
- //         	and then each row is an array with keys A,B,C for columns 
- //         	$values = array($data['values'][$i]['A'], $data['values'][$i]['B'], $data['values'][$i]['C'], $data['values'][$i]['D'], $data['values'][$i]['E'], $data['values'][$i]['F']);
- //         	$this->db->query($query, $values);  
- //         }
- //        return TRUE;
-	// }
 } // end of model
