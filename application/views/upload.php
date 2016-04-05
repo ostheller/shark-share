@@ -9,7 +9,7 @@
         echo '<p><a href="/admin">Admin Dashboard</a></p>
         <p><a href="/dashboard">Dashboard</a></p>';}
         else { echo '<p><a href="/dashboard">Dashboard</a></p>';} ?>
-      <p><a href="/user/"<?=$this->session->userdata('id')?>"'">Profile</a></p>
+      <p><a href="/user/<?=$this->session->userdata('id')?>'">Profile</a></p>
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 

@@ -78,8 +78,7 @@ class Collections extends CI_Controller {
 				$this->load->view('partials/navbar');
 	         	$this->load->view('upload', $message);
 	         	$this->load->view('partials/footer');
-	         } // end else
-        } // end else
+	         } // end else		
 	} // end of method
 
 //upload was successful, pulls the data from the sheet and loads the values onto the upload screen
