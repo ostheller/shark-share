@@ -14,4 +14,77 @@ class User extends CI_Model {
         $values = $id;
         return $this->db->query($query, $values)->row_array();
 	}
+
+// method to find the user with the email generated token in order to set up their profile
+	public function check_token($token)
+	{
+		$query = "SELECT * FROM potential_users WHERE token = ?"
+		return $this->db->query($query, $token)->row_array();
+	}
+
+// method to create user
+	public function create($user)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to associate tagged preferences
+	public function create_tags($post)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to update user data
+	public function update($user)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to update tagged preferences
+	public function update_tags($user)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to delete user
+	public function destroy($id)
+	{
+		$this->db->delete('users', array('id' => $id));
+	}
+
+// method to delete preferences
+	public function destroy_tags($user)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
 } // end of model ?>

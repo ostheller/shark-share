@@ -31,7 +31,7 @@ class Admins extends CI_Controller {
  insert into users table and delete out of probation table */
 	public function confirm_new_user()
 	{
-
+		$post = $this->input->post();
 	} // end of method 
 	
 // method for sending an email to the new user when denied

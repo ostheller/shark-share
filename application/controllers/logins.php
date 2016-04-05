@@ -59,11 +59,13 @@ class Logins extends CI_Controller {
 // method for arriving on the registration page
 	public function registration_page()
 	{
+		$this->load->model('login');
+		$countries = $this->login->countries();
 		$header['title'] = 'Register';
 
 		$this->load->view('partials/header', $header);
 		$this->load->view('partials/navbar_login');
-		$this->load->view('registration/1');
+		$this->load->view('registration/1', array('countries' => $countries));
 		$this->load->view('partials/footer');
 	} // end of method
 
@@ -76,10 +78,10 @@ class Logins extends CI_Controller {
 		// if there are validation errors
 		if ($user_sess === false) {
 			$header['title'] = 'Registration Errors';
-
+			$countries = $this->login->countries();
 			$this->load->view('partials/header', $header);
 			$this->load->view('partials/navbar_login');
-			$this->load->view('registration/1');
+			$this->load->view('registration/1', array('countries' => $countries));
 			$this->load->view('partials/footer');
 	    } // if there are no errors
 	    else

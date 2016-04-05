@@ -19,6 +19,12 @@ class Login extends CI_Model {
         }
     } // end of method
 
+// Method to get countries to populate the form
+    public function countries()
+    {
+        return $this->db->query("SELECT * FROM countries")->result_array();
+    }
+
 // Method to validate the registration of one user
     public function registration_validation()
     {
@@ -27,13 +33,12 @@ class Login extends CI_Model {
         $this->form_validation->set_rules("last_name", "Last Name", "trim|required|alpha");
         $this->form_validation->set_rules("email", "Email", "trim|required|valid_email|is_unique[users.email]");
         $this->form_validation->set_rules('is_unique', 'That email address is already registered.');
-        $this->form_validation->set_rules("password", "Password", "trim|required|min_length[7]|md5");
-        $this->form_validation->set_rules("passconf", "Confirm Password", "required|matches[password]");
-        $this->form_validation->set_rules('institution', "Institution", "required|alpha|trim");
-        $this->form_validation->set_rules('research', "Field of Research", "required|alpha|trim");
-        $this->form_validation->set_rules('city', "City", "required|alpha|trim");
-        $this->form_validation->set_rules('country', "Country", "required|trim");
-        $this->form_validation->set_rules('reference', "Name of Reference", "required|alpha|trim");
+        $this->form_validation->set_rules('institution', "Institution", "required|trim");
+        $this->form_validation->set_rules('field', "Field of Research", "required|trim");
+        $this->form_validation->set_rules('status_id', "Field of Research", "required");
+        $this->form_validation->set_rules('city', "City", "required|trim");
+        $this->form_validation->set_rules('country', "Country", "required");
+        $this->form_validation->set_rules('reference_name', "Name of Reference", "required|trim");
         $this->form_validation->set_rules('reference_email', "Email of Reference", "required|valid_email|trim");
             if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
             {
@@ -62,14 +67,26 @@ class Login extends CI_Model {
     //         }
     //     } // end of method
 
-// Method for putting POTENTIAL candidates into a probation table waiting for validation from admins
-/* we could put a login keyword/password in their table that we could use as the link in the email we 
-send when they are accepted. they would have to click that link would that long keyword that we would 
-check against the database before they are allowed to setup their profile */
-    public function on_probation()
+// Method for putting POTENTIAL candidates into a probation table waiting for validation from admins, including a token for registering later */
+    public function on_probation($person)
     {
-        $query = "INSERT INTO potential_users (first_name) VALUES (?)";
-        $values = array($this->input->post('first_name'));
+        // check to see if institution exists by getting the id
+        $institution_query = "SELECT * FROM institutions WHERE name = ?";
+        $institution_name = $person['institution'];
+        $institution = $this->db->query($institution_query, $institution_name)->row_array();
+        if (empty($institution)) {
+            $data = array(
+               'name' => $person['institution'] ,
+               'city' => $person['city'] ,
+               'country_id' => $person['country']
+                );
+            $this->db->insert('institutions', $data); 
+            $institution['id'] = $this->db->insert_id();
+        }
+
+        // write the query
+        $query = "INSERT INTO potential_users (first_name, last_name, email, field, institution_id, academic_status_id, reference_name, reference_email, token) VALUES (?,?,?,?,?,?,?,?,?)";
+        $values = array($person['first_name'], $person['last_name'],$person['email'],$person['field'], $institution['id'], intval($person['status_id']), $person['reference_name'],$person['reference_email'], bin2hex(openssl_random_pseudo_bytes(32)));
         if ($this->db->query($query, $values)) {
             return true;
         } 
@@ -79,24 +96,53 @@ check against the database before they are allowed to setup their profile */
         }
     } // end of method
 
-// Method for sending an email to someone
-    public function generate_email()
+// Method for getting the data to send an email to someone containing their token
+    public function generate_email($id)
     {
-
+        $query = "SELECT * FROM potential_users WHERE id = ?";
+        return $this->db->query($query, $values)->row_array();
     } // end of method
 
-// Method to register one user to the database for the first time (automatic user level of 1, normal)
+// Method to validate the registration of one user
+    public function creation_validation()
+    {
+        // validate the attempt
+        $this->form_validation->set_rules("first_name", "First Name", "required|alpha|trim");
+        $this->form_validation->set_rules("last_name", "Last Name", "trim|required|alpha");
+        $this->form_validation->set_rules("email", "Email", "trim|required|valid_email|is_unique[users.email]");
+        $this->form_validation->set_rules('is_unique', 'That email address is already registered.');
+        $this->form_validation->set_rules("password", "Password", "trim|required|min_length[7]|md5");
+        $this->form_validation->set_rules("passconf", "Confirm Password", "required|matches[password]");
+        $this->form_validation->set_rules('institution', "Institution", "required|trim");
+        $this->form_validation->set_rules('research', "Field of Research", "required|trim");
+        $this->form_validation->set_rules('city', "City", "required|trim");
+        $this->form_validation->set_rules('country', "Country", "required|trim");
+        $this->form_validation->set_rules('reference', "Name of Reference", "required|trim");
+        $this->form_validation->set_rules('reference_email', "Email of Reference", "required|valid_email|trim");
+            if($this->form_validation->run() === FALSE) // i.e. if there are errors in the above rules
+            {
+                $this->session->set_flashdata('errors', validation_errors());
+                return false;
+            }  // end if failure
+            else {
+                return true;
+            }
+        } // end of method
+
+// Method to register one user to the database for the first time (automatic user level of 0, normal) 1 is admin
     public function create()
     {
-        $query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)";
-        $values = array($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('email'),$this->input->post('password')); 
+        $user = $this->input->post();
+        $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
+        $query = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
+        $values = array($user['user_name'], 0, $user['email'],$user['password'],$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
         return $this->db->query($query, $values);
-    } // end insert one
+    } // end of method
 
 // Method to remove a user from the probationary table
-    public function destroy()
+    public function destroy($id)
     {
-        return true;
-    } // end insert one
+        $this->db->delete('potential_users', array('id' => $id));
+    } // end of method
 
 } // end of model ?>

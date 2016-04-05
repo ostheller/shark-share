@@ -4,9 +4,45 @@ class Sample extends CI_Model {
 /* this model's methods interact with the database to display and edit a single sample's data. It also handles both keyword and advanced searching, as well as a browse function based on the
 user's preset preferences */
 
-/* !!!!!!!!!!!!!!!!!! Searching !!!!!!!!!!!!!!!!!! */ 
+/* !!!!!!!!!!!!!!!!!! Maintenance & Display !!!!!!!!!!!!!!!!!! */ 
 
-	public function view($id)
+// method to create sample
+	public function create($sample)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $sample)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to update sample data
+	public function update($sample)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $sample)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+// method to delete sample
+	public function destroy($sample)
+	{
+		$query = ""
+		$values = array();
+		if($this->db->query($query, $sample)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
+	}
+
+		public function view($id)
 	{
 		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
 		pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
@@ -40,13 +76,8 @@ user's preset preferences */
 
 // method to search
 	public function search($post) {
-		$query = "SELECT u.id, u.first_name, u.last_name, i.name, i.city, a_s.status FROM users as u
-			LEFT JOIN institutions as i 
-			ON u.institution_id = i.id 
-			LEFT JOIN academic_statuses as a_s
-			ON u.academic_status_id = a_s.id
-			WHERE u.id = ?";
-        $values = $id;
+		$query = "SELECT ";
+        $values = ;
         return $this->db->query($query, $values)->result_array();
 	} // end of method
 

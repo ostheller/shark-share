@@ -24,8 +24,10 @@ $route['logout'] = 'logins/logout';
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
 $route['user/new'] = 'users/view_setup_profile';
-// Submit the form for setting their preferences
+// Submit the form for setting their profile information
 $route['user/new/submit'] = 'users/create_profile';
+// Submit the form for setting their tag preferences
+$route['user/new/tags'] = 'users/create_tags';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
@@ -97,10 +99,10 @@ $route['collection/(:any)'] = 'collections/view_collection/$1';
 
 ////////////////////////// About, FYI, Restricted //////////////////////////////////////
 // User clicks on the about page
-$route['about'] = 'users/view_about';
+$route['about'] = 'pages/view_about';
 // User clicks on the help page
-$route['help'] = 'users/view_help';
+$route['help'] = 'pages/view_help';
 // User tries to access a page they don't have permission to see
-$route['restricted'] = 'users/restricted';
+$route['restricted'] = 'pages/restricted';
 
 ?>

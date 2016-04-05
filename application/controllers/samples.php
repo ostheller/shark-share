@@ -36,31 +36,41 @@ class Samples extends CI_Controller {
 // load the view page
 	public function view_search()
 	{
-		$this->load->model('sample');
-		$post = $this->input->post();
-		$data = $this->sample->advanced_search($post);
-		$header['title'] = 'Search';
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in this is restricted
+			redirect('/restricted');
+		} else { 
+			$this->load->model('sample');
+			$post = $this->input->post();
+			$data = $this->sample->advanced_search($post);
+			$header['title'] = 'Search';
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar');
-		$this->load->view('search', $data);
-		$this->load->view('partials/footer');
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar');
+			$this->load->view('search', $data);
+			$this->load->view('partials/footer');
+		} // end else
 	} // end of method
 
 //user clicks browse, pulls the data and loads the search results page
 	public function browse()
 	{
-		// get samples for them to browse based on their set up preferences
-		$this->load->model('sample');
-		//$user = $this->session->userdata('id');
-		$data = $this->sample->browse();
-		$header['title'] = 'Search';
-		$requests['count'] = count($this->session->userdata['requested_sample_id']);
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in this is restricted
+			redirect('/restricted');
+		} else { 
+			// get samples for them to browse based on their set up preferences
+			$this->load->model('sample');
+			//$user = $this->session->userdata('id');
+			$data = $this->sample->browse();
+			$header['title'] = 'Search';
+			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar', $requests);
-		$this->load->view('search', array('data' => $data));
-		$this->load->view('partials/footer');
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar', $requests);
+			$this->load->view('search', array('data' => $data));
+			$this->load->view('partials/footer');
+		} // end else
 	} // end of method
 
 /* !!!!!!!!!!!!!!!!!! Methods concerning the ONE SAMPLE !!!!!!!!!!!!!!!!!! */
@@ -68,16 +78,21 @@ class Samples extends CI_Controller {
 // user wants to see a sample's profile page
 	public function view_sample($id)
 	{
-		$this->load->model('sample');
-		$data = $this->sample->view($id);
-		if (empty($data)) { $header['title'] = 'Sample Not Found'; }
-		else {$header['title'] = 'View ' . $data['Genus'] . ' ' . $data['Species']; }		
-		$requests['count'] = count($this->session->userdata['requested_sample_id']);
+		if ($this->session->userdata('logged_in') != TRUE) {
+		// if they are not logged in this is restricted
+			redirect('/restricted');
+		} else { 
+			$this->load->model('sample');
+			$data = $this->sample->view($id);
+			if (empty($data)) { $header['title'] = 'Sample Not Found'; }
+			else {$header['title'] = 'View ' . $data['Genus'] . ' ' . $data['Species']; }		
+			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar', $requests);		
-		$this->load->view('sample_profile', array('data' => $data));
-		$this->load->view('partials/footer');
+			$this->load->view('partials/header', $header);
+			$this->load->view('partials/navbar', $requests);		
+			$this->load->view('sample_profile', array('data' => $data));
+			$this->load->view('partials/footer');
+		} // end else
 	} // end of method
 
 // user wants to edit their own single sample
