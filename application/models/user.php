@@ -18,7 +18,7 @@ class User extends CI_Model {
 // method to associate tagged preferences
 	public function create_tags($post)
 	{
-		$query = ""
+		$query = "";
 		$values = array();
 		if($this->db->query($query, $user)) {
 			return $this->db->insert_id();
@@ -30,7 +30,7 @@ class User extends CI_Model {
 // method to update user data
 	public function update($user)
 	{
-		$query = ""
+		$query = "";
 		$values = array();
 		if($this->db->query($query, $user)) {
 			return $this->db->insert_id();
@@ -42,7 +42,7 @@ class User extends CI_Model {
 // method to update tagged preferences
 	public function update_tags($user)
 	{
-		$query = ""
+		$query = "";
 		$values = array();
 		if($this->db->query($query, $user)) {
 			return $this->db->insert_id();
@@ -60,7 +60,7 @@ class User extends CI_Model {
 // method to delete preferences
 	public function destroy_tags($user)
 	{
-		$query = ""
+		$query = "";
 		$values = array();
 		if($this->db->query($query, $user)) {
 			return $this->db->insert_id();

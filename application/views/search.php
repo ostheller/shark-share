@@ -56,7 +56,7 @@
               <?php foreach ($data as $row) { ?>
                 <td><a href="/samples/<?=$row['id']?>"><?php echo $row['id']; ?></a><td>
                 <td><?php echo $row['Genus']; ?><td>
-                <td><?php echo $row['Species']; ?><td>
+                <td><?php echo ucwords($row['Species']); ?><td>
                 <td><?php echo $row['Sample Type']; ?><td>
                 <td><?php echo $row['Preservation Medium']; ?><td>
                 <td><?php if ($row['Photo Available'] == 0) {echo 'No';} else {echo 'Yes';} ?><td>

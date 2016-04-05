@@ -49,7 +49,7 @@ class Users extends CI_Controller {
 		$this->load->model('user');
 		$user = $this->input->post();
 		$this->user->create($user);
-		redirect('/')
+		redirect('/');
 	} // end of method
 
 // method for setting up their tagged preferences
@@ -58,7 +58,7 @@ class Users extends CI_Controller {
 		$this->load->model('user');
 		$user = $this->input->post();
 		$this->user->create($user);
-		redirect('/')
+		redirect('/');
 	} // end of method
 
 // method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
@@ -81,3 +81,4 @@ class Users extends CI_Controller {
 // method to process form action to update description on profile edit pages
 
 // method to upload files for profile pictures
+}
