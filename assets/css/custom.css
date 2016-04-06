@@ -7,7 +7,7 @@
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
+      background-color: #000033; /* This color is the closest websafe color to Shark Share. Stack with #001541 */ 
       height: 100%;
     }
     
@@ -26,3 +26,9 @@
       }
       .row.content {height:auto;} 
     }
+
+    body {
+    background-color:#FCFCFC; /* Try to make a stack with #fcfcfc and #ffffff.
+}
+
+
