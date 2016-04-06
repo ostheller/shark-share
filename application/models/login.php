@@ -105,7 +105,7 @@ class Login extends CI_Model {
 // method to find the user with the email generated token in order to set up their profile
     public function check_token($token)
     {
-        $query = "SELECT * FROM potential_users WHERE token = ?"
+        $query = "SELECT * FROM potential_users WHERE token = ?";
         return $this->db->query($query, $token)->row_array();
     }
 

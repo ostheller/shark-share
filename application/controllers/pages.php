@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Pages extends CI_Controller {
 /* !!!!!!!!!!!!!!!!!! Methods concerning site navigation !!!!!!!!!!!!!!!!!! */
 
 // method to view the about page
@@ -15,10 +15,9 @@ class Users extends CI_Controller {
 			$this->load->view('about');
 			$this->load->view('partials/footer');
 		} else { 
-			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 		// they are logged in (get the navbar without the login form)
 			$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar', $requests);
+			$this->load->view('partials/navbar');
 			$this->load->view('about');
 			$this->load->view('partials/footer');
 		}
