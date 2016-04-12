@@ -103,11 +103,11 @@ class Login extends CI_Model {
     } // end of method
 
 // method to find the user with the email generated token in order to set up their profile
-    public function check_token($token)
-    {
-        $query = "SELECT * FROM potential_users WHERE token = ?";
-        return $this->db->query($query, $token)->row_array();
-    }
+    // public function check_token($token)
+    // {
+    //     $query = "SELECT * FROM potential_users WHERE token = ?";
+    //     return $this->db->query($query, $token)->row_array();
+    // }
 
 // Method to validate the registration of one user
     public function creation_validation()
