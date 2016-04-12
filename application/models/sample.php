@@ -85,7 +85,8 @@ user's preset preferences */
 				ON us.institution_id = i.id
 			WHERE samp.id = ?";
         return $this->db->query($query, $id)->row_array();
-    }
+	} // end of method
+
 
 /* !!!!!!!!!!!!!!!!!! Searching !!!!!!!!!!!!!!!!!! */
 
