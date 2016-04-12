@@ -14,6 +14,7 @@ class Samples extends CI_Controller {
 		$header['title'] = 'Search';
 
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/search');
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
@@ -28,6 +29,7 @@ class Samples extends CI_Controller {
 		$header['title'] = 'Search';
 
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/search');
 		$this->load->view('partials/navbar');
 		$this->load->view('search', $data);
 		$this->load->view('partials/footer');
@@ -46,6 +48,7 @@ class Samples extends CI_Controller {
 			$header['title'] = 'Search';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/search');
 			$this->load->view('partials/navbar');
 			$this->load->view('search', $data);
 			$this->load->view('partials/footer');
@@ -67,6 +70,7 @@ class Samples extends CI_Controller {
 			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/search');
 			$this->load->view('partials/navbar', $requests);
 			$this->load->view('search', array('data' => $data));
 			$this->load->view('partials/footer');
@@ -89,6 +93,7 @@ class Samples extends CI_Controller {
 			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/sample_profile');
 			$this->load->view('partials/navbar', $requests);		
 			$this->load->view('sample_profile', array('data' => $data));
 			$this->load->view('partials/footer');

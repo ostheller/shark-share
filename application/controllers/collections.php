@@ -20,11 +20,13 @@ class Collections extends CI_Controller {
 		// they are logged in but it's not their collection
 			
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
 			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
 		} else {
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
 			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
@@ -42,6 +44,7 @@ class Collections extends CI_Controller {
 		} else {
 			$header['title'] = 'Upload';
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/upload');
 			$this->load->view('partials/navbar');
 			$this->load->view('upload');
 			$this->load->view('partials/footer');
@@ -75,6 +78,7 @@ class Collections extends CI_Controller {
 	         	$header['title'] = 'Upload';
 
 	         	$this->load->view('partials/header', $header);
+	         	$this->load->view('styles/upload');
 				$this->load->view('partials/navbar');
 	         	$this->load->view('upload', $message);
 	         	$this->load->view('partials/footer');
@@ -94,6 +98,7 @@ class Collections extends CI_Controller {
 			$header['title'] = 'Upload';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/upload');
 			$this->load->view('partials/navbar');
 			$this->load->view('upload', $data);
 	        $this->load->view('partials/footer');
@@ -122,6 +127,7 @@ class Collections extends CI_Controller {
 				redirect('/restricted');
 			} else {
 				$this->load->view('partials/header', $header);
+				$this->load->view('styles/upload');
 				$this->load->view('partials/navbar');
 				$this->load->view('upload', $message);
 		        $this->load->view('partials/footer');

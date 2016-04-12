@@ -18,6 +18,7 @@ class Users extends CI_Controller {
 			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 			// now we load the view
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/user_dashboard');
 			$this->load->view('partials/navbar', $requests);
 			$this->load->view('user_dashboard');
 			$this->load->view('partials/footer');
@@ -37,6 +38,7 @@ class Users extends CI_Controller {
 			$header['title'] = 'Set Up New Profile';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/setup_profile');
 			$this->load->view('partials/navbar');
 			$this->load->view('user_profile', $user);
 			$this->load->view('partials/footer');	
@@ -69,6 +71,7 @@ class Users extends CI_Controller {
 		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
 		$requests['count'] = count($this->session->userdata['requested_sample_id']);
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/user_profile');
 		$this->load->view('partials/navbar', $requests);
 		$this->load->view('user_profile', $data);
 		$this->load->view('partials/footer');

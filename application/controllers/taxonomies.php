@@ -11,6 +11,7 @@ class Taxonomies extends CI_Controller {
 		$this->load->model('taxonomy');
 		$data = $this->taxonomy->select_all();
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/taxonomy');
 		$this->load->view('partials/navbar');
 		$this->load->view('taxonomy', array('rows' => $data));
 		$this->load->view('partials/footer');
@@ -39,6 +40,7 @@ class Taxonomies extends CI_Controller {
          	$header['title'] = 'Taxonomy';
 
          	$this->load->view('partials/header', $header);
+         	$this->load->view('styles/taxonomy');
 			$this->load->view('partials/navbar');
          	$this->load->view('taxonomy', $message);
          	$this->load->view('partials/footer');
@@ -54,6 +56,7 @@ class Taxonomies extends CI_Controller {
 		$header['title'] = 'Taxonomy';
 
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/taxonomy');
 		$this->load->view('partials/navbar');
 		$this->load->view('taxonomy', $data);
         $this->load->view('partials/footer');
@@ -77,6 +80,7 @@ class Taxonomies extends CI_Controller {
 			$header['title'] = 'Taxonomy';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/taxonomy');
 			$this->load->view('partials/navbar');
 			$this->load->view('taxonomy', $message);
 	        $this->load->view('partials/footer');
@@ -101,6 +105,7 @@ class Taxonomies extends CI_Controller {
 			$header['title'] = 'Taxonomy';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/taxonomy');
 			$this->load->view('partials/navbar');
 			$this->load->view('taxonomy', $message);
 	        $this->load->view('partials/footer');

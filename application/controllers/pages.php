@@ -11,12 +11,14 @@ class Pages extends CI_Controller {
 		// if they are not logged in (get the navbar WITH the login form)
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/about');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('about');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/about');
 			$this->load->view('partials/navbar');
 			$this->load->view('about');
 			$this->load->view('partials/footer');
@@ -31,12 +33,14 @@ class Pages extends CI_Controller {
 			$header['title'] = 'Help';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/help');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('help');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/help');
 			$this->load->view('partials/navbar');
 			$this->load->view('help');
 			$this->load->view('partials/footer');
@@ -55,6 +59,7 @@ class Pages extends CI_Controller {
 
 			$header['title'] = 'Request Samples';
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/requests');
 			$this->load->view('partials/navbar');
 			$this->load->view('requests', array('id' => $data));
 			$this->load->view('partials/footer');
@@ -69,12 +74,14 @@ class Pages extends CI_Controller {
 			$header['title'] = 'Access Restricted';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/restricted');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('restricted');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/restrictec');
 			$this->load->view('partials/navbar');
 			$this->load->view('restricted');
 			$this->load->view('partials/footer');

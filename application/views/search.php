@@ -1,7 +1,3 @@
-<script src="<?= base_url();?>/assets/js/custom/search.js"></script>
-<link href="<?= base_url();?>/assets/css/custom/search.css" rel="stylesheet" type="text/css">
-</head>
-<body>
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -12,6 +8,7 @@
     <div class="col-sm-8 text-left"> 
       <h1>Search Samples</h1>      <hr>
       <form>
+        <input type="text" name="date" id="date">
         Genus:
         <input type="text" name="genus">
         Species:

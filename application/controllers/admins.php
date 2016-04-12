@@ -15,6 +15,7 @@ class Admins extends CI_Controller {
         	$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
         	$this->load->view('partials/header', $header);
+        	$this->load->view('styles/admin_dashboard');
 			$this->load->view('partials/navbar', $requests);
 			$this->load->view('admin_dashboard');
 			$this->load->view('partials/footer');
