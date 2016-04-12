@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Collections extends CI_Controller {
 /* this controller is for COLLECTIONS OF SAMPLES, e.g. collection viewing, management, uploads */
 
@@ -7,23 +6,29 @@ class Collections extends CI_Controller {
 
 // user wants to see a collection, pulls the data and loads the collection page. 
 // could be theirs or anothers' collection, depends on what we pass it
-	public function view_collection()
+	public function view_collection($id)
 	{
-		$header['title'] = 'Collection'
-		if ($this->session->userdata('logged_in') != TRUE) {
+		$header['title'] = 'Collection';
+		$this->load->model('collection');
+		$this->load->model('user');
+		$samples = $this->collection->view($id);
+		$user = $this->user->view($id);
+		if ($this->session->userdata('logged_in' != TRUE)) {
 		// they cannot see this page
 			redirect('/restricted');
-		} else if { 
+		} else if ($this->session->userdata('id') != $id) { 
 		// they are logged in but it's not their collection
 			
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', $data);
+			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
 		} else {
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', $data);
+			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
 			$this->load->view('partials/footer');
 		}
 	} // end of method
@@ -33,11 +38,26 @@ class Collections extends CI_Controller {
 // user wants to visit the upload sample page
 	public function view_upload_page()	
 	{
-		$header['title'] = 'Upload';
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar');
-		$this->load->view('upload');
-		$this->load->view('partials/footer');
+		if ($this->session->userdata('logged_in' != TRUE)) {
+		// they cannot see this page
+			redirect('/restricted');
+		} else {
+			$header['title'] = 'Upload';
+			$this->load->view('partials/header', $header);
+			$this->load->view('styles/upload');
+			$this->load->view('partials/navbar');
+			$this->load->view('upload');
+			$this->load->view('partials/footer');
+		} // end else
+	} // end of method
+
+// user wants to download the template we use to upload samples
+	public function get_template()
+	{
+		$data = file_get_contents("assets/downloads/template.xlsx"); // Read the file's contents
+		$name = 'template.xlsx';
+
+		force_download($name, $data);
 	} // end of method
 
 // uploading samples to a user's collection, if successful redirect to upload_success, otherwise no
@@ -50,28 +70,39 @@ class Collections extends CI_Controller {
         		$this->session->set_userdata('file_path', $target_file);
         		redirect('upload/success');
         } else {
-        	$message = 'There was a problem with your upload';
-         	$header['title'] = 'Upload';
+        	if ($this->session->userdata('logged_in' != TRUE)) {
+				// they cannot see this page
+					redirect('/restricted');
+			} else
+	        	$message = 'There was a problem with your upload';
+	         	$header['title'] = 'Upload';
 
-         	$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar');
-         	$this->load->view('upload', $message);
-         	$this->load->view('partials/footer');
-        }
+	         	$this->load->view('partials/header', $header);
+	         	$this->load->view('styles/upload');
+				$this->load->view('partials/navbar');
+	         	$this->load->view('upload', $message);
+	         	$this->load->view('partials/footer');
+	         } // end else		
 	} // end of method
 
 //upload was successful, pulls the data from the sheet and loads the values onto the upload screen
 	public function upload_success()
 	{
-		$this->load->model('collection');
-		$path = $this->session->userdata('file_path');
-		$data = $this->collection->extract_data_xlsx($path);
-		$header['title'] = 'Upload';
+		if ($this->session->userdata('logged_in' != TRUE)) {
+		// they cannot see this page
+			redirect('/restricted');
+		} else {
+			$this->load->model('collection');
+			$path = $this->session->userdata('file_path');
+			$data = $this->collection->extract_data_xlsx($path);
+			$header['title'] = 'Upload';
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('partials/navbar');
-		$this->load->view('upload', $data);
-        $this->load->view('partials/footer');
+			$this->load->view('partials/header', $header);
+			$this->load->view('styles/upload');
+			$this->load->view('partials/navbar');
+			$this->load->view('upload', $data);
+	        $this->load->view('partials/footer');
+	    }
 	} // end of method
 
 //user chooses to submit their data to the database
@@ -91,10 +122,16 @@ class Collections extends CI_Controller {
 			$message = 'your data failed to upload, try again or check your spreadsheet for errors';
 			$header['title'] = 'Upload';
 
-			$this->load->view('partials/header', $header);
-			$this->load->view('partials/navbar');
-			$this->load->view('upload', $message);
-	        $this->load->view('partials/footer');
+			if ($this->session->userdata('logged_in' != TRUE)) {
+				// they cannot see this page
+				redirect('/restricted');
+			} else {
+				$this->load->view('partials/header', $header);
+				$this->load->view('styles/upload');
+				$this->load->view('partials/navbar');
+				$this->load->view('upload', $message);
+		        $this->load->view('partials/footer');
+		    }
 		}
 	} // end of method
 

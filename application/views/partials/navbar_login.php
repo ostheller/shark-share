@@ -6,20 +6,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="#">SHARKSHARE</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-            <ul class="nav navbar-nav">
-        <li><a href="/logout">Logout</a></li>
-      </ul>
       <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
-         <?= form_open('login_attempt', $form); ?>
+         <?= form_open('login', $form); ?>
            <div class="form-group">
             <?php $email = array(
               'type'=> 'text', 
@@ -41,6 +31,7 @@
               'class'=>'btn btn-success',);?>
             <?= form_submit($submit, 'Sign In'); ?>
           <?= form_close(); ?>
+          <?php if (isset($errors)) {echo $errors; } ?></li>
     </div>
   </div>
 </nav>

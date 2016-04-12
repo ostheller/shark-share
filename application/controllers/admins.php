@@ -9,17 +9,21 @@ class Admins extends CI_Controller {
 		// check to see if they have the clearance
 		if ($this->session->userdata('admin') === TRUE && $this->session->userdata('logged_in') === TRUE) {
         	// we request the data we need from the model
-			$this->sample->
+			//$this->sample->
 			// now we load the view
-        	$this->load->view('partials/header');
-			$this->load->view('partials/navbar');
-			$this->load->view('admin_dashboard', $data);
+        	$header['title'] = 'Admin Dashboard';
+        	$requests['count'] = count($this->session->userdata['requested_sample_id']);
+
+        	$this->load->view('partials/header', $header);
+        	$this->load->view('styles/admin_dashboard');
+			$this->load->view('partials/navbar', $requests);
+			$this->load->view('admin_dashboard');
 			$this->load->view('partials/footer');
         // if they don't have clearance but are indeed logged in, redirect to dashboard
         } else if ($this->session->userdata('logged_in') === TRUE) {
-        	redirect('/dashboard')
+        	redirect('/dashboard');
         } else {
-        	redirect('/')
+        	redirect('/');
         }
 	} // end of method 
 
@@ -28,7 +32,7 @@ class Admins extends CI_Controller {
  insert into users table and delete out of probation table */
 	public function confirm_new_user()
 	{
-
+		$post = $this->input->post();
 	} // end of method 
 	
 // method for sending an email to the new user when denied
@@ -39,4 +43,5 @@ class Admins extends CI_Controller {
 
 // method for admins to remove users and return to the admin dashboard
 
-}
+
+} // end of controller

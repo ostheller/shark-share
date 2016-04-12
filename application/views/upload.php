@@ -1,17 +1,27 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <?php if ($this->session->userdata('admin' === true)) {
+        echo '<p><a href="/admin">Admin Dashboard</a></p>
+        <p><a href="/dashboard">Dashboard</a></p>';}
+        else { echo '<p><a href="/dashboard">Dashboard</a></p>';} ?>
+      <p><a href="/user/<?=$this->session->userdata('id')?>'">Profile</a></p>
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>THIS IS THE Upload</h1>
-<form action="/collections/upload_batch" method="post" enctype="multipart/form-data">
-    Select file to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload File" name="submit">
-</form>      <hr>
+      <form action="/collections/get_template" method="post" enctype="multipart/form-data">
+        <p>Download our required excel template:
+          <input type="hidden" name="downloadFile" id="downloadFile">
+          <input type="submit" value="Download Template" name="submit">
+        </p>
+      </form>
+      <form action="/collections/upload_batch" method="post" enctype="multipart/form-data">
+        <p>Upload template with data:
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="submit" value="Upload File" name="submit">
+        </p>
+      </form>      <hr>
 <?php if (isset($message)) { echo $message; } ?>
 <?php if ($this->session->userdata('message') != FALSE) { echo $this->session->userdata('message'); } ?>
 <?php
@@ -20,7 +30,7 @@
       echo 'Your file: ' . $inputFileName . ' was uploaded successfully'; 
       }
     if (isset($header)) { ?>
-      <a href="/upload/submit"><button>Submit to Database</button></a>
+      <a href="/upload/submit/final"><button>Submit to Database</button></a>
       <table class = "table">
          <caption>Uploaded Sheet</caption>
          
@@ -48,10 +58,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p>Content</p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p>Content</p>
       </div>
     </div>
   </div>
