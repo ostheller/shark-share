@@ -19,6 +19,7 @@ class Requests extends CI_Controller {
 	{
 		$header['title'] = 'Request Samples';
 		$this->load->view('partials/header');
+		$this->load->view('styles/requests');
 		$this->load->view('partials/navbar');
 		$this->load->view('requests');
 		$this->load->view('partials/footer');

@@ -1,7 +1,3 @@
-<script src="<?= base_url();?>/assets/js/custom/search.js"></script>
-<link href="<?= base_url();?>/assets/css/custom/search.css" rel="stylesheet" type="text/css">
-</head>
-<body>
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -10,33 +6,40 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Search Samples</h1>      <hr>
-      <form>
+      <h1>Search Samples</h1>      <hr>  
+      <form id = "search" method="post" action="search">
         Genus:
-        <input type="text" name="genus">
+        <input type="text" name="genus" id="genus">
         Species:
-        <input type="text" name="species">
+        <input type="text" name="species" id="species">
+         Family:
+        <input type="text" name="family" id="family">
+        Order:
+        <input type="text" name="order" id="order">
         Sample Type:
         <select name="sample_type_id">
+          <option></option>
           <?php foreach ($sample_types as $sample_type) { ?>
-            <option value="<?= $sample_type['id'] ?>"><?= $sample_type['type'] ?> (<?= $country['name'] ?>)</option>
+            <option value="<?= $sample_type['id'] ?>"><?= $sample_type['type'] ?></option>
           <?php } ?>
         </select>
         Location:
         <input type="text" name="location"><br>
         Contributer Name:
-        <input type="text" name="name">
+        <input type="text" name="name" id="name">
         Institution:
         <select name="institution_id">
+          <option></option>
           <?php foreach ($institutions as $institution) { ?>
             <option value="<?= $institution['id'] ?>"><?= $institution['name'] ?></option>
           <?php } ?>
         </select>
         Sex
-        <input type="radio" name="gender" value="male"> Male<br>
-        <input type="radio" name="gender" value="female"> Female<br>
+        <input type="radio" name="gender" value="male"> Male 
+        <input type="radio" name="gender" value="female"> Female
+       <button type="submit" class="btn btn-primary" id="search_submit">Submit</button>
       </form>
-      <table class = "table">
+      <table class = "table" id = 'results_table'>
          <caption>Results</caption>
           <form action="samples/request" method="post" id="request_form"></form>
          <thead>
@@ -78,3 +81,4 @@
     </div>
   </div>
 </div>
+<script src="<?= base_url();?>/assets/js/custom/search.js"></script>

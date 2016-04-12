@@ -47,7 +47,12 @@ $route['browse'] = 'samples/browse';
 // Process the search form data & view the page
 $route['search'] = 'samples/search';
 
-// Add sample sto the basket
+$route['autofill/genus'] = 'samples/get_genus';
+$route['autofill/species'] = 'samples/get_species';
+$route['autofill/family'] = 'samples/get_family';
+$route['autofill/order'] = 'samples/get_order';
+
+// Add samples to the basket
 $route['samples/request'] = 'samples/request_sample';
 
 ////////////////////////// Upload Page //////////////////////////////////////

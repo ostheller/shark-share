@@ -16,12 +16,14 @@ class Logins extends CI_Controller {
 				$header['errors'] = NULL;
 			}
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/landing_page');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('landing_page');
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/landing_page');
 			$this->load->view('partials/navbar');
 			$this->load->view('landing_page');
 			$this->load->view('partials/footer');
@@ -64,6 +66,7 @@ class Logins extends CI_Controller {
 		$header['title'] = 'Register';
 
 		$this->load->view('partials/header', $header);
+		$this->load->view('styles/registration');
 		$this->load->view('partials/navbar_login');
 		$this->load->view('registration/1', array('countries' => $countries));
 		$this->load->view('partials/footer');
@@ -80,6 +83,7 @@ class Logins extends CI_Controller {
 			$header['title'] = 'Registration Errors';
 			$countries = $this->login->countries();
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('registration/1', array('countries' => $countries));
 			$this->load->view('partials/footer');
@@ -100,6 +104,7 @@ class Logins extends CI_Controller {
 			$header['title'] = 'Terms and Conditions';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('registration/2');
 			$this->load->view('partials/footer');
@@ -127,6 +132,7 @@ class Logins extends CI_Controller {
 	    	$header['title'] = 'Terms and Conditions';
 
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('registration/2');
 			$this->load->view('partials/footer');
@@ -139,6 +145,7 @@ class Logins extends CI_Controller {
 		if ($this->session->userdata('potential_candidate') === true) {
 			$header['title'] = 'Registration Complete';
 			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('registration/3');
 			$this->load->view('partials/footer');
