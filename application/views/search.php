@@ -6,13 +6,15 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Search Samples</h1>      <hr>
+      <h1>Search Samples</h1>      <hr>  
+<div id="the-basics">
+  <input class="typeahead" type="text" placeholder="States of USA">
+</div>
       <form>
-        <input type="text" name="date" id="date">
         Genus:
-        <input type="text" name="genus">
+        <input type="text" name="genus" id="genus">
         Species:
-        <input type="text" name="species">
+        <input type="text" name="species" id="species">
         Sample Type:
         <select name="sample_type_id">
           <?php foreach ($sample_types as $sample_type) { ?>
@@ -22,7 +24,7 @@
         Location:
         <input type="text" name="location"><br>
         Contributer Name:
-        <input type="text" name="name">
+        <input type="text" name="name" id="name">
         Institution:
         <select name="institution_id">
           <?php foreach ($institutions as $institution) { ?>
