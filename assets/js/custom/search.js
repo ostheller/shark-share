@@ -1,44 +1,207 @@
 $(document).ready(function() {
-var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
 
-    // an array that will be populated with substring matches
-    matches = [];
+/* !!!!!!!!!!!!!!!!!! GENUS AJAX !!!!!!!!!!!!!!!!!! */
 
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
+$.ajax({
+  url: "autofill/genus",
+  dataType: 'json',
+  success: function(json_data){
+    var data_array = json_data; // Do not parse json_data because dataType is 'json'
+    var arr = [];
+    for(var x in data_array){
+ 	  arr.push(data_array[x]['taxonomy_genus']);
+ 	}
 
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        matches.push(str);
-      }
-    });
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
 
-    cb(matches);
-  };
-};
+	    // an array that will be populated with substring matches
+	    matches = [];
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
 
-$('#the-basics .typeahead').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'states',
-  source: substringMatcher(states)
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+
+	$('#genus').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'arr',
+	  source: substringMatcher(arr)
+	});
+	}, // end success,
+	  error: function() {
+	    alert("BAD");
+	  }
 });
-}
+
+/* !!!!!!!!!!!!!!!!!! SPECIES AJAX !!!!!!!!!!!!!!!!!! */
+$.ajax({
+  url: "autofill/species",
+  dataType: 'json',
+  success: function(json_data){
+    var data_array = json_data; // Do not parse json_data because dataType is 'json'
+    var arr = [];
+    for(var x in data_array){
+ 	  arr.push(data_array[x]['taxonomy_species']);
+ 	}
+
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+
+	$('#species').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'arr',
+	  source: substringMatcher(arr)
+	});
+	}, // end success,
+	  error: function() {
+	    alert("BAD");
+	  }
+});
+
+/* !!!!!!!!!!!!!!!!!! FAMILY AJAX !!!!!!!!!!!!!!!!!! */
+$.ajax({
+  url: "autofill/family",
+  dataType: 'json',
+  success: function(json_data){
+    var data_array = json_data; // Do not parse json_data because dataType is 'json'
+    var arr = [];
+    for(var x in data_array){
+ 	  arr.push(data_array[x]['taxonomy_family']);
+ 	}
+
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+
+	$('#family').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'arr',
+	  source: substringMatcher(arr)
+	});
+	}, // end success,
+	  error: function() {
+	    alert("BAD");
+	  }
+});
+
+/* !!!!!!!!!!!!!!!!!! ORDER AJAX !!!!!!!!!!!!!!!!!! */
+$.ajax({
+  url: "autofill/order",
+  dataType: 'json',
+  success: function(json_data){
+    var data_array = json_data; // Do not parse json_data because dataType is 'json'
+    var arr = [];
+    for(var x in data_array){
+ 	  arr.push(data_array[x]['taxonomy_order']);
+ 	}
+
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+
+	$('#order').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'arr',
+	  source: substringMatcher(arr)
+	});
+	}, // end success,
+	  error: function() {
+	    alert("BAD");
+	  }
+});
+
+/* !!!!!!!!!!!!!!!!!! FORM SUBMIT !!!!!!!!!!!!!!!!!! */
+
+$('#search').on('submit', function(e){
+//	e.preventDefault();
+	var data = $('#search_submit').serialize();
+	console.log(data);
+	$.post('/search', data, function(res){
+		console.log('made it');
+	})
+})
+
+});

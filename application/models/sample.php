@@ -91,36 +91,38 @@ user's preset preferences */
 /* !!!!!!!!!!!!!!!!!! Searching !!!!!!!!!!!!!!!!!! */
 
 // method to autofill genus bar
-public function get_genus($post) 
+public function get_genus() 
 	{
-		$search = implode($post);
-		$search = "%".$search."%";
-		$query = "SELECT * FROM taxonomy WHERE taxonomy_genus LIKE ?";
-	    return $this->db->query($query, $search)->result_array();
+		return $this->db->query("SELECT DISTINCT taxonomy_genus FROM taxonomy")->result_array();
 	}
-// method to autofill species bar
-public function get_species($post) 
+public function get_species() 
 	{
-		$search = implode($post);
-		$search = "%".$search."%";
-		$query = "SELECT * FROM taxonomy WHERE taxonomy_species LIKE ?";
-	    return $this->db->query($query, $search)->result_array();
+		return $this->db->query("SELECT DISTINCT taxonomy_species FROM taxonomy")->result_array();
 	}
+public function get_family() 
+	{
+		return $this->db->query("SELECT DISTINCT taxonomy_family FROM taxonomy")->result_array();
+	}
+public function get_order() 
+	{
+		return $this->db->query("SELECT DISTINCT taxonomy_order FROM taxonomy")->result_array();
+	}
+
 // method to generate sample type dropdown
-public function get_sample_types($post) 
+public function get_sample_types() 
 	{
 		$query = "SELECT * FROM sample_types";
 	    return $this->db->query($query)->result_array();
 	}
 // method to generate location dropdown
-public function get_locations($post) 
+public function get_locations() 
 	{
 		$query = "SELECT * FROM locations";
 	    return $this->db->query($query)->result_array();
 	}
 
 // method to generate institution dropdown
-public function get_institutions($post) 
+public function get_institutions() 
 	{
 		$query = "SELECT * FROM institutions";
 	    return $this->db->query($query)->result_array();
@@ -128,9 +130,28 @@ public function get_institutions($post)
 
 // method to search
 	public function search($post) {
-		$query = "SELECT * FROM samples WHERE ";
-        return $this->db->query($query, $values)->result_array();
-	} // end of method
+		var_dump($post);
+
+	// 	$query = "SELECT DISTINCT * FROM samples WHERE taxonomy_genus = ?
+	// 		UNION SELECT DISTINCT * FROM samples WHERE taxonomy_species = ?
+	// 		UNION SELECT DISTINCT * FROM samples WHERE taxonomy_family = ?
+	// 		UNION SELECT DISTINCT * FROM samples WHERE taxonomy_order = ?
+	// 		UNION SELECT DISTINCT * FROM samples WHERE sample_type_id = ?
+	// 		UNION SELECT DISTINCT * FROM samples WHERE location_id = ?
+	// 		UNION SELECT DISTINCT * FROM samples LEFT JOIN whole_specimins ON samples.whole_specimen_id = whole_specimens.id WHERE sex_id = ?
+	// 		UNION SELECT DISTINCT * FROM samples LEFT JOIN users ON samples.user_id = users.id WHERE name = ?
+	// 		UNION SELECT DISTINCT * FROM samples LEFT JOIN users ON samples.user_id = users.id WHERE institution_id = ?";
+	// 	$values = array(
+	// 		"%".$post[."%";
+	// 		"%".$keyword."%";
+	// 		"%".$keyword."%";
+	// 		"%".$keyword."%";
+	// 		"%".$keyword."%";
+	// 		"%".$keyword."%";
+	// 		"%".$keyword."%";
+	// 		);
+ //        return $this->db->query($query, $values)->result_array();
+	 } // end of method
 
 // method to get the data to browse, based on the preferences of the user
 	public function browse() {

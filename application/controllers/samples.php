@@ -5,19 +5,45 @@ class Samples extends CI_Controller {
 
 /* !!!!!!!!!!!!!!!!!! Methods concerning the SEARCH !!!!!!!!!!!!!!!!!! */
 
+// get data from database to use for autofills
+	public function get_genus()
+	{
+		$this->load->model('sample');
+		$genus = $this->sample->get_genus();
+		echo json_encode($genus);
+	} // end of method
+	public function get_species()
+	{
+		$this->load->model('sample');
+		$species = $this->sample->get_species();
+       	echo json_encode($species);
+	} // end of method
+	public function get_family()
+	{
+		$this->load->model('sample');
+		$family = $this->sample->get_family();
+		echo json_encode($family);
+	} // end of method
+	public function get_order()
+	{
+		$this->load->model('sample');
+		$order = $this->sample->get_order();
+		echo json_encode($order);
+	} // end of method
+
 // user enters a keyword search
 	public function search()
 	{
 		$this->load->model('sample');
 		$post = $this->input->post();
 		$data = $this->sample->search($post);
-		$header['title'] = 'Search';
+		// $header['title'] = 'Search';
 
-		$this->load->view('partials/header', $header);
-		$this->load->view('styles/search');
-		$this->load->view('partials/navbar');
-		$this->load->view('search', $data);
-		$this->load->view('partials/footer');
+		// $this->load->view('partials/header', $header);
+		// $this->load->view('styles/search');
+		// $this->load->view('partials/navbar');
+		// $this->load->view('search', $data);
+		// $this->load->view('partials/footer');
 	} // end of method
 
 // user uses the advanced search
@@ -65,14 +91,17 @@ class Samples extends CI_Controller {
 			// get samples for them to browse based on their set up preferences
 			$this->load->model('sample');
 			//$user = $this->session->userdata('id');
-			$data = $this->sample->browse();
+			$types = $this->sample->get_sample_types();
+			$locations = $this->sample->get_locations();
+			$institutions = $this->sample->get_institutions();
+			$tagged_values = $this->sample->browse();
 			$header['title'] = 'Search';
 			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/search');
 			$this->load->view('partials/navbar', $requests);
-			$this->load->view('search', array('data' => $data));
+			$this->load->view('search', array('data' => $tagged_values, 'sample_types' => $types, 'locations' => $locations, 'institutions' => $institutions));
 			$this->load->view('partials/footer');
 		} // end else
 	} // end of method
