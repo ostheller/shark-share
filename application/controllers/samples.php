@@ -37,6 +37,7 @@ class Samples extends CI_Controller {
 		$this->load->model('sample');
 		$post = $this->input->post();
 		$data = $this->sample->search($post);
+		echo json_encode($data);
 		// $header['title'] = 'Search';
 
 		// $this->load->view('partials/header', $header);
@@ -44,21 +45,6 @@ class Samples extends CI_Controller {
 		// $this->load->view('partials/navbar');
 		// $this->load->view('search', $data);
 		// $this->load->view('partials/footer');
-	} // end of method
-
-// user uses the advanced search
-	public function advanced_search()
-	{
-		$this->load->model('sample');
-		$post = $this->input->post();
-		$data = $this->sample->advanced_search($post);
-		$header['title'] = 'Search';
-
-		$this->load->view('partials/header', $header);
-		$this->load->view('styles/search');
-		$this->load->view('partials/navbar');
-		$this->load->view('search', $data);
-		$this->load->view('partials/footer');
 	} // end of method
 
 // load the view page
@@ -69,14 +55,20 @@ class Samples extends CI_Controller {
 			redirect('/restricted');
 		} else { 
 			$this->load->model('sample');
-			$post = $this->input->post();
-			$data = $this->sample->advanced_search($post);
+			$this->load->model('login');
+			$countries = $this->login->countries();
+			//$user = $this->session->userdata('id');
+			$types = $this->sample->get_sample_types();
+			$locations = $this->sample->get_locations();
+			$institutions = $this->sample->get_institutions();
+			$data = $this->sample->search($this->input->post);
 			$header['title'] = 'Search';
+			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/search');
-			$this->load->view('partials/navbar');
-			$this->load->view('search', $data);
+			$this->load->view('partials/navbar', $requests);
+			$this->load->view('search', array('data' => $data, 'sample_types' => $types, 'countries' => $countries, 'institutions' => $institutions));
 			$this->load->view('partials/footer');
 		} // end else
 	} // end of method
@@ -90,6 +82,8 @@ class Samples extends CI_Controller {
 		} else { 
 			// get samples for them to browse based on their set up preferences
 			$this->load->model('sample');
+			$this->load->model('login');
+			$countries = $this->login->countries();
 			//$user = $this->session->userdata('id');
 			$types = $this->sample->get_sample_types();
 			$locations = $this->sample->get_locations();
@@ -101,7 +95,7 @@ class Samples extends CI_Controller {
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/search');
 			$this->load->view('partials/navbar', $requests);
-			$this->load->view('search', array('data' => $tagged_values, 'sample_types' => $types, 'locations' => $locations, 'institutions' => $institutions));
+			$this->load->view('search', array('data' => $tagged_values, 'sample_types' => $types, 'countries' => $countries, 'institutions' => $institutions));
 			$this->load->view('partials/footer');
 		} // end else
 	} // end of method
