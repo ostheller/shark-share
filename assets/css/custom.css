@@ -1,7 +1,13 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
+/* Remove the navbar's default margin-bottom and rounded borders, lowers opacity to 90% */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
+      opacity: .9;
+    }
+    /*Set heights of page content divs (excluding navbars) to 90% of the view height. */
+    .row.content {
+      height: 150vh;
+      min-height: 90vh;
     }
     
     /* Set gray background color and 100% height */
