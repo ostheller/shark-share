@@ -1,0 +1,24 @@
+html {
+	height: 100%;
+	min-height: 100%;	
+} 
+
+body {
+	/*background-image: ;*/
+	height: 100%;
+	min-height: 100%;	
+}
+
+.siderun{
+	height: 100%;
+	min-height: 100%;
+}
+
+.siderun2{
+	height: 750px;
+}
+	/*position: fixed;
+	bottom: 0px;
+	min-height: 100%;*/
+
+

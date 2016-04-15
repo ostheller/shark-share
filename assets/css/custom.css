@@ -9,10 +9,12 @@
       padding-top: 20px;
       background-color: #000033; /* This color is the closest websafe color to Shark Share. Stack with #001541 */ 
       height: 100%;
+      min-height: 100%;
     }
     
     /* Set black background color, white text and some padding */
     footer {
+      
       background-color: #555;
       color: white;
       padding: 15px;
