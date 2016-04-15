@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+<<<<<<< Updated upstream
 /* !!!!!!!!!!!!!!!!!! GENUS AJAX !!!!!!!!!!!!!!!!!! */
 
 $.ajax({
@@ -442,3 +443,6 @@ $('#search').on('submit', function(e){
 	})
 })
 });
+=======
+}
+>>>>>>> Stashed changes
