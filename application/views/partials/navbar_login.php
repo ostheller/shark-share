@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">SHARKSHARE</a>
+      <a class="navbar-brand" href="/about">SHARKSHARE</a>
     </div>
       <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
          <?= form_open('login', $form); ?>

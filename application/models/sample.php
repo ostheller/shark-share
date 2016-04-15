@@ -225,4 +225,24 @@ public function get_institutions()
 			LIMIT 20";
         return $this->db->query($query)->result_array();
 	} // end of method
+
+
+// method for entering a request into the database
+public function request($selection) 
+	{
+		$query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)
+  			ON DUPLICATE KEY UPDATE status_id =1;";
+  		if (empty($selection['sample_id'])){
+  			echo "EMPTY";	
+	  		} else {
+	  		for ($i=0; $i < count($selection['sample_id']); $i++) { 
+	  			$values = array(
+		  			$this->session->userdata('id'),
+		  			intval($selection['sample_id'][$i])
+		  			);
+		  		$this->db->query($query, $values);
+		  		} 	
+	  	};
+  		echo json_encode($this->db->query("SELECT * FROM requests WHERE user_id = ? AND status_id = 1", $this->session->userdata('id'))->result_array());
+	}
 } // end of model ?>

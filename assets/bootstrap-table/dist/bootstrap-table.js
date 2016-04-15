@@ -234,6 +234,7 @@
 
     var BootstrapTable = function (el, options) {
         this.options = options;
+
         this.$el = $(el);
         this.$el_ = this.$el.clone();
         this.timeoutId_ = 0;
@@ -2252,6 +2253,7 @@
         }
     };
 
+  
     BootstrapTable.prototype.getRowByUniqueId = function (id) {
         var uniqueId = this.options.uniqueId,
             len = this.options.data.length,
@@ -2756,7 +2758,7 @@
     $.fn.bootstrapTable = function (option) {
         var value,
             args = Array.prototype.slice.call(arguments, 1);
-
+            console.log('WHEEEEE');
         this.each(function () {
             var $this = $(this),
                 data = $this.data('bootstrap.table'),
