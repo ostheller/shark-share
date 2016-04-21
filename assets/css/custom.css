@@ -38,4 +38,25 @@
     background-color:#FCFCFC; /* Try to make a stack with #fcfcfc and #ffffff.
 }
 
+/*Heather's work, isolated in case of potential errors */
 
+/*Provides background image and div for content divs to nest in*/
+.backwrapper {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/images/pseudobackground1.jpg");
+  text-align: center;
+}
+
+.col-sm-8 {
+  height: 95%;
+  width: 60%;
+  border-radius: 1%;
+  background-color: grey;
+  opacity: .9;
+  margin-right: 20%;
+  margin-left: 20%;
+  margin-top: 2%;
+  margin-bottom: 0%;
+  text-align: left;
+}

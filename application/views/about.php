@@ -2,26 +2,25 @@
   <div class="row content">
     <div class= "backwrapper">
       <div class= "col-sm-8 text-left">
-        <h1>About Sharkshare</h1>
+        <h1>What is Shark Share?</h1>
         <p> 
-          Working with the team at Collaborative Research Networks Ltd, the Shark Share Global program is specifically tailored for scientists 
-          around the world. We recognize that of the 1041 known shark and ray species, 47% lack basic biological data needed to assess if 
-          populations are at risk. Of the remaining 53% which we do have knowledge of, more than a quarter are considered threatened by human impacts 
-          such as overfishing and coastal development. 
+          WorkiShark Share is a virtual tissue bank for all species 
+          of Chondrichthyans (sharks, rays and chimeras) in an effort 
+          to reduce sampling inefficiencies and facilitate global 
+          collaboration. Often researchers are collecting samples 
+          for critical research projects and by using the Shark Share 
+          platform coordinated sampling approaches are more easily 
+          arranged.
         </p>
         <hr>
-        <h1>What We Do</h1>
+        <h1>Who can use it?</h1>
         <p>
-          Shark Share Global is an international foundation which hosts a novel database, linking scientists world-wide via the lodgment of 
-          available elasmobranch tissue samples into an easily accessed online toolbox.
-        <p>
-        <hr>
-        <h3>Goals</h3>
-        <ul>
-          <li>Increase the efficiency of global shark sampling and research via the maximization of tissue usage</li>
-          <li>Help foster meaningful collaborations between scientists, encouraging unique large scale, global and cross-disciplinary 
-            projects</li>
-        </ul>
+          Currently the Shark Share Global database is only available 
+          for members belonging to research institutions and government 
+          agencies. Public access is not granted due to ethics 
+          requirements around sample collection. For more information 
+          please email <a href="info@sharkshareglobal.org">info@sharksharglobal.org</a>.
+        </p>
         <hr>
         <div>
           <img class=image-bar src="/assets/images/shark1.jpg" alt="testpic">
