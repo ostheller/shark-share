@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
 /* !!!!!!!!!!!!!!!!!! GENUS AJAX !!!!!!!!!!!!!!!!!! */
 
 $.ajax({
@@ -411,7 +412,7 @@ $('#search').on('submit', function(e){
 	            $request.prop('disabled', !$table.bootstrapTable('getSelections').length);
 	            // save your data, here just save the current page
 	            selections = getIdSelections();
-	            // push or splice the selections if you want to save all data selections
+	            console.log(selections);
 	        });
 	        $table.on('expand-row.bs.table', function (e, index, row, $detail) {
 	            var html = [];
@@ -427,10 +428,23 @@ $('#search').on('submit', function(e){
 	        });
 	        $request.click(function () {
 	            var ids = getIdSelections();
-	            $table.bootstrapTable('request', {
-	                field: 'id',
-	                values: ids
-	            });
+	            console.log('requsted ids: ' + ids);
+	            var selections = {
+	            	'sample_id': ids
+	            };
+	            // $table.bootstrapTable('request', {
+	            //     field: 'id',
+	            //     values: ids
+	            // });
+	             $.ajax({
+	                type: "POST",
+	                url: "samples/request",
+	                data: selections,
+	                cache: false,
+	                success: function(res) {
+	                	alert(res);
+	                }
+                });
 	            $request.prop('disabled', true);
 	        });
 	        $(window).resize(function () {

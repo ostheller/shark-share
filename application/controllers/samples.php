@@ -138,8 +138,11 @@ class Samples extends CI_Controller {
 // user wants to request a sample
 	public function request_sample()
 	{
-		foreach ($this->input->post() as $key) {
-			array_push($this->session->userdata['requested_sample_id'], $key);
-		}
+		$this->load->model('sample');
+		$selection = $this->input->post();
+		return $this->sample->request($selection);
+		// foreach ($this->input->post() as $key) {
+		// 	array_push($this->session->userdata['requested_sample_id'], $key);
+		// }
 	} // end of method
 }
