@@ -2,7 +2,12 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
+      background-color: #cccccc;
       opacity: .9;
+      border:none;
+    }
+    .active {
+      background-color: #999999;
     }
     /*Set heights of page content divs (excluding navbars) to 90% of the view height. */
     .row.content {
@@ -16,6 +21,11 @@
       background-color: #000033; /* This color is the closest websafe color to Shark Share. Stack with #001541 */ 
       height: 100%;
       min-height: 100%;
+    }
+
+    .image-logo {
+      height: 95%;
+      width: auto;
     }
     
     /* Set black background color, white text and some padding */
