@@ -21,8 +21,8 @@
 	border-radius: 1%;
 	background-color: grey;
 	opacity: .9;
-	margin-right: 15%;
-	margin-left: 25%;
+	margin-right: 10%;
+	margin-left: 10%;
 	margin-top: 2%;
 	margin-bottom: 0%;
 	text-align: left;
@@ -30,11 +30,11 @@
 
 /* Class for the sponsors content box*/
 .sponsor-bar{
-	height: 100%;
-	width: 20%%;
+	height: 95%;
+	width: 20%;
 	background-color: #FCFCFC;
-    position: absolute;
-    display:inline;
+    /*position: absolute;
+    display:inline;*/
   }
 
 /* Image formatting sponsor logos, also subject to change */
