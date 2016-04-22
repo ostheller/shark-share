@@ -1,0 +1,63 @@
+/*Image formatting. Will be subject to change.*/
+.image-bar{
+	height: 20vh;
+	width: auto%;
+	padding-bottom: 1%;
+}
+
+/*Provides background image and div for content divs to nest in*/
+.backwrapper {
+	width: 100%;
+	height: 100%;
+	background-image: url("/assets/images/pseudobackground1.jpg");
+	text-align: center;
+}
+
+/*Class for a centered grey content box*/
+.col-sm-8 {
+	height: 95%;
+	width: 60%;
+	border-radius: 1%;
+	background-color: #cccccc;
+	opacity: .9;
+	margin-right: 2%;
+	margin-left: 2%;
+	margin-top: 2%;
+	margin-bottom: 0%;
+	text-align: left;
+	float:left;
+	overflow:auto;
+}
+
+/* Class for the sponsors content box*/
+.sponsor-bar{
+	margin-top: 2%;
+	height: 95%;
+	width: 15%;
+	position:static;
+	float:left;
+	overflow:auto;
+	border-radius:1%;
+	background-color: #cccccc;
+	opacity: .9;
+    /*position: absolute;
+    display:inline;*/
+  }
+
+  #leftspacing{
+  	margin-left: 2%;
+  }
+
+  #rightspacing{
+  	margin-right:2%;
+  }
+
+/* Image formatting sponsor logos, also subject to change */
+  .sponsor-image{
+   width:95%;
+   height: auto;
+   padding-top: 20%;
+   padding-left: 3%;
+   padding-right: 3%;
+   display:block;
+  }

@@ -1,23 +1,45 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="/register">Click here to register</a></p>
-      <p><a href="#">Content</a></p>
-      <p><a href="#">Content</a></p>
-    </div>
-    <div class="col-sm-8 text-left"> 
-      <h1>Welcome to SharkShare!</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Content</p>
+    <div class= "backwrapper">
+      <div class = "sponsor-bar" id="leftspacing"> 
+        <h1>Our Sponsors and Partners</h1>
+        <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
+        <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+        <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
       </div>
-      <div class="well">
-        <p>Content</p>
+      <div class= "col-sm-8 text-left">
+        <h1>What is Shark Share?</h1>
+        <p> 
+          Shark Share is a virtual tissue bank for all species 
+          of Chondrichthyans (sharks, rays and chimeras) in an effort 
+          to reduce sampling inefficiencies and facilitate global 
+        collaboration. Often researchers are collecting samples 
+        for critical research projects and by using the Shark Share 
+        platform coordinated sampling approaches are more easily 
+        arranged.
+        </p>
+        <hr>
+        <h1>Who can use it?</h1>
+        <p>
+        Currently the Shark Share Global database is only available 
+        for members belonging to research institutions and government 
+        agencies. Public access is not granted due to ethics 
+        requirements around sample collection. For more information 
+        please email <a href="info@sharkshareglobal.org">info@sharksharglobal.org</a>.
+        </p>
+        <hr>
+        <div>
+          <img class="image-bar" src="/assets/images/shark1.jpg" alt="testpic">
+          <img class="image-bar" src="/assets/images/shark2.jpg" alt="testpic2">
+          <img class="image-bar" src="/assets/images/shark3.jpg" alt="testpic3">
+          <img class="image-bar" src="/assets/images/shark4.jpg" alt="testpic4">
+        </div>
+      </div>
+      <div class="sponsor-bar" id="margin-right">
+        <p>
+          Interested in joining?
+        </p>
+        <a href="#"> Sign up here!</a>
       </div>
     </div>
   </div>

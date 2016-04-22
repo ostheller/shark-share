@@ -19,27 +19,29 @@
 	height: 95%;
 	width: 60%;
 	border-radius: 1%;
-	background-color: grey;
+	background-color: #cccccc;
 	opacity: .9;
 	margin-right: 10%;
 	margin-left: 10%;
 	margin-top: 2%;
 	margin-bottom: 0%;
 	text-align: left;
+	float:left;
+	overflow:auto;
 }
 
 /* Class for the sponsors content box*/
 .sponsor-bar{
 	height: 95%;
-	width: 20%;
-	background-color: #FCFCFC;
-    /*position: absolute;
-    display:inline;*/
+	width: 15%;
+	background-color: #cccccc;
+	float:left;
+	overflow:auto;
   }
 
 /* Image formatting sponsor logos, also subject to change */
   .sponsor-image{
-   width:35vh;
+   width:95%;
    height: auto;
    padding-top: 20%;
    padding-left: 3%;

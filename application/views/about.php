@@ -9,7 +9,7 @@
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>
         <p> 
-          WorkiShark Share is a virtual tissue bank for all species 
+          Shark Share is a virtual tissue bank for all species 
           of Chondrichthyans (sharks, rays and chimeras) in an effort 
           to reduce sampling inefficiencies and facilitate global 
           collaboration. Often researchers are collecting samples 
