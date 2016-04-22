@@ -6,12 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-
-      <a class="navbar-brand" href="/about">SHARKSHARE</a>
+      <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
+      <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+      <!--<a class="navbar-brand" style="color:blue;" href="/about">SHARKSHARE</a>-->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/dashboard">Home</a></li>
+        <li><a href="/dashboard">Home</a></li>
         <li><a href="/browse">Browse</a></li>
         <li><a href="/collection/<?php echo $this->session->userdata('id'); ?>">Collection</a></li>
         <li><a href="/user/<?php echo $this->session->userdata('id'); ?>">Profile</a></li>
