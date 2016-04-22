@@ -1,6 +1,11 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
+     <div class = "sponsor-bar"> 
+          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
+          <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+          <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
+      </div>
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>
         <p> 
