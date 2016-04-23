@@ -162,5 +162,27 @@ class Logins extends CI_Controller {
    		redirect('/');
    	} // of method
 
+// temporary method to view the second registration page in order to make edits to it
+public function view_registration_two()
+	{
+		$header['title'] = 'Terms and Conditions';
+			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/2');
+			$this->load->view('partials/footer');
+	} // end of method
+
+// temporary method to view the second registration page in order to make edits to it
+public function view_registration_three()
+	{
+		$header['title'] = 'Registration Complete';
+			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
+			$this->load->view('partials/navbar_login');
+			$this->load->view('registration/3');
+			$this->load->view('partials/footer');
+	} // end of method
+
 } // end class
 ?>
