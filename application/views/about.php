@@ -1,7 +1,7 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
-     <div class = "sponsor-bar"> 
+     <div class = "sponsor-bar" id="leftspacing"> 
           <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
           <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
           <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">

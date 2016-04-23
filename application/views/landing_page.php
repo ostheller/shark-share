@@ -39,7 +39,7 @@
         <p>
           Interested in joining?
         </p>
-        <a href="#"> Sign up here!</a>
+        <a href="/register"> Sign up here!</a>
       </div>
     </div>
   </div>

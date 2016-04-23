@@ -6,8 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
-      <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+      <a href="/about">
+        <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
+      </a>
+      <a href="/about">
+        <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+      </a>
       <!--<a class="navbar-brand" style="color:blue;" href="/about">SHARKSHARE</a>-->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -16,6 +20,7 @@
         <li><a href="/browse">Browse</a></li>
         <li><a href="/collection/<?php echo $this->session->userdata('id'); ?>">Collection</a></li>
         <li><a href="/user/<?php echo $this->session->userdata('id'); ?>">Profile</a></li>
+        <li><a href="/help">Help</a></li>
         <li><a href="/logout">Logout</a></li>
       </ul>
       <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
