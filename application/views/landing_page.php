@@ -3,9 +3,15 @@
     <div class= "backwrapper">
       <div class = "sponsor-bar" id="leftspacing"> 
         <h1>Our Sponsors and Partners</h1>
-        <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
-        <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
-        <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
+        <a target="_blank" href="http://www.saveourseas.com/"> 
+          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
+        </a>
+        <a target="_blank" href="http://www.shark-references.com">
+          <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+        </a>
+        <a target="_blank" href="http://www.iucnredlist.org">
+          <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
+        </a>
       </div>
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>
@@ -36,10 +42,10 @@
         </div>
       </div>
       <div class="sponsor-bar" id="margin-right">
-        <p>
+        <h1>
           Interested in joining?
-        </p>
-        <a href="/register"> Sign up here!</a>
+        </h1>
+        <a style="font-weight:bold" href="/register"> Sign up here!</a>
       </div>
     </div>
   </div>

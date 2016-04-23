@@ -82,8 +82,10 @@ class Pages extends CI_Controller {
 			$this->load->view('partials/footer');
 		} else { 
 		// they are logged in (get the navbar without the login form)
+			$header['title'] = 'Access Restricted';
+
 			$this->load->view('partials/header', $header);
-			$this->load->view('styles/restrictec');
+			$this->load->view('styles/restricted');
 			$this->load->view('partials/navbar');
 			$this->load->view('restricted');
 			$this->load->view('partials/footer');

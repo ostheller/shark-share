@@ -1,10 +1,16 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
-     <div class = "sponsor-bar" id="leftspacing"> 
+      <div class = "sponsor-bar" id="leftspacing">
+        <a target="_blank" href="http://www.saveourseas.com/"> 
           <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
+        </a>
+        <a target="_blank" href="http://www.shark-references.com">
           <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+        </a>
+        <a target="_blank" href="http://www.iucnredlist.org">
           <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
+        </a>
       </div>
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>

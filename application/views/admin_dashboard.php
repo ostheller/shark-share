@@ -3,7 +3,7 @@
     <div class= "backwrapper0">
       <div class= "columnone">
         <div class="col-sm-7">
-          <h1>Admin Tools</h1>
+          <h1 class="fontbold">Admin Tools</h1>
           <a href="/dashboard" class="dash-button btn btn-info" role="button">User View</a>
           <br>
           <br>
