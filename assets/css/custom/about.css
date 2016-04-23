@@ -32,11 +32,25 @@
 
 /* Class for the sponsors content box*/
 .sponsor-bar{
+	margin-top: 2%;
 	height: 95%;
 	width: 15%;
-	background-color: #cccccc;
+	position:static;
 	float:left;
 	overflow:auto;
+	border-radius:1%;
+	background-color: #cccccc;
+	opacity: .9;
+    /*position: absolute;
+    display:inline;*/
+  }
+
+  #leftspacing{
+  	margin-left: 2%;
+  }
+
+  #rightspacing{
+  	margin-right:2%;
   }
 
 /* Image formatting sponsor logos, also subject to change */

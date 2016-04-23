@@ -11,7 +11,7 @@
     <div class="col-sm-8 text-left"> 
       <h1>Update the Taxonomy</h1>
       <form action="/taxonomies/get_template" method="post" enctype="multipart/form-data">
-        <p>Download the required excel template:
+        <p>For reference, here is the upload template:
           <input type="hidden" name="downloadFile" id="downloadFile">
           <input type="submit" value="Download Template" name="submit">
         </p>
@@ -83,14 +83,6 @@
             
          </tbody>    
       </table>
-    </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Content</p>
-      </div>
-      <div class="well">
-        <p>Content</p>
-      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,23 @@
+.col-sm-8 {
+	height: 95%;
+	width: 60%;
+	border-radius: 1%;
+	background-color: #cccccc;
+	opacity: .9;
+	float:left;
+	text-align: left;
+	overflow:auto;
+}
+
+.restrictedm {
+	margin-right: 20%;
+	margin-left: 20%;
+	margin-top: 2%;
+	margin-bottom: 0%;
+	text-align: center;
+}
+
+.fontbold {
+	color:#660066;
+	font-weight: bold;
+}
