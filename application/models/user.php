@@ -17,37 +17,12 @@ class User extends CI_Model {
 // method to see all potential users
 	public function view_potential_users()
 	{
-		$query = "SELECT u.id as 'id', u.first_name as 'First Name', u.last_name as 'Last Name', u.email as 'Email', u.field as 'Field', i.name as 'Institution Name', i.city as 'Institution City', a_s.status as 'Academic Status', u.reference_name as 'Reference Name', u.reference_email as 'Reference Email' FROM potential_users as u
+		$query = "SELECT u.id as 'id', u.first_name as 'First Name', u.last_name as 'Last Name', u.email as 'Email', u.field as 'Field', i.name as 'Institution Name', i.city as 'Institution City', a_s.status as 'Academic Status', u.reference_name as 'Reference Name', u.reference_email as 'Reference Email', u.token as 'Token' FROM potential_users as u
 		LEFT JOIN institutions as i 
 		ON u.institution_id = i.id 
 		LEFT JOIN academic_statuses as a_s
 		ON u.academic_status_id = a_s.id";
 		return $this->db->query($query)->result_array();
-	} // end of method
-
-// method to admit a potential user, adding them to the users database and removing from the potential database
-	// method to delete user
-	public function admit_potential_user($post)
-	{
-		for ($i=0; $i < count($post['id']); $i++) { 
-			$id = intval($post['id'][$i]);
-			// first add to new users
-
-			// then delete from potential users
-			$delete_query = "DELETE FROM potential_users WHERE id=?";
-			$this->db->query($delete_query, $id);
-		}
-	} // end of method
-
-// method to delete unwanted potential users
-	// method to delete user
-	public function reject_potential_user($post)
-	{
-		for ($i=0; $i < count($post['id']); $i++) { 
-			$id = intval($post['id'][$i]);
-			$query = "DELETE FROM potential_users WHERE id=?";
-			$this->db->query($query, $id);
-		}
 	} // end of method
 
 // method to get the data for a single user
@@ -60,6 +35,18 @@ class User extends CI_Model {
 		WHERE u.id = ?";
         $values = $id;
         return $this->db->query($query, $values)->row_array();
+	} // end of method
+
+// method to for user to set up their profile, with username, password and about themselves
+	public function setup_user_info($post)
+	{
+		$query = "";
+		$values = array();
+		if($this->db->query($query, $user)) {
+			return $this->db->insert_id();
+		} else { 
+			return FALSE;
+		}
 	} // end of method
 
 // method to associate tagged preferences

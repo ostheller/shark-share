@@ -43,14 +43,36 @@ class Admins extends CI_Controller {
 	public function confirm_new_user()
 	{
 		$post = $this->input->post();
+		$this->load->model('login');
+		// generate a token for th euser
+		$userdata = $this->login->generate_token($post);
+		var_dump($userdata);
+		//send email
+		$this->load->library('email');
+
+		$this->email->from('molly.ostheller@gmail.com', 'Molly Ostheller');
+		$this->email->to('hem3@uw.edu'); 
+		$this->email->cc('maccrea@uw.edu');  
+		$this->email->bcc('mro4@uw.edu');  
+
+		$this->email->subject('Ok One More Test. Do You Get The Attachment???');
+		$this->email->message('Testing the email class. I think this works. This email is getting sent because I clicked the approve user button. For (this part should be dynamically generated): ' .$userdata['userdata']['first_name'] .'But let me know if you see this and can open the attachment. I think we could send the requests in an excel attachment instead of in the body of the email text. Anyway. Email!');
+		$attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
+		$this->email->attach($attached_file);
+		if ($this->email->send()) {
+       		echo "Mail Sent!"; 
+       	} else {
+        	echo "There is error in sending mail!";
+   		}
 	} // end of method 
 	
 // method for rejecting users and sending an email to the new user when denied
 	public function reject_potential_user()
 	{
 		$post = $this->input->post();
-		$this->load->model('user');
-		$this->user->reject_potential_user($post);
+		$this->load->model('login');
+		$this->login->reject_potential_user($post);
+		// WRITE THE CODE TO SEND THE EMAILS
 	} // end of method 
 
 // method for admins to visit a page containing a register of all users
