@@ -35,9 +35,12 @@ $route['user/new/tags'] = 'users/create_tags';
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
 $route['admin'] = 'admins/view_admin_dashboard';
-// View more information about a new user
+// View potential users
+$route['admin/view/potential_users'] = 'admins/view_potential_users';
 // Accept a user
+$route['admin/admit/potential_users'] = 'admins/confirm_new_user';
 // Deny a user
+$route['admin/reject/potential_users'] = 'admins/reject_potential_user';
 
 ////////////////////////// User Dashboard //////////////////////////////////////
 // Load the admin dashboard

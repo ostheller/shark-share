@@ -30,12 +30,28 @@ class Admins extends CI_Controller {
 /*// method for posting add user information, when admins choose to accept a user
  includes a call to the model to send an acceptance email
  insert into users table and delete out of probation table */
+
+// method to view potential users
+	public function view_potential_users()
+	{
+		$this->load->model('user');
+		$data = $this->user->view_potential_users();
+		echo json_encode($data);
+	} // end of method 
+
+ // method to accept potential users
 	public function confirm_new_user()
 	{
 		$post = $this->input->post();
 	} // end of method 
 	
-// method for sending an email to the new user when denied
+// method for rejecting users and sending an email to the new user when denied
+	public function reject_potential_user()
+	{
+		$post = $this->input->post();
+		$this->load->model('user');
+		$this->user->reject_potential_user($post);
+	} // end of method 
 
 // method for admins to visit a page containing a register of all users
 
