@@ -26,7 +26,7 @@ $route['edit/three'] = 'logins/view_registration_three';
 
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
-$route['user/new'] = 'users/view_setup_profile';
+$route['user/new/(:num)'] = 'users/view_setup_profile/$1';
 // Submit the form for setting their profile information
 $route['user/new/submit'] = 'users/create_profile';
 // Submit the form for setting their tag preferences

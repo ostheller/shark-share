@@ -84,8 +84,8 @@ class Login extends CI_Model {
         }
 
         // write the query
-        $query = "INSERT INTO potential_users (first_name, last_name, email, field, institution_id, academic_status_id, reference_name, reference_email, token) VALUES (?,?,?,?,?,?,?,?,?)";
-        $values = array($person['first_name'], $person['last_name'],$person['email'],$person['field'], $institution['id'], intval($person['status_id']), $person['reference_name'],$person['reference_email'], bin2hex(openssl_random_pseudo_bytes(32)));
+        $query = "INSERT INTO potential_users (first_name, last_name, email, field, institution_id, academic_status_id, reference_name, reference_email) VALUES (?,?,?,?,?,?,?,?)";
+        $values = array($person['first_name'], $person['last_name'],$person['email'],$person['field'], $institution['id'], intval($person['status_id']), $person['reference_name'],$person['reference_email']);
         if ($this->db->query($query, $values)) {
             return true;
         } 
@@ -95,19 +95,26 @@ class Login extends CI_Model {
         }
     } // end of method
 
-// Method for getting the data to send an email to someone containing their token
-    public function generate_email($id)
+// Method for getting the data to generate a token for a potential user and send an email to someone containing their token in a link
+    public function generate_token($post)
     {
-        $query = "SELECT * FROM potential_users WHERE id = ?";
-        return $this->db->query($query, $values)->row_array();
+        for ($i=0; $i < count($post['id']); $i++) { 
+            $id = intval($post['id'][$i]);
+            $user = $this->db->query("SELECT * FROM potential_users WHERE id = ?", $id)->row_array();
+            $token = bin2hex(openssl_random_pseudo_bytes(32));
+            $userdata = array('userdata' => $user, 'token' => $token);
+            $values = array($token, $id);
+            $this->db->query("UPDATE potential_users SET token = ? WHERE id = ?", $values);
+        }
+        return $userdata;
     } // end of method
 
 // method to find the user with the email generated token in order to set up their profile
-    // public function check_token($token)
-    // {
-    //     $query = "SELECT * FROM potential_users WHERE token = ?";
-    //     return $this->db->query($query, $token)->row_array();
-    // }
+    public function check_token($token)
+    {
+        $query = "SELECT * FROM potential_users WHERE token = ?";
+        return $this->db->query($query, $token)->row_array();
+    }
 
 // Method to validate the registration of one user
     public function creation_validation()
@@ -135,20 +142,35 @@ class Login extends CI_Model {
             }
         } // end of method
 
-// Method to register one user to the database for the first time (automatic user level of 0, normal) 1 is admin
-    public function create()
+// method to admit a potential user, adding them to the users database (automatic user level of 0, normal) 1 is admin
+// and removing from the potential database
+    // method to delete user
+    public function admit_potential_user($post)
     {
-        $user = $this->input->post();
-        $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
-        $query = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
-        $values = array($user['user_name'], 0, $user['email'],$user['password'],$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
-        return $this->db->query($query, $values);
+        for ($i=0; $i < count($post['id']); $i++) { 
+            $id = intval($post['id'][$i]);
+            // get the data about the potential user
+                $user_query = "SELECT * FROM potential_users WHERE id=?";
+                $user = $this->db->query($user_query, $id)->row_array();
+                $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
+           // first add to new users
+                $admit_query  = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
+                $values = array('NOT SET', 0, $user['email'],'TEMP',$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
+            // then delete from potential users
+            $delete_query = "DELETE FROM potential_users WHERE id=?";
+            $this->db->query($delete_query, $id);
+        }
     } // end of method
 
-// Method to remove a user from the probationary table
-    public function destroy($id)
+// method to delete unwanted potential users
+    // method to delete user
+    public function reject_potential_user($post)
     {
-        $this->db->delete('potential_users', array('id' => $id));
+        for ($i=0; $i < count($post['id']); $i++) { 
+            $id = intval($post['id'][$i]);
+            $query = "DELETE FROM potential_users WHERE id=?";
+            $this->db->query($query, $id);
+        }
     } // end of method
 
 } // end of model ?>
