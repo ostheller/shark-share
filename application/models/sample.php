@@ -248,5 +248,11 @@ public function request($selection)
 		  		} 	
 	  	};
   		echo json_encode($this->db->query("SELECT * FROM requests WHERE user_id = ? AND status_id = 1", $this->session->userdata('id'))->result_array());
+	} // end of method
+
+// method for counting a user's request
+	public function count_requests($id) 
+	{
+
 	}
 } // end of model ?>

@@ -26,11 +26,11 @@ $route['edit/three'] = 'logins/view_registration_three';
 
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
-$route['user/new/(:num)'] = 'users/view_setup_profile/$1';
+$route['setup_user/(:any)'] = 'users/view_setup_profile/$1';
 // Submit the form for setting their profile information
-$route['user/new/submit'] = 'users/create_profile';
+$route['setup_user/submit'] = 'users/create_profile';
 // Submit the form for setting their tag preferences
-$route['user/new/tags'] = 'users/create_tags';
+$route['setup_user/tags'] = 'users/create_tags';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
@@ -99,6 +99,8 @@ $route['samples/delete/(:num)'] = 'samples/delete/$1';
 ////////////////////////// User Page //////////////////////////////////////
 // Load a person profile page
 $route['user/(:any)'] = 'users/view_user/$1';
+// Submit the form to edit a user
+$route['user/(:num)/update'] = 'users/update/$1';
 
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page

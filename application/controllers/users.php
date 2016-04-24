@@ -30,37 +30,57 @@ class Users extends CI_Controller {
 // method for new users to see the page where they can set up their initial profile pages
 	public function view_setup_profile($token)
 	{
-		$this->load->model('user');
-		$user = $this->user->check_token($token);
+		$this->load->model('login');
+		$this->load->model('sample');
+		$user = $this->login->check_token($token);
+		$countries = $this->login->countries();
+		$sample_types = $this->sample->get_sample_types();
+		// var_dump($user);
+		// die();
 		if (empty($user)) {
 			redirect('/');
 		} else {
 			$header['title'] = 'Set Up New Profile';
-
+			$data = array(
+				'user' => $user, 
+				'countries' => $countries,
+				'sample_types' => $sample_types
+				);
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/setup_profile');
 			$this->load->view('partials/navbar');
-			$this->load->view('user_profile', $user);
+			$this->load->view('setup_profile', $data);
 			$this->load->view('partials/footer');	
 		} // end else
 	} // end of method
 
 // method for submitting the form data for their profile, sets flash data for confirmation & goes to dashboard
+// if they are successful at setting up a password, they are deleted from the potential user database
 	public function create_profile()
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		$this->user->create($user);
-		redirect('/');
+		if ($this->user->setup_user_info($user)) {
+			$this->user->create_user($user);
+		}
+		// if($this->user->create($user)) {
+		// 	$this->user->delete_potential_user();
+		// 	echo "User moved from potential_users table to users table";
+		// } else {
+  //       	echo "There is error in sending mail!";
+  //       	redirect('/');
+  //  		}
 	} // end of method
 
 // method for setting up their tagged preferences
 	public function create_tags()
 	{
 		$this->load->model('user');
-		$user = $this->input->post();
-		$this->user->create($user);
-		redirect('/');
+		$tags = $this->input->post();
+		var_dump($tags);
+		die();
+		// $this->user->create($user);
+		// redirect('/');
 	} // end of method
 
 // method for users to land on a profile page, IF IT IS THEIR OWN, OR THEY ARE AN ADMIN, they come with rights to edit that page
@@ -78,6 +98,13 @@ class Users extends CI_Controller {
 	} // end of method
 
 // method to process form action to update email & name on profile edit pages
+	public function update($id)
+	{
+		$this->load->model('user');
+		$user = $this->input->post();
+		$this->user->create($user);
+		redirect('/');
+	} // end of method
 
 // method to process form action to update password on profile edit pages
 

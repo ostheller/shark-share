@@ -51,14 +51,13 @@ class Admins extends CI_Controller {
 		$this->load->library('email');
 
 		$this->email->from('molly.ostheller@gmail.com', 'Molly Ostheller');
-		$this->email->to('hem3@uw.edu'); 
-		$this->email->cc('maccrea@uw.edu');  
-		$this->email->bcc('mro4@uw.edu');  
+		$this->email->to('molly.ostheller@gmail.com'); 
+		$this->email->cc('mro4@uw.edu');   
 
-		$this->email->subject('Ok One More Test. Do You Get The Attachment???');
-		$this->email->message('Testing the email class. I think this works. This email is getting sent because I clicked the approve user button. For (this part should be dynamically generated): ' .$userdata['userdata']['first_name'] .'But let me know if you see this and can open the attachment. I think we could send the requests in an excel attachment instead of in the body of the email text. Anyway. Email!');
-		$attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
-		$this->email->attach($attached_file);
+		$this->email->subject('Welcome to Shark Share!');
+		$this->email->message('Hello, '.$userdata['userdata']['first_name'] .'! Please click on <a href="http://localhost:8888/setup_user/'.$userdata["token"].'">this link</a> to set up your profile.');
+		// $attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
+		// $this->email->attach($attached_file);
 		if ($this->email->send()) {
        		echo "Mail Sent!"; 
        	} else {
