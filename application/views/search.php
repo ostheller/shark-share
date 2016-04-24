@@ -46,7 +46,7 @@
         </form>
       <div id="toolbar">
           <button id="request" class="btn btn-primary" disabled>
-              <i class=""></i> Request
+              <i class="glyphicon"></i> Request
           </button>
       </div>
         <table id="search_results_table"

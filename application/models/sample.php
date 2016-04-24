@@ -230,6 +230,10 @@ public function get_institutions()
 // method for entering a request into the database
 public function request($selection) 
 	{
+		foreach ($selection['sample_id'] as $id) {
+			var_dump($id);
+			die();
+		}
 		$query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)
   			ON DUPLICATE KEY UPDATE status_id =1;";
   		if (empty($selection['sample_id'])){
