@@ -56,7 +56,7 @@ $route['autofill/species'] = 'samples/get_species';
 $route['autofill/family'] = 'samples/get_family';
 $route['autofill/order'] = 'samples/get_order';
 // Add samples to the basket
-$route['samples/request'] = 'samples/request_sample';
+$route['samples/request'] = 'requests/request';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
@@ -86,8 +86,9 @@ $route['taxonomy/delete'] = 'taxonomies/delete_data';
 
 ////////////////////////// Request Samples Page //////////////////////////////////////
 // Load the request samples page
-$route['request'] = 'users/view_request_samples';
-
+$route['request'] = 'requests/view_request_sample_page';
+// Load the requests data
+$route['request/samples'] = 'requests/samples';
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
 $route['samples/(:num)'] = 'samples/view_sample/$1';

@@ -253,6 +253,65 @@ public function request($selection)
 // method for counting a user's request
 	public function count_requests($id) 
 	{
+		return $this->db->query("SELECT count(id) as 'count' FROM requests WHERE user_id = ? AND status_id = 1", $id)->row_array();
+	}
 
+// method for showing a user's requests
+	public function get_requests($id) 
+	{
+		$query = "SELECT DISTINCT 
+			u.first_name as 'user_first_name',
+			u.last_name as 'user_last_name',
+			u.email as 'user_email',
+			i.name as 'user_institution_name',
+			i.city as 'user_institution_city',
+			samp.id as 'id', 
+			taxo.taxonomy_genus as 'genus', 
+			taxo.taxonomy_species as 'species', 
+			stypes.type as 'sample_type', 
+			sexes.sex as 'sex', 
+			pres.preservation_medium as 'preservation_medium', 
+			samp.photo as 'photo_available', 
+			samp.sample_size_mm as 'size_mm', 
+			samp.available_until as 'avail_until', 
+			samp.comments as 'sample_comments', 
+			loc.region as 'sample_region', 
+			loc.lat_degree as 'sample_lat_degree', 
+			loc.long_degree as 'sample_long_degree', 
+			loc.lat_decimal as 'sample_lat_decimal', 
+			loc.long_decimal as 'sample_long_decimal', 
+			coun.name as 'sample_current_country', 
+			us.id as 'sample_user_id', 
+			us.first_name as 'sample_first_name', 
+			us.last_name as 'sample_last_name', 
+			i.name as 'sample_institution_name', 
+			i.city as 'sample_institution_city'
+		FROM requests as req
+		LEFT JOIN users as u
+			ON req.user_id = u.id
+		LEFT JOIN institutions as i
+			ON u.institution_id = i.id
+		LEFT JOIN samples as samp
+			ON req.sample_id = samp.id
+		LEFT JOIN request_statuses as stat
+			ON req.status_id = stat.id
+		LEFT JOIN taxonomy as taxo
+			ON samp.taxonomy_id = taxo.id
+		LEFT JOIN sample_types as stypes
+			ON samp.sample_type_id = stypes.id
+		LEFT JOIN preservation_mediums as pres
+			ON samp.preservation_medium_id = pres.id
+		LEFT JOIN whole_specimens as whol
+			ON samp.whole_specimen_id = whol.id
+		LEFT JOIN sexes
+			ON whol.sex_id = sexes.id
+		LEFT JOIN locations as loc
+			ON samp.location_id = loc.id
+		LEFT JOIN countries as coun
+			ON samp.country_id = coun.id
+		LEFT JOIN users as us
+			ON samp.user_id = us.id
+		WHERE req.user_id = ? AND req.status_id = 1";
+		return $this->db->query($query, $id)->result_array();
 	}
 } // end of model ?>

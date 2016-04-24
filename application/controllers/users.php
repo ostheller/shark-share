@@ -15,11 +15,10 @@ class Users extends CI_Controller {
 		} else { 
 			// we request the data we need from the model
 			$header['title'] = 'Dashboard';
-			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 			// now we load the view
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/user_dashboard');
-			$this->load->view('partials/navbar', $requests);
+			$this->load->view('partials/navbar');
 			$this->load->view('user_dashboard');
 			$this->load->view('partials/footer');
 		} // end else
@@ -89,10 +88,10 @@ class Users extends CI_Controller {
 		$this->load->model('user');
 		$data = $this->user->view($id);
 		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
-		$requests['count'] = count($this->session->userdata['requested_sample_id']);
+
 		$this->load->view('partials/header', $header);
 		$this->load->view('styles/user_profile');
-		$this->load->view('partials/navbar', $requests);
+		$this->load->view('partials/navbar');
 		$this->load->view('user_profile', $data);
 		$this->load->view('partials/footer');
 	} // end of method

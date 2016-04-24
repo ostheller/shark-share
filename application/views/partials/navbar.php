@@ -39,7 +39,7 @@
             <?= form_submit($submit, 'Search'); ?>
           <?= form_close(); ?>
       <ul class="nav navbar-nav navbar-right pull">
-        <li><a href="/request">Request Samples <?php if(isset($count)) echo '(' . $count .')'; ?></a></li>
+        <li><a href="/request">Sample Requests</a></li>
       </ul>
     </div>
   </div>
