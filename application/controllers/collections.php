@@ -4,14 +4,12 @@ class Collections extends CI_Controller {
 
 /* !!!!!!!!!!!!!!!!!! Viewing !!!!!!!!!!!!!!!!!! */
 
-// user wants to see a collection, pulls the data and loads the collection page. 
+// user wants to see a collection, and this loads the collection page. Not the data for the table 
 // could be theirs or anothers' collection, depends on what we pass it
 	public function view_collection($id)
 	{
 		$header['title'] = 'Collection';
-		$this->load->model('collection');
 		$this->load->model('user');
-		$samples = $this->collection->view($id);
 		$user = $this->user->view($id);
 		if ($this->session->userdata('logged_in' != TRUE)) {
 		// they cannot see this page
@@ -22,16 +20,24 @@ class Collections extends CI_Controller {
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
+			$this->load->view('user_collection', array('user' => $user));
 			$this->load->view('partials/footer');
 		} else {
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/user_collection');
 			$this->load->view('partials/navbar');
-			$this->load->view('user_collection', array('data' => $samples, 'user' => $user));
+			$this->load->view('user_collection', array('user' => $user));
 			$this->load->view('partials/footer');
 		}
 	} // end of method
+
+// gets the data for the table
+	public function get_data($id)
+	{
+		$this->load->model('collection');
+		$samples = $this->collection->view($id);
+		echo json_encode($samples);
+	}
 
 /* !!!!!!!!!!!!!!!!!! Uploading !!!!!!!!!!!!!!!!!! */
 

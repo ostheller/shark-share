@@ -49,6 +49,8 @@ $route['dashboard'] = 'users/view_user_dashboard';
 ////////////////////////// Search Page //////////////////////////////////////
 // Load the search page from browse or typing in url, not showing search results]
 $route['browse'] = 'samples/browse';
+// Ajax call for tagged data
+$route['autofill/tags'] = 'samples/get_tags';
 // Process the search form data & view the page
 $route['search'] = 'samples/search';
 $route['autofill/genus'] = 'samples/get_genus';
@@ -89,6 +91,9 @@ $route['taxonomy/delete'] = 'taxonomies/delete_data';
 $route['request'] = 'requests/view_request_sample_page';
 // Load the requests data
 $route['request/samples'] = 'requests/samples';
+// Load the count of requests
+$route['request/count'] = 'requests/count_requests';
+
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
 $route['samples/(:num)'] = 'samples/view_sample/$1';
@@ -106,6 +111,8 @@ $route['user/(:num)/update'] = 'users/update/$1';
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page
 $route['collection/(:any)'] = 'collections/view_collection/$1';
+// Load the json data for a collection page
+$route['data/collection/(:any)'] = 'collections/get_data/$1';
 // Choosing samples to delete uses the method on the samples controller above
 
 ////////////////////////// About, FYI, Restricted //////////////////////////////////////

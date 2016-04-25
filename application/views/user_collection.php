@@ -1,52 +1,42 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <!--<div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-    </div>-->
-    <div class="col-sm-8 text-left"> 
-      <?php if ($user != NULL) { ?>
-        <h1><?php echo $user['first_name'] . " " . $user['last_name']?>'s Collection of Samples</h1>
-      <?php } else {echo "<h1>This user does not exist</h1>";} ?>
-      <?php if ($data != NULL) { ?>
-      <table class = "table">
-         <thead>
-            <tr>
-            <?php foreach ($data[0] as $key => $value) { ?>
-              <th><?php echo $key ?></th>
-            <?php }?>
-             <?php if($this->session->userdata['id'] == $user['id']) {
-              echo "<th>Edit</th>"; }?>
-            </tr>
-         </thead>         
-         <tbody> 
-            <?php if($this->session->userdata['id'] == $user['id']) {
-               for ($i=0; $i < count($data); $i++) { ?>
-                <tr>
-                  <?php foreach ($data[$i] as $key => $value) { ?>
-                      <td><input type="text" name="<?= $key ?>" value="<?= $value ?>" /></td>
-                  <?php } ?>                    
-                    <td><button class="btn btn-primary" id="<?= $data[$i]['id'] ?>">Update #<?= $data[$i]['id'] ?></button></td>
-                </tr>
-                <?php } } else {
-                for ($i=0; $i < count($data); $i++) { ?>
-                  <tr>
-                  <?php foreach ($data[$i] as $key => $value) { ?>
-                      <td><?= $value ?></td>
-                  <?php } } }?>                    
-                  </tr>
-         </tbody>    
-      </table>
-      <?php } else echo "<p>No samples yet!</p>"; ?>
-    </div>
-    <!--<div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Content</p>
-      </div>
-      <div class="well">
-        <p>Content</p>
-      </div>-->
+    <div class="neutralwrapper">
+      <div class="col-sm-8-2 text-left"> 
+            <?php if ($user != NULL) { ?>
+              <h1><?php echo $user['first_name'] . " " . $user['last_name']?>'s Collection of Samples</h1>
+            <?php } else {echo "<h1>This user does not exist</h1>";} ?>
+             <?php if ($user['id'] == $this->session->userdata('id')) { 
+               echo '<div id="toolbar">
+                <button id="edit" class="btn btn-primary" disabled>
+                    <i class="glyphicon glyphicon-edit"></i> Edit
+                </button>
+                <button id="remove" class="btn btn-danger" disabled>
+                    <i class="glyphicon glyphicon-remove"></i> Remove
+                </button>
+              </div>';
+            } ?>
+              <div>
+                <table id="collection_table"
+                     data-toolbar="#toolbar"
+                     data-search="true"
+                     data-show-refresh="true"
+                     data-show-toggle="true"
+                     data-show-columns="true"
+                     data-show-export="true"
+                     data-detail-view="true"
+                     data-detail-formatter="detailFormatter"
+                     data-minimum-count-columns="2"
+                     data-show-pagination-switch="true"
+                     data-pagination="true"
+                     data-id-field="id"
+                     data-page-list="[10, 25, 50, 100, ALL]"
+                     data-show-footer="false"
+                     data-side-pagination="server"
+                     data-response-handler="responseHandler">
+              </table>
+              </div>
+          </div>
     </div>
   </div>
 </div>
+<script src="<?= base_url();?>/assets/js/custom/user_collection.js"></script>

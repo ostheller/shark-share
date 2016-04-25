@@ -8,8 +8,8 @@ class Requests extends CI_Controller {
 	{
 		$this->load->model('sample');
 		$id = $this->session->userdata('id');
-		$count = $this->db->sample->count_requests($id);
-		return $count;
+		$count = $this->sample->count_requests($id);
+		echo json_encode($count);
 	} // end of method
 
 // user wants to request a sample
@@ -17,13 +17,14 @@ class Requests extends CI_Controller {
 	{
 		$this->load->model('sample');
 		$selection = $this->input->post();
-		return $this->sample->request($selection);
+		$response = $this->sample->request($selection);
+		echo json_encode($response);
 		// foreach ($this->input->post() as $key) {
 		// 	array_push($this->session->userdata['requested_sample_id'], $key);
 		// }
 	} // end of method
 
-// user wants to get request data
+// user wants to get all request data
 	public function samples() 
 	{
 		$this->load->model('sample');

@@ -30,6 +30,13 @@ class Samples extends CI_Controller {
 		$order = $this->sample->get_order();
 		echo json_encode($order);
 	} // end of method
+	public function get_tags()
+	{
+		$this->load->model('sample');
+		$id = $this->session->userdata('id');
+		$tags = $this->sample->browse($id);
+		echo json_encode($tags);
+	} // end of method
 
 // user enters a keyword search
 	public function search()
@@ -87,7 +94,8 @@ class Samples extends CI_Controller {
 			$types = $this->sample->get_sample_types();
 			$locations = $this->sample->get_locations();
 			$institutions = $this->sample->get_institutions();
-			$tagged_values = $this->sample->browse();
+			$id = $this->session->userdata('id');
+			$tagged_values = $this->sample->browse($id);
 			$header['title'] = 'Search';
 
 			$this->load->view('partials/header', $header);
