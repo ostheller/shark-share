@@ -94,7 +94,8 @@ class Samples extends CI_Controller {
 			$types = $this->sample->get_sample_types();
 			$locations = $this->sample->get_locations();
 			$institutions = $this->sample->get_institutions();
-			$tagged_values = $this->sample->browse();
+			$id = $this->session->userdata('id');
+			$tagged_values = $this->sample->browse($id);
 			$header['title'] = 'Search';
 
 			$this->load->view('partials/header', $header);

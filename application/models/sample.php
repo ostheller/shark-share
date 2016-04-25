@@ -61,7 +61,7 @@ user's preset preferences */
 		public function view($id)
 	{
 		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
-		pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
+		pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
 		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
 		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City'
 			FROM sharkshare.samples as samp
@@ -83,6 +83,8 @@ user's preset preferences */
 				ON samp.user_id = us.id
 			LEFT JOIN institutions as i
 				ON us.institution_id = i.id
+			LEFT JOIN photo_statuses as pho
+				ON samp.photo_status_id = pho.id
 			WHERE samp.id = ?";
         return $this->db->query($query, $id)->row_array();
 	} // end of method
@@ -173,7 +175,7 @@ public function get_institutions()
 		}
 
 		if(count($condition_array) > 0) {
-		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal', loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City' 
+		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal', loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City' 
 			FROM sharkshare.samples as samp
 			LEFT JOIN taxonomy as taxo
 				ON samp.taxonomy_id = taxo.id
@@ -193,6 +195,8 @@ public function get_institutions()
 				ON samp.user_id = us.id
 			LEFT JOIN institutions as i
 				ON us.institution_id = i.id
+			LEFT JOIN photo_statuses as pho
+				ON samp.photo_status_id = pho.id
 			WHERE ".implode(' AND ', $condition_array);
 		}
 		$data = $this->db->query($query)->result_array();
@@ -201,33 +205,59 @@ public function get_institutions()
 
 // method to get the data to browse, based on the preferences of the user
 	public function browse($id) {
-		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
-		pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
-		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
-		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City'
-			FROM tags
-			LEFT JOIN taxonomy as taxo
-				ON tags.taxonomy_id = taxo.id
-			LEFT JOIN samples as samp
-				ON samp.taxonomy_id = taxo.id
-			LEFT JOIN sample_types as stypes
-				ON samp.sample_type_id = stypes.id
-			LEFT JOIN preservation_mediums as pres
-				ON samp.preservation_medium_id = pres.id
-			LEFT JOIN whole_specimens as whol
-				ON samp.whole_specimen_id = whol.id
-			LEFT JOIN sexes
-				ON whol.sex_id = sexes.id
-			LEFT JOIN locations as loc
-				ON samp.location_id = loc.id
-			LEFT JOIN countries as coun
-				ON samp.country_id = coun.id
-			LEFT JOIN users as us
-				ON samp.user_id = us.id
-			LEFT JOIN institutions as i
-				ON us.institution_id = i.id
-			WHERE ";
-        return $this->db->query($query)->result_array();
+		$return = array();
+		$alerts = $this->db->query("SELECT alert_id FROM user_alerts WHERE user_id = ?", $id)->result_array();
+		$query = 
+			"SELECT samp.id as 'id', 
+				taxo.taxonomy_genus as 'Genus', 
+				taxo.taxonomy_species as 'Species', 
+				stypes.type as 'Sample Type', 
+				sexes.sex as 'Sex', 
+				pres.preservation_medium as 'Preservation Medium', 
+				pho.status as 'Photo Available', 
+				samp.sample_size_mm as 'Size (mm)', 
+				samp.available_until as 'Avail. Until', 
+				samp.comments as 'Comments', 
+				loc.region as 'Region', 
+				loc.lat_degree as 'Lat. Degree', 
+				loc.long_degree as 'Long. Degree', 
+				loc.lat_decimal as 'Lat. Decimal',
+				loc.long_decimal as 'Long.Decimal', 
+				coun.name as 'Current Country Location', 
+				users.id as 'User id', 
+				users.first_name as 'First Name', 
+				users.last_name as 'Last Name', 
+				i.name as 'Institution Name', 
+				i.city as 'Institution City' 
+		    	FROM alerts
+				LEFT JOIN users
+					ON alerts.user_id = users.id
+				LEFT JOIN samples as samp
+					ON samp.user_id = users.id
+				LEFT JOIN taxonomy as taxo
+					ON samp.taxonomy_id = taxo.id
+				LEFT JOIN sample_types as stypes
+					ON alerts.sample_type_id = stypes.id
+				LEFT JOIN preservation_mediums as pres
+					ON samp.preservation_medium_id = pres.id
+				LEFT JOIN whole_specimens as whol
+					ON samp.whole_specimen_id = whol.id
+				LEFT JOIN sexes
+					ON whol.sex_id = sexes.id
+				LEFT JOIN locations as loc
+					ON samp.location_id = loc.id
+				LEFT JOIN countries as coun
+					ON samp.country_id = coun.id
+				LEFT JOIN institutions as i
+					ON users.institution_id = i.id
+				LEFT JOIN photo_statuses as pho
+					ON samp.photo_status_id = pho.id
+				WHERE alerts.id = ?";			
+		for ($i = 0; $i < count($alerts); $i++) {
+			$value = $alerts[$i];
+			$return = $this->db->query($query, $value)->result_array();
+		}
+		return $return;
 	} // end of method
 
 
@@ -257,20 +287,6 @@ public function request($selection)
 			}
 		}
 		return $return;
-		// $query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)
-  // 			ON DUPLICATE KEY UPDATE status_id =1;";
-  // 		if (empty($selection['sample_id'])){
-  // 			echo "EMPTY";	
-	 //  		} else {
-	 //  		for ($i=0; $i < count($selection['sample_id']); $i++) { 
-	 //  			$values = array(
-		//   			$this->session->userdata('id'),
-		//   			intval($selection['sample_id'][$i])
-		//   			);
-		//   		$this->db->query($query, $values);
-		//   		} 	
-	 //  	};
-  		echo json_encode($this->db->query("SELECT * FROM requests WHERE user_id = ? AND status_id = 1", $this->session->userdata('id'))->result_array());
 	} // end of method
 
 // method for counting a user's request
@@ -295,7 +311,7 @@ public function request($selection)
 			stypes.type as 'sample_type', 
 			sexes.sex as 'sex', 
 			pres.preservation_medium as 'preservation_medium', 
-			samp.photo as 'photo_available', 
+			pho.status as 'photo_available', 
 			samp.sample_size_mm as 'size_mm', 
 			samp.available_until as 'avail_until', 
 			samp.comments as 'sample_comments', 
@@ -335,6 +351,8 @@ public function request($selection)
 			ON samp.country_id = coun.id
 		LEFT JOIN users as us
 			ON samp.user_id = us.id
+		LEFT JOIN photo_statuses as pho
+				ON samp.photo_status_id = pho.id
 		WHERE req.user_id = ? AND req.status_id = 1";
 		return $this->db->query($query, $id)->result_array();
 	}

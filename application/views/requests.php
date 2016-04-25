@@ -1,13 +1,18 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-    </div>
-    <div class="col-sm-8 text-left"> 
-      <h1>Request Samples</h1>
+    <div class="neutralwrapper">
+      <div class="col-sm-8-2 text-left"> 
+      <h1>Choose Samples to Request</h1>
+      <p></p>
       <div>
+        <div id="toolbar">
+          <button id="request" class="btn btn-primary" disabled>
+              <i class="glyphicon glyphicon-thumbs-up"></i> Email to Request
+          </button>
+          <button id="remove" class="btn btn-danger" disabled>
+              <i class="glyphicon glyphicon-remove"></i> Remove
+          </button>
+        </div>
         <table id="request_table"
                data-toolbar="#toolbar"
                data-search="true"
@@ -28,14 +33,7 @@
         </table>
       </div>
     </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Content</p>
-      </div>
-      <div class="well">
-        <p>Content</p>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 </div>
 <script src="<?= base_url();?>/assets/js/custom/requests.js"></script>

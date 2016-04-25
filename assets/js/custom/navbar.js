@@ -9,6 +9,7 @@ $(document).ready(function() {
 	   	for(var x in data_array){
 	 	  	arr.push(data_array[x]['id']);
 	 	}
+	  	console.log(arr);
 	  	console.log('count: ' + arr.length);
 	  	if(arr.length > 0) {
 	  		$("#sample_requests").html('Sample Requests: <span id="request_count">('+arr.length+')</span>');

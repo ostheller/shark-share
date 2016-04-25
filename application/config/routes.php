@@ -111,6 +111,8 @@ $route['user/(:num)/update'] = 'users/update/$1';
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page
 $route['collection/(:any)'] = 'collections/view_collection/$1';
+// Load the json data for a collection page
+$route['data/collection/(:any)'] = 'collections/get_data/$1';
 // Choosing samples to delete uses the method on the samples controller above
 
 ////////////////////////// About, FYI, Restricted //////////////////////////////////////

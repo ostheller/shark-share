@@ -6,7 +6,7 @@ class Collection extends CI_Model {
 	public function view($id)
 	{
 		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
-		pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
+		pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
 		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
 		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', samp.id as 'id'
 			FROM sharkshare.samples as samp
@@ -24,6 +24,8 @@ class Collection extends CI_Model {
 				ON samp.location_id = loc.id
 			LEFT JOIN countries as coun
 				ON samp.country_id = coun.id
+			LEFT JOIN photo_statuses as pho
+				ON samp.photo_status_id = pho.id
 			WHERE user_id = ?";
 		$values = $id;
         return $this->db->query($query, $values)->result_array();

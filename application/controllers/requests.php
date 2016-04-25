@@ -24,7 +24,7 @@ class Requests extends CI_Controller {
 		// }
 	} // end of method
 
-// user wants to get request data
+// user wants to get all request data
 	public function samples() 
 	{
 		$this->load->model('sample');
