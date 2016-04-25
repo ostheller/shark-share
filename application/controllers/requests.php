@@ -8,8 +8,8 @@ class Requests extends CI_Controller {
 	{
 		$this->load->model('sample');
 		$id = $this->session->userdata('id');
-		$count = $this->db->sample->count_requests($id);
-		return $count;
+		$count = $this->sample->count_requests($id);
+		echo json_encode($count);
 	} // end of method
 
 // user wants to request a sample

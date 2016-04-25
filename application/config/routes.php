@@ -89,6 +89,9 @@ $route['taxonomy/delete'] = 'taxonomies/delete_data';
 $route['request'] = 'requests/view_request_sample_page';
 // Load the requests data
 $route['request/samples'] = 'requests/samples';
+// Load the count of requests
+$route['request/count'] = 'requests/count_requests';
+
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
 $route['samples/(:num)'] = 'samples/view_sample/$1';

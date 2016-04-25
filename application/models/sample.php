@@ -253,7 +253,8 @@ public function request($selection)
 // method for counting a user's request
 	public function count_requests($id) 
 	{
-		return $this->db->query("SELECT count(id) as 'count' FROM requests WHERE user_id = ? AND status_id = 1", $id)->row_array();
+		$count = $this->db->query("SELECT count(id) as 'count' FROM requests WHERE user_id = ? AND status_id = 1", $id)->row_array();
+		return $count;
 	}
 
 // method for showing a user's requests
