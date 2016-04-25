@@ -17,7 +17,8 @@ class Requests extends CI_Controller {
 	{
 		$this->load->model('sample');
 		$selection = $this->input->post();
-		return $this->sample->request($selection);
+		$response = $this->sample->request($selection);
+		echo json_encode($response);
 		// foreach ($this->input->post() as $key) {
 		// 	array_push($this->session->userdata['requested_sample_id'], $key);
 		// }

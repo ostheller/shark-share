@@ -230,30 +230,49 @@ public function get_institutions()
 // method for entering a request into the database
 public function request($selection) 
 	{
+		$return = array(
+			'exists' => array(),
+			'inserted' => array()
+			);
 		foreach ($selection['sample_id'] as $id) {
-			var_dump($id);
-			die();
-		}
-		$query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)
-  			ON DUPLICATE KEY UPDATE status_id =1;";
-  		if (empty($selection['sample_id'])){
-  			echo "EMPTY";	
-	  		} else {
-	  		for ($i=0; $i < count($selection['sample_id']); $i++) { 
-	  			$values = array(
+			$check_query = "SELECT * FROM requests WHERE user_id = ? AND sample_id = ?";
+			$check_values = array(
+					$this->session->userdata('id'),
+		  			intval($id));
+			$check = $this->db->query($check_query, $check_values)->result_array();
+			if (count($check) >= 1) {
+				$return['exists'][] = $id;
+			} else {
+				$query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)";
+				$values = array(
 		  			$this->session->userdata('id'),
-		  			intval($selection['sample_id'][$i])
+		  			intval($id)
 		  			);
 		  		$this->db->query($query, $values);
-		  		} 	
-	  	};
+		  		$return['inserted'][] = $id;
+			}
+		}
+		return $return;
+		// $query = "INSERT INTO requests (user_id, sample_id, status_id) VALUES (?,?,1)
+  // 			ON DUPLICATE KEY UPDATE status_id =1;";
+  // 		if (empty($selection['sample_id'])){
+  // 			echo "EMPTY";	
+	 //  		} else {
+	 //  		for ($i=0; $i < count($selection['sample_id']); $i++) { 
+	 //  			$values = array(
+		//   			$this->session->userdata('id'),
+		//   			intval($selection['sample_id'][$i])
+		//   			);
+		//   		$this->db->query($query, $values);
+		//   		} 	
+	 //  	};
   		echo json_encode($this->db->query("SELECT * FROM requests WHERE user_id = ? AND status_id = 1", $this->session->userdata('id'))->result_array());
 	} // end of method
 
 // method for counting a user's request
 	public function count_requests($id) 
 	{
-		$count = $this->db->query("SELECT count(id) as 'count' FROM requests WHERE user_id = ? AND status_id = 1", $id)->row_array();
+		$count = $this->db->query("SELECT DISTINCT id FROM requests WHERE user_id = ? AND status_id = 1", $id)->result_array();
 		return $count;
 	}
 
