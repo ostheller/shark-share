@@ -1,15 +1,7 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <?php if ($this->session->userdata('admin' === true)) {
-        echo '<p><a href="/admin">Admin Dashboard</a></p>
-        <p><a href="/dashboard">Dashboard</a></p>';}
-        else { echo '<p><a href="/dashboard">Dashboard</a></p>';} ?>
-      <p><a href="/user/<?=$this->session->userdata('id')?>'">Profile</a></p>
-      <p><a href="#">Link</a></p>
-    </div>
     <div class="col-sm-8 text-left"> 
-      <h1>THIS IS THE Upload</h1>
+      <h1>Upload Samples</h1>
       <form action="/collections/get_template" method="post" enctype="multipart/form-data">
         <p>Download our required excel template:
           <input type="hidden" name="downloadFile" id="downloadFile">
@@ -55,14 +47,6 @@
     <?php } ?>
       <h3>Test</h3>
       <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>Content</p>
-      </div>
-      <div class="well">
-        <p>Content</p>
-      </div>
     </div>
   </div>
 </div>
