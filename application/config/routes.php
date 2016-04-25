@@ -26,11 +26,11 @@ $route['edit/three'] = 'logins/view_registration_three';
 
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account
-$route['user/new/(:num)'] = 'users/view_setup_profile/$1';
+$route['setup_user/(:any)'] = 'users/view_setup_profile/$1';
 // Submit the form for setting their profile information
-$route['user/new/submit'] = 'users/create_profile';
+$route['setup_user/submit'] = 'users/create_profile';
 // Submit the form for setting their tag preferences
-$route['user/new/tags'] = 'users/create_tags';
+$route['setup_user/tags'] = 'users/create_tags';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
@@ -56,7 +56,7 @@ $route['autofill/species'] = 'samples/get_species';
 $route['autofill/family'] = 'samples/get_family';
 $route['autofill/order'] = 'samples/get_order';
 // Add samples to the basket
-$route['samples/request'] = 'samples/request_sample';
+$route['samples/request'] = 'requests/request';
 
 ////////////////////////// Upload Page //////////////////////////////////////
 // Load the upload page
@@ -86,8 +86,9 @@ $route['taxonomy/delete'] = 'taxonomies/delete_data';
 
 ////////////////////////// Request Samples Page //////////////////////////////////////
 // Load the request samples page
-$route['request'] = 'users/view_request_samples';
-
+$route['request'] = 'requests/view_request_sample_page';
+// Load the requests data
+$route['request/samples'] = 'requests/samples';
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
 $route['samples/(:num)'] = 'samples/view_sample/$1';
@@ -99,6 +100,8 @@ $route['samples/delete/(:num)'] = 'samples/delete/$1';
 ////////////////////////// User Page //////////////////////////////////////
 // Load a person profile page
 $route['user/(:any)'] = 'users/view_user/$1';
+// Submit the form to edit a user
+$route['user/(:num)/update'] = 'users/update/$1';
 
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page

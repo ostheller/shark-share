@@ -112,7 +112,12 @@ class Login extends CI_Model {
 // method to find the user with the email generated token in order to set up their profile
     public function check_token($token)
     {
-        $query = "SELECT * FROM potential_users WHERE token = ?";
+        $query = "SELECT u.id, u.first_name, u.last_name, u.email, u.field, i.name as 'institution', i.city as 'city', i.country_id as 'country_id', a_s.id as 'status' FROM potential_users as u
+        LEFT JOIN institutions as i 
+        ON u.institution_id = i.id 
+        LEFT JOIN academic_statuses as a_s
+        ON u.academic_status_id = a_s.id
+        WHERE u.token = ?";
         return $this->db->query($query, $token)->row_array();
     }
 
@@ -141,26 +146,6 @@ class Login extends CI_Model {
                 return true;
             }
         } // end of method
-
-// method to admit a potential user, adding them to the users database (automatic user level of 0, normal) 1 is admin
-// and removing from the potential database
-    // method to delete user
-    public function admit_potential_user($post)
-    {
-        for ($i=0; $i < count($post['id']); $i++) { 
-            $id = intval($post['id'][$i]);
-            // get the data about the potential user
-                $user_query = "SELECT * FROM potential_users WHERE id=?";
-                $user = $this->db->query($user_query, $id)->row_array();
-                $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
-           // first add to new users
-                $admit_query  = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
-                $values = array('NOT SET', 0, $user['email'],'TEMP',$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
-            // then delete from potential users
-            $delete_query = "DELETE FROM potential_users WHERE id=?";
-            $this->db->query($delete_query, $id);
-        }
-    } // end of method
 
 // method to delete unwanted potential users
     // method to delete user
