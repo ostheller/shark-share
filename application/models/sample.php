@@ -108,6 +108,8 @@ public function get_order()
 		return $this->db->query("SELECT DISTINCT taxonomy_order FROM taxonomy")->result_array();
 	}
 
+
+
 // method to generate sample type dropdown
 public function get_sample_types() 
 	{
@@ -198,13 +200,15 @@ public function get_institutions()
 	 } // end of method
 
 // method to get the data to browse, based on the preferences of the user
-	public function browse() {
+	public function browse($id) {
 		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
 		pres.preservation_medium as 'Preservation Medium', samp.photo as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
 		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
 		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City'
-			FROM sharkshare.samples as samp
+			FROM tags
 			LEFT JOIN taxonomy as taxo
+				ON tags.taxonomy_id = taxo.id
+			LEFT JOIN samples as samp
 				ON samp.taxonomy_id = taxo.id
 			LEFT JOIN sample_types as stypes
 				ON samp.sample_type_id = stypes.id
@@ -222,7 +226,7 @@ public function get_institutions()
 				ON samp.user_id = us.id
 			LEFT JOIN institutions as i
 				ON us.institution_id = i.id
-			LIMIT 20";
+			WHERE ";
         return $this->db->query($query)->result_array();
 	} // end of method
 

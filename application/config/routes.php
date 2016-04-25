@@ -49,6 +49,8 @@ $route['dashboard'] = 'users/view_user_dashboard';
 ////////////////////////// Search Page //////////////////////////////////////
 // Load the search page from browse or typing in url, not showing search results]
 $route['browse'] = 'samples/browse';
+// Ajax call for tagged data
+$route['autofill/tags'] = 'samples/get_tags';
 // Process the search form data & view the page
 $route['search'] = 'samples/search';
 $route['autofill/genus'] = 'samples/get_genus';

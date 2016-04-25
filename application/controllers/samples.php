@@ -30,6 +30,13 @@ class Samples extends CI_Controller {
 		$order = $this->sample->get_order();
 		echo json_encode($order);
 	} // end of method
+	public function get_tags()
+	{
+		$this->load->model('sample');
+		$id = $this->session->userdata('id');
+		$tags = $this->sample->browse($id);
+		echo json_encode($tags);
+	} // end of method
 
 // user enters a keyword search
 	public function search()

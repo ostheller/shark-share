@@ -194,19 +194,97 @@ $.ajax({
 // 	  }
 // });
 
-/* !!!!!!!!!!!!!!!!!! FORM SUBMIT !!!!!!!!!!!!!!!!!! */
-$('#search').on('submit', function(e){
-	e.preventDefault();
-	var data = $('#search').serialize();
-	$.post('/search', data, function(res){
-		var data_array = JSON.parse(res);
-	    var arr = [];
-	    for(var x in data_array){
-	 	  arr.push(data_array[x]);
-	 	}
-	 	console.log(arr);
+/* !!!!!!!!!!!!!!!!!! INIT TABLE !!!!!!!!!!!!!!!!!! */
+var $table = $('#search_results_table'),
+	        $request = $('#request'),
+	        selections = [],
+	        arr = [];
+	    function initTable() {
+	        $table.bootstrapTable({
+	        	data: arr,
+	            height: getHeight(),
+	            columns: [
+	                [
+	                    {
+	                        field: 'state',
+	                        checkbox: true,
+	                        rowspan: 2,
+	                        align: 'center',
+	                        valign: 'middle'
+	                    }, {
+	                        title: 'ID',
+	                        field: 'id',
+	                        rowspan: 2,
+	                        align: 'center',
+	                        valign: 'middle',
+	                        sortable: true,
+	                        footerFormatter: totalTextFormatter
+	                    }, {
+	                        title: 'Item Detail',
+	                        colspan: 5,
+	                        align: 'center'
+	                    }, {
+	                        title: 'Location',
+	                        colspan: 3,
+	                        align: 'center'
+	                    }
+	                ],
+	                [
+	                    {
+	                        field: 'Genus',
+	                        title: 'Genus',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }, {
+	                        field: 'Species',
+	                        title: 'Species',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }, {
+	                        field: 'Sample Type',
+	                        title: 'Sample Type',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }, {
+	                        field: 'Sex',
+	                        title: 'Sex',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    },{
+	                        field: 'Preservation Medium',
+	                        title: 'Preservation Medium',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    },{
+	                        field: 'Institution Name',
+	                        title: 'Institution Name',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }, {
+	                        field: 'Last Name',
+	                        title: 'Contributer',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }, {
+	                        field: 'Current Country Location',
+	                        title: 'Current Country Location',
+	                        sortable: true,
+	                        footerFormatter: totalNameFormatter,
+	                        align: 'center'
+	                    }
+	                ]
+	            ]
+	        });
 
-		function getIdSelections() {
+/* !!!!!!!!!!!!!!!!!! SETUP TABLE !!!!!!!!!!!!!!!!!! */
+function getIdSelections() {
 	        return $.map($table.bootstrapTable('getSelections'), function (row) {
 	            return row.id
 	        });
@@ -317,92 +395,6 @@ $('#search').on('submit', function(e){
 	        // We handle everything using the script element injection
 	        return undefined;
 	    }
-	var $table = $('#search_results_table'),
-	        $request = $('#request'),
-	        selections = [];
-	    function initTable() {
-	        $table.bootstrapTable({
-	        	data: arr,
-	            height: getHeight(),
-	            columns: [
-	                [
-	                    {
-	                        field: 'state',
-	                        checkbox: true,
-	                        rowspan: 2,
-	                        align: 'center',
-	                        valign: 'middle'
-	                    }, {
-	                        title: 'ID',
-	                        field: 'id',
-	                        rowspan: 2,
-	                        align: 'center',
-	                        valign: 'middle',
-	                        sortable: true,
-	                        footerFormatter: totalTextFormatter
-	                    }, {
-	                        title: 'Item Detail',
-	                        colspan: 5,
-	                        align: 'center'
-	                    }, {
-	                        title: 'Location',
-	                        colspan: 3,
-	                        align: 'center'
-	                    }
-	                ],
-	                [
-	                    {
-	                        field: 'Genus',
-	                        title: 'Genus',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }, {
-	                        field: 'Species',
-	                        title: 'Species',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }, {
-	                        field: 'Sample Type',
-	                        title: 'Sample Type',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }, {
-	                        field: 'Sex',
-	                        title: 'Sex',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    },{
-	                        field: 'Preservation Medium',
-	                        title: 'Preservation Medium',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    },{
-	                        field: 'Institution Name',
-	                        title: 'Institution Name',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }, {
-	                        field: 'Last Name',
-	                        title: 'Contributer',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }, {
-	                        field: 'Current Country Location',
-	                        title: 'Current Country Location',
-	                        sortable: true,
-	                        footerFormatter: totalNameFormatter,
-	                        align: 'center'
-	                    }
-	                ]
-	            ]
-	        });
 	        // sometimes footer render error.
 	        setTimeout(function () {
 	            $table.bootstrapTable('resetView');
@@ -474,6 +466,18 @@ $('#search').on('submit', function(e){
 	                height: getHeight()
 	            });
 	        });
+
+/* !!!!!!!!!!!!!!!!!! FORM SUBMIT !!!!!!!!!!!!!!!!!! */
+$('#search').on('submit', function(e){
+	e.preventDefault();
+	var data = $('#search').serialize();
+	$.post('/search', data, function(res){
+		var data_array = JSON.parse(res);
+	    for(var x in data_array){
+	 	  arr.push(data_array[x]);
+	 	}
+	 	console.log(arr);
+	 	$table.bootstrapTable('refresh');
 	    }
 	})
 })
