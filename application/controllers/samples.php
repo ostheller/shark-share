@@ -63,11 +63,10 @@ class Samples extends CI_Controller {
 			$institutions = $this->sample->get_institutions();
 			$data = $this->sample->search($this->input->post);
 			$header['title'] = 'Search';
-			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/search');
-			$this->load->view('partials/navbar', $requests);
+			$this->load->view('partials/navbar');
 			$this->load->view('search', array('data' => $data, 'sample_types' => $types, 'countries' => $countries, 'institutions' => $institutions));
 			$this->load->view('partials/footer');
 		} // end else
@@ -90,11 +89,10 @@ class Samples extends CI_Controller {
 			$institutions = $this->sample->get_institutions();
 			$tagged_values = $this->sample->browse();
 			$header['title'] = 'Search';
-			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/search');
-			$this->load->view('partials/navbar', $requests);
+			$this->load->view('partials/navbar');
 			$this->load->view('search', array('data' => $tagged_values, 'sample_types' => $types, 'countries' => $countries, 'institutions' => $institutions));
 			$this->load->view('partials/footer');
 		} // end else
@@ -113,11 +111,10 @@ class Samples extends CI_Controller {
 			$data = $this->sample->view($id);
 			if (empty($data)) { $header['title'] = 'Sample Not Found'; }
 			else {$header['title'] = 'View ' . $data['Genus'] . ' ' . $data['Species']; }		
-			$requests['count'] = count($this->session->userdata['requested_sample_id']);
 
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/sample_profile');
-			$this->load->view('partials/navbar', $requests);		
+			$this->load->view('partials/navbar');		
 			$this->load->view('sample_profile', array('data' => $data));
 			$this->load->view('partials/footer');
 		} // end else
@@ -133,16 +130,5 @@ class Samples extends CI_Controller {
 	public function delete()
 	{
 
-	} // end of method
-
-// user wants to request a sample
-	public function request_sample()
-	{
-		$this->load->model('sample');
-		$selection = $this->input->post();
-		return $this->sample->request($selection);
-		// foreach ($this->input->post() as $key) {
-		// 	array_push($this->session->userdata['requested_sample_id'], $key);
-		// }
 	} // end of method
 }

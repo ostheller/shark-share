@@ -7,6 +7,7 @@ $.ajax({
   url: "autofill/genus",
   dataType: 'json',
   success: function(json_data){
+  	console.log(json_data);
     var data_array = json_data; // Do not parse json_data because dataType is 'json'
     var arr = [];
     for(var x in data_array){

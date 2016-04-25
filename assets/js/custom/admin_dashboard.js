@@ -78,7 +78,7 @@ $(document).ready(function() {
 	        return '$' + total;
 	    }
 	function getHeight() {
-	        return $(window).height() - $('h1').outerHeight(true);
+	        return $(window).height() - ($('h1').outerHeight(true)*2);
 	    }
     $(function () {
         var scripts = [
