@@ -33,6 +33,86 @@
         </table>
       </div>
     </div>
+ <!-- start: Delete Request Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h3 class="modal-title" id="deleteModalLabel">Notice</h3>
+
+              </div>
+              <div class="modal-body">
+                   <h4> Are you sure you want to remove the selected sample request(s)?</h4>
+
+              </div>
+              <!--/modal-body-collapse -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" id="btnDelteYes" href="#">Yes</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              </div>
+              <!--/modal-footer-collapse -->
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+<!-- start: Choose Contributer Modal -->
+  <div class="modal fade" id="choose_contributer" tabindex="-1" role="dialog" aria-labelledby="choose_contributerLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h3 class="modal-title" id="choose_contributerLabel">Please Select Contributer</h3>
+
+              </div>
+              <div class="modal-body">
+                   <h4> Choose Contributer to Email</h4>
+                    <form id="contributer_form" action="/request/email">
+                      <select name="id" id="contributer">
+                        <option value="" selected>Pick a Contributer</option>
+                      </select>
+                    </form>
+              </div>
+              <!--/modal-body-collapse -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="btnChooseContributer" href="#">Compose Email</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+              <!--/modal-footer-collapse -->
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-- start: Compose Email Modal -->
+  <div class="modal fade" id="compose_email" tabindex="-1" role="dialog" aria-labelledby="compose_email_Label" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h3 class="modal-title" id="compose_email_Label">Compose Email</h3>
+
+              </div>
+              <div class="modal-body text-left">
+                    <form id="compose">
+
+                    </form>
+              </div>
+              <!--/modal-body-collapse -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="btnComposeEmail" href="#">Send Email</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+              <!--/modal-footer-collapse -->
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </div>
 </div>
 </div>

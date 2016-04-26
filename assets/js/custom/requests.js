@@ -1,5 +1,7 @@
 $(document).ready(function() {
 var $table = $('#request_table'),
+$request = $('#request'),
+$remove = $('#remove'),
 selections = [];
 
 $.ajax({
@@ -12,7 +14,7 @@ $.ajax({
 	   	for(var x in data_array){
 	 	  	arr.push(data_array[x]);
 	 	}
-	 	console.log('arr: ' + arr);
+	 	console.log('get all arr: ' + arr);
 
 		function getIdSelections() {
 	        return $.map($table.bootstrapTable('getSelections'), function (row) {
@@ -218,6 +220,7 @@ $.ajax({
 	        $table.on('check.bs.table uncheck.bs.table ' +
 	                'check-all.bs.table uncheck-all.bs.table', function () {
 	            $request.prop('disabled', !$table.bootstrapTable('getSelections').length);
+	            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
 	            // save your data, here just save the current page
 	            selections = getIdSelections();
 	            console.log(selections);
@@ -234,33 +237,105 @@ $.ajax({
 	        $table.on('all.bs.table', function (e, name, args) {
 	            console.log(name, args);
 	        });
-	        $request.click(function () {
-	            var ids = getIdSelections();
+	        $remove.on('click', function(e){
+	        	e.preventDefault();
+	        	 $('#deleteModal').modal('show');
+	        	});
+
+	        $('#btnDelteYes').click(function () {
+			    var ids = getIdSelections();
 	            console.log('requsted ids: ' + ids);
 	            var selections = {
-	            	'sample_id': ids
+	            	'id': ids
 	            };
-	            // $table.bootstrapTable('request', {
-	            //     field: 'id',
-	            //     values: ids
-	            // });
-	             $.ajax({
+	            $.ajax({
 	                type: "POST",
-	                url: "samples/request",
+	                url: "request/delete",
 	                data: selections,
 	                cache: false,
 	                success: function(res) {
-	                	alert(res);
+	                	console.log('removed successfully');
 	                }
                 });
-	            $request.prop('disabled', true);
-	        });
+	            $table.bootstrapTable('remove', {
+	                field: 'id',
+	                values: ids
+	            });
+	            $remove.prop('disabled', true);  
+	            $request.prop('disabled', true);  
+			    $('#deleteModal').modal('hide');
+			    $table.bootstrapTable('refresh');
+				});
+	        $request.on('click', function(){
+	        	var ids = getIdSelections();
+	            console.log('email requsted ids: ' + ids);
+	            var selections = {
+	            	'id': ids
+	            };
+				$.ajax({
+				  type: "POST",
+				  url: "/request/select_contributer",
+				  data: selections,
+				  dataType: 'json',
+				  success: function(json_data) {
+				  	var data_array = json_data; // Do not parse json_data because dataType is 'json'
+				    var options = '';
+				    for (x in data_array) {
+						options += "<option value=" + data_array[x]['id'] + "> "
+						+ data_array[x]['first']
+						+ " " 
+						+ data_array[x]['last']
+						+ ", " 
+						+ data_array[x]['institution']
+						+ ", " 
+						+ data_array[x]['city']
+						+ ", "
+						+ data_array[x]['country'] 
+						+ "</option><br>";
+				    }
+				 	console.log('requested successfully: ' + options);
+				 	$('#contributer').html(options);				 		
+					$('#choose_contributer').modal('show');
+				},
+					error: function(){ 
+						console.log('error')
+					}
+				})
+			});
+			$( "#contributer_form" ).submit(function(e) {
+			  e.preventDefault();
+			   var data = $('#contributer').serialize();
+					$.post('/request/email', data, function(res){
+						var something = 'hello';
+						arr=[];
+						var data_array = JSON.parse(res);
+					    for(var x in data_array){
+					 	  arr.push(data_array[x]);
+					 	}
+					 	console.log('email data' + arr);	           
+						var email = '<h5>Email From: </h5>' +
+							'<input type="text" name="from_email" value="' + something +
+							'"><h5>Email To: </h5>' +
+							'<input type="text" name="to_email" value="' + something +
+							'"><h5>Subject: </h5>' +
+							'<input type="text" name="subject" value="' + something +
+							'"><h5>Email Body: </h5>' +
+							'<textarea name="body">Hello World!'+ something +'</textarea>';
+						$("#compose").html(email);
+					    $('#choose_contributer').modal('hide');
+					    $('#compose_email').modal('show');
+				})
+			});
+			$('#btnChooseContributer').on('click', function(e){
+				e.preventDefault();
+		        $('#contributer_form').submit(); 			
+			});
 	        $(window).resize(function () {
 	            $table.bootstrapTable('resetView', {
 	                height: getHeight()
 	            });
 	        });
-	    }
+	    };
 	}
-})
+});
 });

@@ -93,6 +93,12 @@ $route['request'] = 'requests/view_request_sample_page';
 $route['request/samples'] = 'requests/samples';
 // Load the count of requests
 $route['request/count'] = 'requests/count_requests';
+// Remove requests
+$route['request/delete'] = 'requests/remove_requests';
+// Get contributers
+$route['request/select_contributer'] = 'requests/get_contributers';
+// Get data to compose email
+$route['request/email'] = 'requests/compose_email_data';
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page

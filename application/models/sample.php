@@ -58,7 +58,7 @@ user's preset preferences */
 	}
 
 // method to view a single sample
-		public function view($id)
+	public function view($id)
 	{
 		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
 		pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
