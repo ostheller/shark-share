@@ -260,7 +260,7 @@ $.ajax({
 			        $table.on('all.bs.table', function (e, name, args) {
 			            console.log(name, args);
 			        });
-			        $remove.click(function () {
+			        $request.click(function () {
 			            var ids = getIdSelections();
 			            console.log('requsted ids: ' + ids);
 			            var selections = {
