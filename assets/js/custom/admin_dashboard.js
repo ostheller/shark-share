@@ -148,16 +148,16 @@ $(document).ready(function() {
                         align: 'center',
                         valign: 'middle'
                     }, {
-                        title: 'ID',
-                        field: 'id',
-                        rowspan: 2,
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        footerFormatter: totalTextFormatter
-                    }
-                    , {
-                        title: 'Item Detail',
+                    //     title: 'ID',
+                    //     field: 'id',
+                    //     rowspan: 2,
+                    //     align: 'center',
+                    //     valign: 'middle',
+                    //     sortable: true,
+                    //     footerFormatter: totalTextFormatter
+                    // }
+                    // , {
+                        title: 'User Information',
                         colspan: 9,
                         align: 'center'
                     }
@@ -227,16 +227,16 @@ $(document).ready(function() {
             columns: [
                 [
                     {
-                        title: 'ID',
-                        field: 'id',
-                        rowspan: 2,
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        footerFormatter: totalTextFormatter
-                    }
-                    , {
-                        title: 'Item Detail',
+                    //     title: 'ID',
+                    //     field: 'id',
+                    //     rowspan: 2,
+                    //     align: 'center',
+                    //     valign: 'middle',
+                    //     sortable: true,
+                    //     footerFormatter: totalTextFormatter
+                    // }
+                    // , {
+                        title: 'User Information',
                         colspan: 4,
                         align: 'center'
                     }

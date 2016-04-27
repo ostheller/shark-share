@@ -175,11 +175,12 @@ class User extends CI_Model {
 // method to get all the data needed to compose an email to a specific contributer
 	public function get_email_data($data)
 	{
+		/// NOTE TO SELF: ADD THE DATA NEEDED, GET IT TO POPULATE EMAIL TEMPLATE
 		$return = array();
-		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
+		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
 		pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
 		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
-		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City'
+		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', us.email as 'Contributer Email', i.name as 'Institution Name', i.city as 'Institution City'
 			FROM requests as req
 			LEFT JOIN sharkshare.samples as samp
 				ON req.sample_id = samp.id
@@ -203,15 +204,58 @@ class User extends CI_Model {
 				ON us.institution_id = i.id
 			LEFT JOIN photo_statuses as pho
 				ON samp.photo_status_id = pho.id
-			WHERE samp.user_id = ? AND req.user_id = ? AND req.status_id = 1";
+			WHERE req.sample_id = ?";
 	        for ($i = 0; $i < count($data['ids']); $i++) {
-				$values = array(intval($data['user_id']), intval($data['ids'][$i]));
-				$row = $this->db->query($query, $values)->row_array();
-				if (!array_key_exists($row['id'], $return)) {
-					$return[$row['id']] = array('id' => $row['id'], 'first' => $row['first'], 'last' => $row['last'], 'institution' => $row['uni'], 'city' => $row['city'], 'country' => $row['country']);
-				}
+	        	$user_id = $this->db->query("SELECT user_id as id FROM samples WHERE id = ?", $data['ids'][$i])->row_array();
+	        	if($user_id['id'] == $data['contributer_id']) {
+	        		$values = intval($data['ids'][$i]);
+	        		$row = $this->db->query($query, $values)->row_array();
+					$row['user_email'] = $this->session->userdata('email');
+					$row['user_first_name'] = $this->session->userdata('first_name');
+					$row['user_last_name'] = $this->session->userdata('last_name');
+					array_push($return, $row);
+	        	}
 			}
 			return $return;
   
 	} // end of method
+
+// method to create the specific excel sheet with the requested samples
+	public function create_email_spreadsheet($samples)
+	{
+
+	$objTpl = PHPExcel_IOFactory::load("assets/downloads/requesttemplate.xlsx");
+	$objTpl->setActiveSheetIndex(0);  //set first sheet as active
+	
+	for ($i = 0; $i < count($samples); $i++) {
+		$objTpl->getActiveSheet()->setCellValue('A'.($i+2), stripslashes($samples[$i]['Genus']));
+		$objTpl->getActiveSheet()->setCellValue('B'.($i+2), stripslashes($samples[$i]['Species']));
+		$objTpl->getActiveSheet()->setCellValue('C'.($i+2), stripslashes($samples[$i]['Sex']));
+		$objTpl->getActiveSheet()->setCellValue('D'.($i+2), stripslashes($samples[$i]['Sample Type']));
+		$objTpl->getActiveSheet()->setCellValue('E'.($i+2), stripslashes($samples[$i]['Current Country Location']));
+		$objTpl->getActiveSheet()->setCellValue('F'.($i+2), stripslashes($samples[$i]['Avail. Until']));
+		$objTpl->getActiveSheet()->setCellValue('G'.($i+2), stripslashes($samples[$i]['Specimen Size Num']));
+		$objTpl->getActiveSheet()->setCellValue('H'.($i+2), stripslashes($samples[$i]['Unit']));
+		$objTpl->getActiveSheet()->setCellValue('I'.($i+2), stripslashes($samples[$i]['Measurement Type']));
+		$objTpl->getActiveSheet()->setCellValue('J'.($i+2), stripslashes($samples[$i]['Tag ID']));
+		$objTpl->getActiveSheet()->setCellValue('K'.($i+2), stripslashes($samples[$i]['Preservation Medium']));
+		$objTpl->getActiveSheet()->setCellValue('L'.($i+2), stripslashes($samples[$i]['Size (mm)']));
+		$objTpl->getActiveSheet()->setCellValue('M'.($i+2), stripslashes($samples[$i]['Ocean']));
+		$objTpl->getActiveSheet()->setCellValue('N'.($i+2), stripslashes($samples[$i]['Region']));
+		$objTpl->getActiveSheet()->setCellValue('O'.($i+2), stripslashes($samples[$i]['Lat. Decimal']));
+		$objTpl->getActiveSheet()->setCellValue('P'.($i+2), stripslashes($samples[$i]['Long.Decimal']));
+		$objTpl->getActiveSheet()->setCellValue('Q'.($i+2), stripslashes($samples[$i]['Lat. Degree']));
+		$objTpl->getActiveSheet()->setCellValue('R'.($i+2), stripslashes($samples[$i]['Long. Degree']));
+		$objTpl->getActiveSheet()->setCellValue('S'.($i+2), stripslashes($samples[$i]['Date Tagged']));
+		$objTpl->getActiveSheet()->setCellValue('T'.($i+2), stripslashes($samples[$i]['Photo Available']));
+		$objTpl->getActiveSheet()->setCellValue('U'.($i+2), stripslashes($samples[$i]['Comments']));
+	}
+	 
+	$target_dir = "assets/requests/";
+    $target_file = $target_dir . basename($samples[0]['Last Name'].$samples[0]['requester_name'].'.xls');				
+	// Do your stuff here
+	$writer = PHPExcel_IOFactory::createWriter($objTpl, 'Excel5');
+	$writer->save($target_file);
+	} // end of method
+		
 } // end of model ?>

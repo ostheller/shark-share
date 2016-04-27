@@ -45,14 +45,12 @@ class Logins extends CI_Controller {
         	if ($user_sess['level'] == 1) {
 				$user_sess['admin'] = TRUE;
 				$user_sess['logged_in'] = TRUE;
-				$user_sess['requested_sample_id'] = array();
 				$this->session->set_userdata($user_sess);
 				redirect('/admin');
 			} else { // user
 				$user_sess['admin'] = FALSE;
 				$user_sess['logged_in'] = TRUE;
-				$user_sess['requested_sample_id'] = array();
-				$this->session->set_userdata($user_sess, $session_data);
+				$this->session->set_userdata($user_sess);
 	        	redirect('/dashboard');
         	}
         }

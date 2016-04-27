@@ -100,7 +100,29 @@
                     <form id="compose">
 
                     </form>
-              </div>
+                <h4>Requested Samples</h4>
+<!--                 <button id="remove_confirmation" class="btn btn-danger" disabled>
+                <i class="glyphicon glyphicon-remove"></i> Remove
+                </button> -->
+                <table id="requests"
+                 data-toolbar="#request_toolbar"
+                 data-search="false"
+                 data-show-refresh="false"
+                 data-show-toggle="false"
+                 data-show-columns="false"
+                 data-show-export="false"
+                 data-detail-view="false"
+                 data-detail-formatter="detailFormatter"
+                 data-minimum-count-columns="2"
+                 data-show-pagination-switch="false"
+                 data-pagination="false"
+                 data-id-field="id"
+                 data-page-list="[10, 25, 50, 100, ALL]"
+                 data-show-footer="false"
+                 data-side-pagination="server"
+                 data-response-handler="responseHandler">
+                 </table>
+               </div>
               <!--/modal-body-collapse -->
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary" id="btnComposeEmail" href="#">Send Email</button>
@@ -112,6 +134,31 @@
       </div>
       <!-- /.modal-dialog -->
   </div>
+  <!-- /.modal -->
+  <!-- start: Delete Request Modal -->
+  <!-- <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h3 class="modal-title" id="deleteModalLabel">Notice</h3>
+
+              </div>
+              <div class="modal-body">
+                   <h4> Are you sure you want to remove the selected sample request(s)?</h4>
+
+              </div>
+              /modal-body-collapse 
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" id="btnConfirmationDelteYes" href="#">Yes</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              </div>
+              /modal-footer-collapse
+          </div>
+          /.modal-content 
+      </div>
+       /.modal-dialog 
+  </div> -->
   <!-- /.modal -->
 </div>
 </div>

@@ -99,6 +99,13 @@ $route['request/delete'] = 'requests/remove_requests';
 $route['request/select_contributer'] = 'requests/get_contributers';
 // Get data to compose email
 $route['request/email'] = 'requests/compose_email_data';
+<<<<<<< HEAD
+// Load pending requests data
+$route['request/pending'] = 'requests/pending_requests';
+=======
+// Post the finalized data and send the email!
+$route['request/send'] = 'requests/send_email';
+>>>>>>> master
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page

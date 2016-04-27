@@ -1,3 +1,8 @@
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
 .tt-input, /* UPDATE: newer versions use tt-input instead of tt-input */
 .tt-hint {
     width: 396px;
