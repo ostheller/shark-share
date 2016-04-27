@@ -590,7 +590,7 @@ $.ajax({
 	                data: selections,
 	                cache: false,
 	                success: function(res) {
-	                	console.log('removed successfully');
+	                	console.log(res + 'removed successfully');
 	                }
                 });
 	            $table.bootstrapTable('remove', {

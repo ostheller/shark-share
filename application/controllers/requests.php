@@ -97,28 +97,32 @@ class Requests extends CI_Controller {
 			'from_name' => $post['from_name'],
 			'cc' => $post['cc'],
 			'to_email' => $post['to_email'],
-			'subject' => $post['subject'],
+			'subject' => $post['subject']
 			);
 		$samples = array();
 		foreach ($data['sample_ids'] as $sample_id) {
-			$samples[] = $this->sample->view($sample_id);
+			$samples[] = $this->sample->populate_request($sample_id);
 		}
 		
-		$this->load->library('email');
+		$this->user->create_email_spreadsheet($samples);
 
+		$this->load->library('email');
 		$this->email->from($data['from_email'], $data['from_name']);
 		$this->email->to($data['to_email']); 
 		$this->email->cc($data['cc']);   
 
 		$this->email->subject($data['subject']);
 		$this->email->message($data['body']);
-		$attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
+
+		$target_dir = "/assets/requests/";
+    	$target_file = $target_dir . basename($samples[0]['Last Name'].$samples[0]['requester_name'].'.xls');
+		$attached_file= $_SERVER["DOCUMENT_ROOT"].$target_file;
 		$this->email->attach($attached_file);
 		if ($this->email->send()) {
        		echo "Mail Sent!"; 
        	} else {
         	echo "There is error in sending mail!";
    		}
-   		echo json_encode($data);
+   		echo json_encode($samples);
 	} // end of method
 } // end of controller

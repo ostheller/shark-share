@@ -219,4 +219,43 @@ class User extends CI_Model {
 			return $return;
   
 	} // end of method
+
+// method to create the specific excel sheet with the requested samples
+	public function create_email_spreadsheet($samples)
+	{
+
+	$objTpl = PHPExcel_IOFactory::load("assets/downloads/requesttemplate.xlsx");
+	$objTpl->setActiveSheetIndex(0);  //set first sheet as active
+	
+	for ($i = 0; $i < count($samples); $i++) {
+		$objTpl->getActiveSheet()->setCellValue('A'.($i+2), stripslashes($samples[$i]['Genus']));
+		$objTpl->getActiveSheet()->setCellValue('B'.($i+2), stripslashes($samples[$i]['Species']));
+		$objTpl->getActiveSheet()->setCellValue('C'.($i+2), stripslashes($samples[$i]['Sex']));
+		$objTpl->getActiveSheet()->setCellValue('D'.($i+2), stripslashes($samples[$i]['Sample Type']));
+		$objTpl->getActiveSheet()->setCellValue('E'.($i+2), stripslashes($samples[$i]['Current Country Location']));
+		$objTpl->getActiveSheet()->setCellValue('F'.($i+2), stripslashes($samples[$i]['Avail. Until']));
+		$objTpl->getActiveSheet()->setCellValue('G'.($i+2), stripslashes($samples[$i]['Specimen Size Num']));
+		$objTpl->getActiveSheet()->setCellValue('H'.($i+2), stripslashes($samples[$i]['Unit']));
+		$objTpl->getActiveSheet()->setCellValue('I'.($i+2), stripslashes($samples[$i]['Measurement Type']));
+		$objTpl->getActiveSheet()->setCellValue('J'.($i+2), stripslashes($samples[$i]['Tag ID']));
+		$objTpl->getActiveSheet()->setCellValue('K'.($i+2), stripslashes($samples[$i]['Preservation Medium']));
+		$objTpl->getActiveSheet()->setCellValue('L'.($i+2), stripslashes($samples[$i]['Size (mm)']));
+		$objTpl->getActiveSheet()->setCellValue('M'.($i+2), stripslashes($samples[$i]['Ocean']));
+		$objTpl->getActiveSheet()->setCellValue('N'.($i+2), stripslashes($samples[$i]['Region']));
+		$objTpl->getActiveSheet()->setCellValue('O'.($i+2), stripslashes($samples[$i]['Lat. Decimal']));
+		$objTpl->getActiveSheet()->setCellValue('P'.($i+2), stripslashes($samples[$i]['Long.Decimal']));
+		$objTpl->getActiveSheet()->setCellValue('Q'.($i+2), stripslashes($samples[$i]['Lat. Degree']));
+		$objTpl->getActiveSheet()->setCellValue('R'.($i+2), stripslashes($samples[$i]['Long. Degree']));
+		$objTpl->getActiveSheet()->setCellValue('S'.($i+2), stripslashes($samples[$i]['Date Tagged']));
+		$objTpl->getActiveSheet()->setCellValue('T'.($i+2), stripslashes($samples[$i]['Photo Available']));
+		$objTpl->getActiveSheet()->setCellValue('U'.($i+2), stripslashes($samples[$i]['Comments']));
+	}
+	 
+	$target_dir = "assets/requests/";
+    $target_file = $target_dir . basename($samples[0]['Last Name'].$samples[0]['requester_name'].'.xls');				
+	// Do your stuff here
+	$writer = PHPExcel_IOFactory::createWriter($objTpl, 'Excel5');
+	$writer->save($target_file);
+	} // end of method
+		
 } // end of model ?>
