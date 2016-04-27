@@ -6,11 +6,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
-      <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+      <img class="image-logo" id="image_logo_pic" src="/assets/images/logo.png" alt="logo">
+      <img class="image-logo" id="image_logo_text" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
       <!--<a class="navbar-brand" href="/about">SHARKSHARE</a>-->
     </div>
-      <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
+      <?php $form = array('id' => 'login_form', 'class' => 'navbar-form navbar-right','method' => 'post'); ?>
          <?= form_open('login', $form); ?>
            <div class="form-group">
             <?php $email = array(

@@ -1,0 +1,29 @@
+#myNavbar a {
+	color: #1A2C54;
+	font-family: 'Droid Sans', sans-serif;
+	padding: 2.5vh 1vh 1vh 2vh;
+}
+
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #cccccc;
+      opacity: .9;
+      border:none;
+    }
+
+#image_logo_pic {
+	height:7vh;
+}
+
+#image_logo_text {
+	height:3vh;
+}
+
+#login_form {
+	padding: 1vh 1vh 0vh 2vh;
+}
+
+#search_form {
+	padding: 1vh 1vh 0vh 2vh;
+}

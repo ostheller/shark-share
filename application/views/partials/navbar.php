@@ -23,7 +23,7 @@
         <li><a href="/help">Help</a></li>
         <li><a href="/logout">Logout</a></li>
       </ul>
-      <?php $form = array('class' => 'navbar-form navbar-right','method' => 'post'); ?>
+<!--       <?php $form = array('id' => 'search_form', 'class' => 'navbar-form','method' => 'post'); ?>
          <?= form_open('keyword_search', $form); ?>
            <div class="form-group">
             <?php $keyword = array(
@@ -37,7 +37,7 @@
               'type'=> 'submit', 
               'class'=>'btn btn-success',);?>
             <?= form_submit($submit, 'Search'); ?>
-          <?= form_close(); ?>
+          <?= form_close(); ?> -->
       <ul class="nav navbar-nav navbar-right pull">
         <li><a href="/request" id="sample_requests">Sample Requests </a></li>
       </ul>
