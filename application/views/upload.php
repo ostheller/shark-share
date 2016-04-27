@@ -1,17 +1,21 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-8 text-left"> 
+    <div class="neutralwrapper">
+      <div class="col-sm-8-2 text-left"> 
       <h1>Upload Samples</h1>
       <form action="/collections/get_template" method="post" enctype="multipart/form-data">
-        <p>Download our required excel template:
+        <h4>Download our required excel template:</h4>
+        <p>
           <input type="hidden" name="downloadFile" id="downloadFile">
-          <input type="submit" value="Download Template" name="submit">
+          <input class="btn btn-primary" type="submit" value="Download Template" name="submit">
         </p>
       </form>
+      <hr>
       <form action="/collections/upload_batch" method="post" enctype="multipart/form-data">
-        <p>Upload template with data:
+        <h4>Upload template with data:</h4>
+        <p>
           <input type="file" name="fileToUpload" id="fileToUpload">
-          <input type="submit" value="Upload File" name="submit">
+          <input type="submit" class="btn btn-primary" value="Upload File" name="submit">
         </p>
       </form>      <hr>
 <?php if (isset($message)) { echo $message; } ?>
@@ -45,8 +49,6 @@
          </tbody>    
       </table>
     <?php } ?>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
     </div>
   </div>
 </div>
