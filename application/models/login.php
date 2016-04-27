@@ -6,7 +6,7 @@ class Login extends CI_Model {
 // Method to validate the login of one user
     public function login_user() 
     {
-        $query = "SELECT id, first_name, level FROM users WHERE email = ? AND password = ?";
+        $query = "SELECT id, first_name, last_name, email, level FROM users WHERE email = ? AND password = ?";
         $values = array($this->input->post('email'), $this->input->post('password'));
         $user = $this->db->query($query, $values)->row_array();
         if (!empty($user)) {

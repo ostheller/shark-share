@@ -175,11 +175,12 @@ class User extends CI_Model {
 // method to get all the data needed to compose an email to a specific contributer
 	public function get_email_data($data)
 	{
+		/// NOTE TO SELF: ADD THE DATA NEEDED, GET IT TO POPULATE EMAIL TEMPLATE
 		$return = array();
-		$query = "SELECT taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
+		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', 
 		pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', 
 		samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal',
-		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City'
+		loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', us.email as 'Contributer Email', i.name as 'Institution Name', i.city as 'Institution City'
 			FROM requests as req
 			LEFT JOIN sharkshare.samples as samp
 				ON req.sample_id = samp.id
@@ -203,13 +204,17 @@ class User extends CI_Model {
 				ON us.institution_id = i.id
 			LEFT JOIN photo_statuses as pho
 				ON samp.photo_status_id = pho.id
-			WHERE samp.user_id = ? AND req.user_id = ? AND req.status_id = 1";
+			WHERE req.sample_id = ?";
 	        for ($i = 0; $i < count($data['ids']); $i++) {
-				$values = array(intval($data['user_id']), intval($data['ids'][$i]));
-				$row = $this->db->query($query, $values)->row_array();
-				if (!array_key_exists($row['id'], $return)) {
-					$return[$row['id']] = array('id' => $row['id'], 'first' => $row['first'], 'last' => $row['last'], 'institution' => $row['uni'], 'city' => $row['city'], 'country' => $row['country']);
-				}
+	        	$user_id = $this->db->query("SELECT user_id as id FROM samples WHERE id = ?", $data['ids'][$i])->row_array();
+	        	if($user_id['id'] == $data['contributer_id']) {
+	        		$values = intval($data['ids'][$i]);
+	        		$row = $this->db->query($query, $values)->row_array();
+					$row['user_email'] = $this->session->userdata('email');
+					$row['user_first_name'] = $this->session->userdata('first_name');
+					$row['user_last_name'] = $this->session->userdata('last_name');
+					array_push($return, $row);
+	        	}
 			}
 			return $return;
   

@@ -27,14 +27,14 @@ $.ajax({
 		                        align: 'center',
 		                        valign: 'middle'
 		                    }, {
-		                        title: 'ID',
-		                        field: 'id',
-		                        rowspan: 2,
-		                        align: 'center',
-		                        valign: 'middle',
-		                        sortable: true,
-		                        footerFormatter: totalTextFormatter
-		                    }, {
+		                    //     title: 'ID',
+		                    //     field: 'id',
+		                    //     rowspan: 2,
+		                    //     align: 'center',
+		                    //     valign: 'middle',
+		                    //     sortable: true,
+		                    //     footerFormatter: totalTextFormatter
+		                    // }, {
 		                        title: 'Item Detail',
 		                        colspan: 12,
 		                        align: 'center'

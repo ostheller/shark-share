@@ -74,8 +74,51 @@ class Requests extends CI_Controller {
 		$post = $this->input->post();
 		$id = $this->session->userdata('id');
 		$data = array(
-			$post, $id);
-		$return = $this->user->get_email_data($data);		
+			'ids' => $post['values'], 
+			'user_id' => $id,
+			'contributer_id' => $post['id']
+			);
+		$return = $this->user->get_email_data($data);	
 		echo json_encode($return);
+	} // end of method
+
+//user SUBMITS the form to SEND THE EMAIL
+	//// NOTE TO SELF NEEEEEED VALIDATION CHECKS
+	public function send_email() 
+	{
+		$this->load->model('user');
+		$this->load->model('sample');
+		$post = $this->input->post();
+		$id = $this->session->userdata('id');
+		$data = array(
+			'sample_ids' => explode(",", $post['sample_ids']), 
+			'body' => $post['body'],
+			'from_email' => $post['from_email'],
+			'from_name' => $post['from_name'],
+			'cc' => $post['cc'],
+			'to_email' => $post['to_email'],
+			'subject' => $post['subject'],
+			);
+		$samples = array();
+		foreach ($data['sample_ids'] as $sample_id) {
+			$samples[] = $this->sample->view($sample_id);
+		}
+		
+		$this->load->library('email');
+
+		$this->email->from($data['from_email'], $data['from_name']);
+		$this->email->to($data['to_email']); 
+		$this->email->cc($data['cc']);   
+
+		//$this->email->subject('Welcome to Shark Share!');
+		//$this->email->message('Hello, '.$userdata['userdata']['first_name'] .'! Please click on <a href="http://localhost:8888/setup_user/'.$userdata["token"].'">this link</a> to set up your profile.');
+		// $attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
+		// $this->email->attach($attached_file);
+		// if ($this->email->send()) {
+  //      		echo "Mail Sent!"; 
+  //      	} else {
+  //       	echo "There is error in sending mail!";
+  //  		}
+   		echo json_encode($data);
 	} // end of method
 } // end of controller
