@@ -33,6 +33,15 @@ class Requests extends CI_Controller {
 		echo json_encode($data);
 	}
 
+// user wants to get all PENDING request data
+	public function pending_requests() 
+	{
+		$this->load->model('sample');
+		$id = $this->session->userdata('id');
+		$data = $this->sample->get_pending_requests($id);
+		echo json_encode($data);
+	}
+
 // user wants to visit the checkout page
 	public function view_request_sample_page()
 	{

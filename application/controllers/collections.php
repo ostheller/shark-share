@@ -58,10 +58,11 @@ class Collections extends CI_Controller {
 	} // end of method
 
 // user wants to download the template we use to upload samples
+	//Liz changed to new template...
 	public function get_template()
 	{
-		$data = file_get_contents("assets/downloads/template.xlsx"); // Read the file's contents
-		$name = 'template.xlsx';
+		$data = file_get_contents("assets/downloads/sampleupload.xlsx"); // Read the file's contents
+		$name = 'sampleupload.xlsx';
 
 		force_download($name, $data);
 	} // end of method

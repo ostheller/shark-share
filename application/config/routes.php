@@ -101,6 +101,11 @@ $route['request/select_contributer'] = 'requests/get_contributers';
 $route['request/email'] = 'requests/compose_email_data';
 // Post the finalized data and send the email!
 $route['request/send'] = 'requests/send_email';
+<<<<<<< HEAD
+=======
+// Load pending requests data
+$route['request/pending'] = 'requests/pending_requests';
+>>>>>>> front-end
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
