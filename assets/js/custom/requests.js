@@ -571,7 +571,7 @@ $.ajax({
 				e.preventDefault();
 		        $('#compose').submit();
 		        $('#compose_email').modal('hide');
-				alert('Email sent!'); 			
+				alert('Email sent!'); 
 			});
 			// $('#remove_confirmation').on('click', function(e){
 	  //       	e.preventDefault();
@@ -631,14 +631,17 @@ $.ajax({
 			  e.preventDefault();
 			  var email = $('#compose').serialize();
 				$.post('/request/send', email, function(res){
-					console.log(res);
-					request_arr=[];
+					sent_req=[];
 					var data_array = JSON.parse(res);
-					console.log(data_array);
 				    for(var x in data_array){
-				 	  	request_arr.push(data_array[x]);
+				 	  	sent_req.push(data_array[x]);
 				 	}
-				 	console.log('email data: ' + request_arr);	     
+				 	$table.bootstrapTable('remove', {
+	                field: 'id',
+	                values: sent_req
+	            	});
+	            	$remove.bootstrapTable('refresh');
+	            	console.log('SENT' + sent_req)		     
 			});
 	        $(window).resize(function () {
 	            $table.bootstrapTable('resetView', {

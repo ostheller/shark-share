@@ -307,7 +307,7 @@ public function request($selection)
 			'inserted' => array()
 			);
 		foreach ($selection['sample_id'] as $id) {
-			$check_query = "SELECT * FROM requests WHERE user_id = ? AND sample_id = ?";
+			$check_query = "SELECT * FROM requests WHERE user_id = ? AND sample_id = ? AND status_id = 1";
 			$check_values = array(
 					$this->session->userdata('id'),
 		  			intval($id));
@@ -393,5 +393,17 @@ public function request($selection)
 				ON samp.photo_status_id = pho.id
 		WHERE req.user_id = ? AND req.status_id = 1";
 		return $this->db->query($query, $id)->result_array();
+	}
+
+// method to update the status of requests that have been sent
+	public function update_requests($requests)
+	{
+		$query = "UPDATE requests
+		SET status_id = 2
+		WHERE sample_id = ? AND user_id = ?";
+		foreach ($requests['sample_ids'] as $sample_id) {
+			$values = array($sample_id, $requests['user_id']);
+			$this->db->query($query,$values);
+		}
 	}
 } // end of model ?>

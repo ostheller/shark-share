@@ -119,10 +119,14 @@ class Requests extends CI_Controller {
 		$attached_file= $_SERVER["DOCUMENT_ROOT"].$target_file;
 		$this->email->attach($attached_file);
 		if ($this->email->send()) {
-       		echo "Mail Sent!"; 
+			$requests = array(
+				'sample_ids' => explode(",", intval($post['sample_ids'])),
+				'user_id' => $id
+				);
+			$this->sample->update_requests($requests);
+       		echo json_encode($requests['sample_ids']);
        	} else {
         	echo "There is error in sending mail!";
    		}
-   		echo json_encode($samples);
 	} // end of method
 } // end of controller
