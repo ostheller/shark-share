@@ -399,11 +399,6 @@ public function request($selection)
 	public function get_pending_requests($id) 
 	{
 		$query = "SELECT DISTINCT 
-			u.first_name as 'user_first_name',
-			u.last_name as 'user_last_name',
-			u.email as 'user_email',
-			i.name as 'user_institution_name',
-			i.city as 'user_institution_city',
 			samp.id as 'id', 
 			taxo.taxonomy_genus as 'genus', 
 			taxo.taxonomy_species as 'species', 
@@ -422,7 +417,8 @@ public function request($selection)
 			coun.name as 'sample_current_country', 
 			us.id as 'sample_user_id', 
 			us.first_name as 'sample_first_name', 
-			us.last_name as 'sample_last_name', 
+			us.last_name as 'sample_last_name',
+			us.email as 'sample_email',  
 			i.name as 'sample_institution_name', 
 			i.city as 'sample_institution_city'
 		FROM requests as req
@@ -454,6 +450,7 @@ public function request($selection)
 				ON samp.photo_status_id = pho.id
 		WHERE req.user_id = ? AND req.status_id = 2";
 		return $this->db->query($query, $id)->result_array();
+	}
 
 // method to update the status of requests that have been sent
 	public function update_requests($requests)

@@ -4,14 +4,15 @@ arr = [];
 selections = [];
 
 $.ajax({
-	  url: 'request/pending',
-	  dataType: 'json',
-	  success: function(json_data){
+  url: "request/pending",
+  dataType: 'json',
+  success: function(json_data){
+	  	console.log(json_data);
 	    var data_array = json_data; // Do not parse json_data because dataType is 'json'
 		    for(var x in data_array){
 		 	  arr.push(data_array[x]);
 		 	}
-		 	console.log(arr);
+		 	console.log('requests' + arr);
 		    function initTable() {
 		        $table.bootstrapTable({
 		        	data: arr,
@@ -25,14 +26,14 @@ $.ajax({
 		                        align: 'center',
 		                        valign: 'middle'
 		                    }, {
-		                        title: 'ID',
-		                        field: 'id',
-		                        rowspan: 2,
-		                        align: 'center',
-		                        valign: 'middle',
-		                        sortable: true,
-		                        footerFormatter: totalTextFormatter
-		                   	}, {
+		                    //     title: 'ID',
+		                    //     field: 'id',
+		                    //     rowspan: 2,
+		                    //     align: 'center',
+		                    //     valign: 'middle',
+		                    //     sortable: true,
+		                    //     footerFormatter: totalTextFormatter
+		                   	// }, {
 		                        title: 'Contributer Data',
 		                        colspan: 5,
 		                        align: 'center'
@@ -44,82 +45,70 @@ $.ajax({
 		                ],
 		                [
 		                    {
-		                        field: 'Genus',
+		                    	field: 'sample_first_name',
+		                        title: 'Contributer Name',
+		                        sortable: true,
+		                        footerFormatter: totalNameFormatter,
+		                        align: 'center'
+		                    }, {
+		                        field: 'sample_last_name',
+		                        title: 'Contributer Last Name',
+		                        sortable: true,
+		                        footerFormatter: totalNameFormatter,
+		                        align: 'center'
+		                    }, {
+		                    	field: 'sample_institution_name',
+		                        title: 'Institution Name',
+		                        sortable: true,
+		                        footerFormatter: totalNameFormatter,
+		                        align: 'center'
+		                    },{
+		                    field: 'sample_institution_city',
+		                        title: 'Institution City',
+		                        sortable: true,
+		                        footerFormatter: totalNameFormatter,
+		                        align: 'center'
+		                    },{
+		                    	field: 'sample_email',
+		                        title: 'Contributer Email',
+		                        sortable: true,
+		                        footerFormatter: totalNameFormatter,
+		                        align: 'center'
+		                    }, {
+		                        field: 'genus',
 		                        title: 'Genus',
 		                        sortable: true,
 		                        footerFormatter: totalNameFormatter,
 		                        align: 'center'
 		                    }, {
-		                        field: 'Species',
+		                        field: 'species',
 		                        title: 'Species',
 		                        sortable: true,
 		                        footerFormatter: totalNameFormatter,
 		                        align: 'center'
 		                    }, {
-		                        field: 'Sample Type',
+		                        field: 'sample_type',
 		                        title: 'Sample Type',
 		                        sortable: true,
 		                        footerFormatter: totalNameFormatter,
 		                        align: 'center'
 		                    }, {
-		                        field: 'Sex',
+		                        field: 'sex',
 		                        title: 'Sex',
 		                        sortable: true,
 		                        footerFormatter: totalNameFormatter,
 		                        align: 'center'
 		                    },{
-		                        field: 'Preservation Medium',
+		                        field: 'preservation_medium',
 		                        title: 'Preservation Medium',
 		                        sortable: true,
 		                        footerFormatter: totalNameFormatter,
 		                        align: 'center'
-		                    }, {
-		                        field: 'Size (mm)',
-		                        title: 'Size (mm)',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Photo Available',
-		                        title: 'Photo Available',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Lat. Decimal',
-		                        title: 'Lat. Decimal',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Long. Decimal',
-		                        title: 'Long. Decimal',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Lat. Degree',
-		                        title: 'Lat. Degree',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Long. Degree',
-		                        title: 'Long. Degree',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }, {
-		                        field: 'Avail. Until',
-		                        title: 'Avail. Until',
-		                        sortable: true,
-		                        footerFormatter: totalNameFormatter,
-		                        align: 'center'
-		                    }
+		                   }
 		                ]
 		            ]
 		        });
-			};
+			}
 			/* !!!!!!!!!!!!!!!!!! SETUP TABLE !!!!!!!!!!!!!!!!!! */
 				function getIdSelections() {
 			        return $.map($table.bootstrapTable('getSelections'), function (row) {
@@ -262,54 +251,11 @@ $.ajax({
 			        $table.on('all.bs.table', function (e, name, args) {
 			            console.log(name, args);
 			        });
-			        $request.click(function () {
-			            var ids = getIdSelections();
-			            console.log('requsted ids: ' + ids);
-			            var selections = {
-			            	'sample_id': ids
-			            };
-			            // $table.bootstrapTable('request', {
-			            //     field: 'id',
-			            //     values: ids
-			            // });
-			             $.ajax({
-			                type: "POST",
-			                url: "samples/request",
-			                data: selections,
-			                cache: false,
-			                success: function(res) {
-			                	console.log(res);
-			                	if(res == 'false') {
-			                		alert('Selection already requested');
-			                	} else {
-			                		 $.ajax({
-										  type: "GET",
-										  url: "/request/count",
-										  dataType: 'json',
-										  success: function(json_data){
-										  	var data_array = json_data; // Do not parse json_data because dataType is 'json'
-										    var arr = [];
-										   	for(var x in data_array){
-										 	  	arr.push(data_array[x]['id']);
-										 	}
-										  	console.log('count: ' + arr.length);
-										  	if(arr.length > 0) {
-										  		$("#sample_requests").html('Sample Requests: <span id="request_count">('+arr.length+')</span>');
-										  	} else {
-										  		$("#sample_requests").html('Sample Requests');
-										  	}
-										  }
-										});
-			                	}  	
-			                }
-		                });
-			            $request.prop('disabled', true);
-			        });
 			        $(window).resize(function () {
 			            $table.bootstrapTable('resetView', {
 			                height: getHeight()
 			            });
 			        });
-			},
+				},
 		});
-		});
+});
