@@ -1,8 +1,8 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
-      <div class = "sponsor-bar" id="leftspacing"> 
-        <h1>Our Sponsors and Partners</h1>
+      <div class ="sponsor-bar" id="leftspacing"> 
+        <h1 style="font-size=80%">Our Sponsors and Partners</h1>
         <a target="_blank" href="http://www.saveourseas.com/"> 
           <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
         </a>
@@ -41,17 +41,17 @@
           <img class="image-bar" src="/assets/images/shark4.jpg" alt="testpic4">
         </div>
       </div>
-      <div class="sponsor-bar" id="margin-right">
+      <div class="sponsor-bar heightfixed" id="margin-right">
         <h1>
           Interested in joining?
         </h1>
-        <a style="font-weight:bold" href="/register"> Sign up here!</a>
- <!--    !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!! -->
+        <a style="font-size:150%" href="/register"> Sign up here!</a>
+ <!--    !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!
         <ul>
           <li><a style="font-weight:bold" href="/edit/two"> Temporary Link: Edit T&amp;C Page</a></li>
           <li><a style="font-weight:bold" href="/edit/three"> Temporary Link: Edit Registration Success Page</a></li>
       </ul>
- <!--    !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!! -->
+     !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!! -->
       </div>
     </div>
   </div>

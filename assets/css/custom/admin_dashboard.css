@@ -11,6 +11,8 @@ They may also be found in that file. Heather 4/22/2016*/
   margin-top: 2%;
   margin-bottom: 0%;
   text-align: left;
+  float:left;
+  overflow: auto;
 }
 
 .backwrapper0 {
@@ -27,9 +29,9 @@ They may also be found in that file. Heather 4/22/2016*/
 
 
 .col-sm-7 {
-  height: auto;
+  height: 100%;
   padding-bottom: 2%;
-  width: 100%;
+  width: 20%;
   border-radius: 1%;
   background-color: #cccccc;
   opacity: .9;
@@ -38,6 +40,28 @@ They may also be found in that file. Heather 4/22/2016*/
   margin-top: 2%;
   margin-bottom: 0%;
   text-align: left;
+  float:left;
+  overflow: auto;
+}
+
+.col-sm-9 {
+  height: 100%;
+  padding-bottom: 2%;
+  width: 95vw;
+  border-radius: 1%;
+  background-color: #cccccc;
+  opacity: .9;
+  margin-right: 1%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 0%;
+  text-align: left;
+  float:left;
+  overflow: auto;
+}
+
+.width-70{
+  width: 70%;
 }
 
 .dash-button {
