@@ -93,6 +93,20 @@ $route['request'] = 'requests/view_request_sample_page';
 $route['request/samples'] = 'requests/samples';
 // Load the count of requests
 $route['request/count'] = 'requests/count_requests';
+<<<<<<< HEAD
+// Remove requests
+$route['request/delete'] = 'requests/remove_requests';
+// Get contributers
+$route['request/select_contributer'] = 'requests/get_contributers';
+// Get data to compose email
+$route['request/email'] = 'requests/compose_email_data';
+// Post the finalized data and send the email!
+$route['request/send'] = 'requests/send_email';
+// Load pending requests data
+$route['request/pending'] = 'requests/pending_requests';
+
+=======
+>>>>>>> parent of 1cfd36d... Merge branch 'master' into front-end
 
 ////////////////////////// Sample Page //////////////////////////////////////
 // Load a sample profile page
