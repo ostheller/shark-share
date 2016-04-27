@@ -395,8 +395,6 @@ public function request($selection)
 		return $this->db->query($query, $id)->result_array();
 	}
 
-<<<<<<< HEAD
-=======
 // method for showing a user's PENDING requests
 	public function get_pending_requests($id) 
 	{
@@ -457,7 +455,6 @@ public function request($selection)
 		WHERE req.user_id = ? AND req.status_id = 2";
 		return $this->db->query($query, $id)->result_array();
 
->>>>>>> front-end
 // method to update the status of requests that have been sent
 	public function update_requests($requests)
 	{
@@ -468,9 +465,5 @@ public function request($selection)
 			$values = array($sample_id, $requests['user_id']);
 			$this->db->query($query,$values);
 		}
-<<<<<<< HEAD
-=======
-
->>>>>>> front-end
 	}
 } // end of model ?>
