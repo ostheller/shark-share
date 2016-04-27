@@ -110,15 +110,15 @@ class Requests extends CI_Controller {
 		$this->email->to($data['to_email']); 
 		$this->email->cc($data['cc']);   
 
-		//$this->email->subject('Welcome to Shark Share!');
-		//$this->email->message('Hello, '.$userdata['userdata']['first_name'] .'! Please click on <a href="http://localhost:8888/setup_user/'.$userdata["token"].'">this link</a> to set up your profile.');
-		// $attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
-		// $this->email->attach($attached_file);
-		// if ($this->email->send()) {
-  //      		echo "Mail Sent!"; 
-  //      	} else {
-  //       	echo "There is error in sending mail!";
-  //  		}
+		$this->email->subject($data['subject']);
+		$this->email->message($data['body']);
+		$attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
+		$this->email->attach($attached_file);
+		if ($this->email->send()) {
+       		echo "Mail Sent!"; 
+       	} else {
+        	echo "There is error in sending mail!";
+   		}
    		echo json_encode($data);
 	} // end of method
 } // end of controller

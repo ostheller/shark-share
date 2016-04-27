@@ -168,7 +168,7 @@ public function get_institutions()
 			$condition_array[] = "whol.sex_id = $gender";
 		}
 		if ($name != '') {
-			$condition_array[] = "(us.first_name LIKE '&$name&' OR us.last_name LIKE '&$name&')";
+			$condition_array[] = "(us.first_name LIKE '%".$name."%' OR us.last_name LIKE '%".$name."%')";
 		}
 		if ($institution != '') {
 			$condition_array[] = "us.institution_id = '$institution'";
