@@ -133,6 +133,7 @@ class Requests extends CI_Controller {
 				'user_id' => $id
 				);
 			$this->sample->update_requests($requests);
+			unlink($_SERVER["DOCUMENT_ROOT"].$target_file);
        		echo json_encode($requests['sample_ids']);
        	} else {
         	echo "There is error in sending mail!";
