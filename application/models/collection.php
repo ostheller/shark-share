@@ -69,7 +69,7 @@ class Collection extends CI_Model {
 		$counter = intval(filter_var($key, FILTER_SANITIZE_NUMBER_INT));
 
 		// need to loop through each of the rows to insert  
-		for($i=2; $i<$counter; $i++) {
+		for($i=2; $i<=$counter; $i++) {
 		if($data[$i."_genus"] == NULL) {
 			continue;
 		} else {

@@ -132,7 +132,7 @@ class Validation extends CI_Model {
 		$error_array['error'] = array();
 		$error_array['valid'] = array();
 
-		for($i=2; $i<$counter; $i++) {
+		for($i=2; $i<=$counter; $i++) {
 			// genus
 			if(in_array($data[$i."_genus"], $genuses) == FALSE) {array_push($error_array['error'], $i."_genus");}
 				else {array_push($error_array['valid'], $i."_genus");}
