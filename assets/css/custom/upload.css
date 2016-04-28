@@ -1,3 +1,22 @@
+#result_table {
+  width: 100%; 
+  max-width: 2000px; 
+  table-layout: fixed;
+  display: block;
+}
+
+th {
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+}
+
+#check_for_errors {
+  margin-right: 5px;
+}
+
 .tt-input, /* UPDATE: newer versions use tt-input instead of tt-input */
 .tt-hint {
     width: 396px;

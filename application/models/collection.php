@@ -58,91 +58,94 @@ class Collection extends CI_Model {
 		//send the data in an array format
 		$data['header'] = $header;
 		$data['values'] = $arr_data;
-		validate_data($data);
+		//validate_data($data);
 		return $data;
 	} // end of method
 
 // submit data to database
 	public function submit_data($data) {
-    /* the data is embedded in an array with keys 1,2,3 for each row and then each row is an array with keys A,B,C for columns */
-	// need to loop through each of the rows to insert  
-		for ($i=2; $i < count($data['values']) ; $i++) {
-		if($data['values'][$i]['A'] == NULL) {
+		end($data);
+		$key = key($data);
+		$counter = intval(filter_var($key, FILTER_SANITIZE_NUMBER_INT));
+
+		// need to loop through each of the rows to insert  
+		for($i=2; $i<$counter; $i++) {
+		if($data[$i."_genus"] == NULL) {
 			continue;
 		} else {
 	// set up data, get ids for foreign keys	
 		// get taxonomy id to insert into the sample
 		$taxonomy_values = array(
-			$data['values'][$i]['A'], 
-     		$data['values'][$i]['B'],
-     		$data['values'][$i]['C'], 
-         	$data['values'][$i]['D']
+			$data[$i."_genus"],
+     		$data[$i."_species"],
+     		$data[$i."_family"], 
+         	$data[$i."_order"]
      		);
 
 		$taxonomy_query = $this->db->query("SELECT id as 'id' FROM taxonomy WHERE taxonomy_genus = ? AND taxonomy_species = ? AND taxonomy_family = ? AND taxonomy_order = ?", $taxonomy_values)->row_array();
 		$taxonomy_id = intval($taxonomy_query['id']);
 
 
-		$sex_value = $data['values'][$i]['E'];
+		$sex_value = $data[$i."_sex"];
 		$sex_query = $this->db->query("SELECT id as 'id' FROM sexes WHERE sex = ?", $sex_value)->row_array();
 		$sex_id = intval($sex_query['id']);
 
 
-		$sample_type_value = $data['values'][$i]['F'];
+		$sample_type_value = $data[$i."_sample_type"];
 		$sample_type_query = $this->db->query("SELECT id as 'id' FROM sample_types WHERE type = ?", $sample_type_value)->row_array();
 		$sample_type_id = intval($sample_type_query['id']);
 
 
-		$preservation_medium_value = $data['values'][$i]['M'];
+		$preservation_medium_value = $data[$i."_preservation_medium"];
 		$preservation_medium_query = $this->db->query("SELECT id as 'id' FROM preservation_mediums WHERE preservation_medium = ?", $preservation_medium_value)->row_array();
 		$preservation_medium_id = intval($preservation_medium_query['id']);
 
-        $photo_status_value = $data['values'][$i]['W'];
+        $photo_status_value = $data[$i."_photo"];
         $photo_status_query = $this->db->query("SELECT id as 'id' FROM photo_statuses WHERE status = ?", $photo_status_value)->row_array();
         $photo_status_id = intval($photo_status_query['id']);
 
-        $sample_size_mm = $data['values'][$i]['N'];
+        $sample_size_mm = $data[$i."_sample_size"];
 
-        $location_stored_value = $data['values'][$i]['G'];
+        $location_stored_value = $data[$i."_location_stored"];
         $location_stored_query = $this->db->query("SELECT id as 'id' FROM countries WHERE name = ?", $location_stored_value)->row_array();
         $location_stored_id = intval($location_stored_query['id']);
 
-        $available_until = (($data['values'][$i]['H']*86400)-2209075200);
+        $available_until = (($data[$i."_avail_until"]*86400)-2209075200);
 
-        $specimen_size_number = $data['values'][$i]['I'];
+        $specimen_size_number = $data[$i."_specimen_size_number"];
 
-        $specimen_size_unit_value = $data['values'][$i]['J'];
+        $specimen_size_unit_value = $data[$i."_specimen_size_unit"];
         $specimen_size_unit_query = $this->db->query("SELECT id as 'id' FROM units WHERE unit = ?", $specimen_size_unit_value)->row_array();
         $specimen_size_unit_id = intval($specimen_size_unit_query['id']);
 
-        $specimen_size_type_value = $data['values'][$i]['K'];
+        $specimen_size_type_value = $data[$i."_specimen_size_type"];
         $specimen_size_type_query = $this->db->query("SELECT id as 'id' FROM measurement_types WHERE type = ?", $specimen_size_type_value)->row_array();
 		$specimen_size_type_id = intval($specimen_size_type_query['id']);
 
-        $specimen_identifier_id = $data['values'][$i]['L'];
+        $specimen_identifier_id = $data[$i."_specimen_identifier"];
 
-        $sample_identifier_id = $data['values'][$i]['O'];
+        $sample_identifier_id = $data[$i."_sample_tag_id"];
 
-        $ocean_collected = $data['values'][$i]['P'];
+        $ocean_collected = $data[$i."_ocean_collected"];
         $ocean_collected_query = $this->db->query("SELECT id as 'id' FROM oceans WHERE name = ?", $ocean_collected)->row_array();
         $ocean_collected_id = intval($ocean_collected_query['id']);
 
-        $region_collected_value = $data['values'][$i]['Q'];
+        $region_collected_value = $data[$i."_region_collected"];
 
-        $lat_decimal = $data['values'][$i]['R'];
-        $long_decimal = $data['values'][$i]['S'];
+        $lat_decimal = $data[$i."_lat_dec"];
+        $long_decimal = $data[$i."_long_dec"];
 
-        $lat_degree = $data['values'][$i]['T'];
-        $long_degree = $data['values'][$i]['U'];
+        $lat_degree = $data[$i."_lat_deg"];
+        $long_degree = $data[$i."_long_deg"];
 
-        $date_tagged = (($data['values'][$i]['V']*86400)-2209075200);
+        $date_tagged = (($data[$i."_date_tagged"]*86400)-2209075200);
 
-        $lab_identifier = $data['values'][$i]['X'];
+        $lab_identifier = $data[$i."_lab_id"];
 
-		$comment = $data['values'][$i]['Y'];
+		$comment = $data[$i."_comment"];
 
 		$user_id = $this->session->userdata('id');
-	// die();
+
 	// insert into the database
 		// insert region into database
 		$region_array = array($region_collected_value, $ocean_collected_id, $lat_degree, $long_degree, $lat_decimal, $long_decimal);
@@ -173,8 +176,8 @@ class Collection extends CI_Model {
         	$this->db->query("UPDATE samples SET whole_specimen_id = ? WHERE id = ?", array($whole_specimen_id, $lastid));
         }
 
-     	 }// end for loop
-        return TRUE;
+     	}// end for loop      
     } // end else
+    return TRUE;
 	} // end of method
 } // end of model ?>

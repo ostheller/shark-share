@@ -117,29 +117,31 @@ class Collections extends CI_Controller {
 	{
 		$this->load->model('collection');
 		$path = $this->session->userdata('file_path');
-		$data = $this->collection->extract_data_xlsx($path);
+		$data = $this->input->post();
 		$result = $this->collection->submit_data($data); 
-		if ($result == TRUE)
-		{
-			$this->session->set_userdata('file_uploaded', FALSE);
-			$this->session->set_userdata('message', 'Your data is in the database, thank you!');
-			$message = 'your data is in the database, thank you!';
-			redirect('upload');
-		} else {
-			$message = 'your data failed to upload, try again or check your spreadsheet for errors';
-			$header['title'] = 'Upload';
+		// if ($result == TRUE)
+		// {
+		// 	$this->session->set_userdata('file_uploaded', FALSE);
+		// 	$this->session->set_userdata('message', 'Your data is in the database, thank you!');
+		// 	$message = 'your data is in the database, thank you!';
+		// 	redirect('upload');
+		// } else {
+		// 	$message = 'your data failed to upload, try again or check your spreadsheet for errors';
+		// 	$header['title'] = 'Upload';
 
-			if ($this->session->userdata('logged_in' != TRUE)) {
-				// they cannot see this page
-				redirect('/restricted');
-			} else {
-				$this->load->view('partials/header', $header);
-				$this->load->view('styles/upload');
-				$this->load->view('partials/navbar');
-				$this->load->view('upload', $message);
-		        $this->load->view('partials/footer');
-		    }
-		}
+		// 	if ($this->session->userdata('logged_in' != TRUE)) {
+		// 		// they cannot see this page
+		// 		redirect('/restricted');
+		// 	} else {
+		// 		$this->load->view('partials/header', $header);
+		// 		$this->load->view('styles/upload');
+		// 		$this->load->view('partials/navbar');
+		// 		$this->load->view('upload', $message);
+		//         $this->load->view('partials/footer');
+		//     }
+		// }
+		if ($result) { echo $this->session->userdata('id'); }
+		else {echo 'Failure';}
 	} // end of method
 
 /* !!!!!!!!!!!!!!!!!! Managing !!!!!!!!!!!!!!!!!! */
