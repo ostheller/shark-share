@@ -58,12 +58,8 @@ class Collection extends CI_Model {
 		//send the data in an array format
 		$data['header'] = $header;
 		$data['values'] = $arr_data;
+		validate_data($data);
 		return $data;
-	} // end of method
-
-// method to validate the data prior to submission
-	public function validate_data() 
-	{
 	} // end of method
 
 // submit data to database
