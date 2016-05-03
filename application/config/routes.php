@@ -23,6 +23,8 @@ $route['logout'] = 'logins/logout';
 // Temporary methods to edit the second and third registration pages
 $route['edit/two'] = 'logins/view_registration_two';
 $route['edit/three'] = 'logins/view_registration_three';
+// Temporary methods to edit the edit profile page
+$route['edit/profile_page'] = 'logins/view_edit_profile';
 
 ////////////////////////// Setup Account //////////////////////////////////////
 // The new user gets to set up their account

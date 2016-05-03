@@ -182,5 +182,34 @@ public function view_registration_three()
 			$this->load->view('partials/footer');
 	} // end of method
 
+// temporary method to edit the edit profile page
+public function view_edit_profile()
+	{		
+		$this->load->model('login');
+		$this->load->model('sample');
+		$countries = $this->login->countries();
+		$sample_types = $this->sample->get_sample_types();
+		$header['title'] = 'Set Up New Profile';
+		$data = array(
+			'user' => array('id' => 57, 
+				'first_name' => 'Top', 
+				'last_name' => 'Cassidy',
+				'email' => 'temporary@email.com',
+				'institution' => 'Hogwarts',
+				'field' => 'Sharks',
+				'status' => 2,
+				'city' => 'Seattle',
+				'country_id' => 255
+				), 
+			'countries' => $countries,
+			'sample_types' => $sample_types
+			);
+			$this->load->view('partials/header', $header);
+			$this->load->view('styles/registration');
+			$this->load->view('partials/navbar_login');
+			$this->load->view('setup_profile', $data);
+			$this->load->view('partials/footer');
+	} // end of method
+
 } // end class
 ?>
