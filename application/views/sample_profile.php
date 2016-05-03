@@ -1,10 +1,10 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
+    <!--<div class="col-sm-2 sidenav">
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
-    </div>
+    </div>-->
     <div class="col-sm-8 text-left"> 
         <?php if (empty($data)) {
           echo "<h1>This sample does not exist</h1>";
@@ -31,13 +31,13 @@
             </tr>                 
          </tbody>    
       </table>
-    <div class="col-sm-2 sidenav">
+    <!--<div class="col-sm-2 sidenav">
       <div class="well">
         <p>Content</p>
       </div>
       <div class="well">
         <p>Content</p>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

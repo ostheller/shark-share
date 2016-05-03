@@ -46,12 +46,12 @@
           Interested in joining?
         </h1>
         <a style="font-size:150%" href="/register"> Sign up here!</a>
- <!--    !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!
+    !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!
         <ul>
           <li><a style="font-weight:bold" href="/edit/two"> Temporary Link: Edit T&amp;C Page</a></li>
           <li><a style="font-weight:bold" href="/edit/three"> Temporary Link: Edit Registration Success Page</a></li>
       </ul>
-     !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!! -->
+     !!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!
       </div>
     </div>
   </div>

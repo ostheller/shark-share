@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/dashboard">Home</a></li>
-        <li><a href="/browse">Browse</a></li>
+        <li><a href="/browse">Search</a></li>
         <li><a href="/collection/<?php echo $this->session->userdata('id'); ?>">Collection</a></li>
         <li><a href="/user/<?php echo $this->session->userdata('id'); ?>">Profile</a></li>
         <li><a href="/help">Help</a></li>
