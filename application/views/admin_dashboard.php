@@ -1,7 +1,7 @@
-<div class="container-fluid2">    
+<div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
       <div class="row">
-        <div class="col-sm-7 text-left">
+        <div class="col-sm-7 width-20 text-left">
           <h1 class="fontbold">Admin Tools</h1>
           <a href="/dashboard" class="dash-button btn btn-info" role="button">User View</a>
           <br>

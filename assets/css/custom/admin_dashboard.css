@@ -13,7 +13,7 @@ They may also be found in that file. Heather 4/22/2016*/
   float:left;
   overflow: auto;
 }
-.container-fluid2{
+.backgroundsetting{
   background: url("/assets/images/researcher4.jpg");
   background-size:cover;
   background-attachment: fixed;
@@ -37,10 +37,8 @@ They may also be found in that file. Heather 4/22/2016*/
 .col-sm-7 {
   height: 100%;
   padding-bottom: 2%;
-  width: 20%;
   border-radius: 1%;
   background-color: rgba(228, 228, 255, .8);
-  border
   margin-right: 1%;
   margin-left: 2%;
   margin-top: 2%;
@@ -63,6 +61,10 @@ They may also be found in that file. Heather 4/22/2016*/
   text-align: left;
   float:left;
   overflow: auto;
+}
+
+.width-20 {
+  width: 20%;
 }
 
 .width-70{
