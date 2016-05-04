@@ -13,14 +13,19 @@ They may also be found in that file. Heather 4/22/2016*/
   float:left;
   overflow: auto;
 }
+.container-fluid2{
+  background: url("/assets/images/researcher4.jpg");
+  background-size:cover;
+  background-attachment: fixed;
+}
 
 .backwrapper0 {
-  width: 100%;
+  /*width: 100%;
   height: auto;
   background-color: #fcfcfc;
   background-size: 100% 100%;
-  /*background-color: #f5f5f5;*/
-  text-align: center;
+  /*background-color: #f5f5f5;
+  text-align: center;*/
 }
 
 /*Admin dash specific */
@@ -34,8 +39,8 @@ They may also be found in that file. Heather 4/22/2016*/
   padding-bottom: 2%;
   width: 20%;
   border-radius: 1%;
-  background-color: #0088CE;
-  opacity: .9;
+  background-color: rgba(228, 228, 255, .8);
+  border
   margin-right: 1%;
   margin-left: 2%;
   margin-top: 2%;
@@ -50,7 +55,7 @@ They may also be found in that file. Heather 4/22/2016*/
   padding-bottom: 2%;
   width: 95vw;
   border-radius: 1%;
-  background-color: #0088CE;
+  background-color: rgba(228, 228, 255, .8);
   margin-right: 1%;
   margin-left: 2%;
   margin-top: 2%;
@@ -61,10 +66,22 @@ They may also be found in that file. Heather 4/22/2016*/
 }
 
 .width-70{
-  width: 70%;
+  width: 72%;
 }
 
 .dash-button {
   padding-top: 2%;
   padding-bottom: 2%;
+}
+
+#email_sent_table {
+  width:98%;
+}
+
+#potential_user_table {
+  width:98%;
+}
+
+#padbottom {
+  margin-bottom: 2%;
 }
