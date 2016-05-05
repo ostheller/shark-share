@@ -1,4 +1,4 @@
-<div class="container-fluid text-center">    
+<div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
       <div class = "sponsor-bar" id="leftspacing">

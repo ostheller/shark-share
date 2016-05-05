@@ -1,4 +1,4 @@
-<div class="container-fluid text-center">    
+<div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <h1 class="helpwhite">Need Help?</h1>

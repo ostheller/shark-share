@@ -1,4 +1,4 @@
-<div class="container-fluid text-center">    
+<div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class="neutralwrapper">
       <div class="col-sm-8-2 text-left"> 
