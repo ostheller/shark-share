@@ -1,7 +1,7 @@
-<div class="container-fluid">    
+<div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
       <div class="row">
-        <div class="col-sm-7 text-left">
+        <div class="col-sm-7 width-20 text-left">
           <h1 class="fontbold">Admin Tools</h1>
           <a href="/dashboard" class="dash-button btn btn-info" role="button">User View</a>
           <br>
@@ -15,7 +15,7 @@
           <a href="/taxonomy" class="btn btn-info dash-button" role="button">Manage Site Taxonomy</a>
         </div>
         <div class="col-sm-7 width-70 text-left"> 
-            <h1>Admin Dashboard</h1>
+            <h1>Admin Dashboard</h1> <!--This is where I would want the "Welcome back, so-and-so"-->
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, whoa, how did I get in here? sed do eiusmod tempor incididunt ut labore 
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <hr>
@@ -58,7 +58,7 @@
   </div>
 </div>
   <div class="row">
-      <div class="col-sm-9 text-left">
+      <div class="col-sm-9 text-left" id="padbottom">
     <h2>Pending Email Invites</h2>
     <div>
         <table class="col-sm-9" id="email_sent_table"

@@ -1,7 +1,9 @@
-<div class="container-fluid text-center">    
+<div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class="neutralwrapper">
-      <div class="col-sm-8-2 text-left"> 
+      <div class="col-sm-8-2 height-10 text-left">
+      </div>
+      <div class="col-sm-8-2 height-70 text-left"> 
         <h1>Search Samples</h1>      
         <hr>  
         <form id = "search" method="post" action="search">

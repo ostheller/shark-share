@@ -1,4 +1,4 @@
-<div class="container-fluid">    
+<div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
         <div class="col-sm-2 text-left">
           <h1 class="fontbold">User Tools</h1>

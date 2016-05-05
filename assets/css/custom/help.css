@@ -1,3 +1,10 @@
 .helpwhite{
 	color:#cccccc;
 }
+
+.backgroundsetting{
+  background: url("/assets/images/shark3.jpg");
+  background-size:cover;
+  background-attachment: fixed;
+}
+
