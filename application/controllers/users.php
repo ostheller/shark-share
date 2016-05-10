@@ -86,7 +86,10 @@ class Users extends CI_Controller {
 	public function view_user($id)
 	{
 		$this->load->model('user');
+		$this->load->model('login');
 		$data = $this->user->view($id);
+		$countries = $this->login->countries();
+		$data['countries'] = $countries;
 		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
 
 		$this->load->view('partials/header', $header);

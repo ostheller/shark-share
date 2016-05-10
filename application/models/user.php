@@ -27,7 +27,7 @@ class User extends CI_Model {
 
 // method to get the data for a single user
 	public function view($id) {
-		$query = "SELECT u.id, u.first_name, u.last_name, i.name, i.city, a_s.status FROM users as u
+		$query = "SELECT u.id, u.user_name, u.first_name, u.last_name, u.email, u.date_created as 'date', u.about_user as 'about', u.field, i.name, i.country_id, i.city, u.academic_status_id as 'status', a_s.status as 'status_name' FROM users as u
 		LEFT JOIN institutions as i 
 		ON u.institution_id = i.id 
 		LEFT JOIN academic_statuses as a_s
