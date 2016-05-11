@@ -47,7 +47,7 @@ class Users extends CI_Controller {
 				);
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/setup_profile');
-			$this->load->view('partials/navbar');
+			$this->load->view('partials/navbar_login');
 			$this->load->view('setup_profile', $data);
 			$this->load->view('partials/footer');	
 		} // end else
@@ -59,12 +59,8 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		if($this->user->setup_user_info($user)) {
-			$this->user->delete_potential_user($user);
-			echo 'worked';
-		} else {
-			echo 'failure';
-		}
+		$this->user->setup_user_info($user);
+		echo 'done';
 	} // end of method
 
 // method for setting up their tagged preferences
@@ -72,8 +68,6 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$tags = $this->input->post();
-		var_dump($tags);
-		die();
 		// $this->user->create($user);
 		// redirect('/');
 	} // end of method

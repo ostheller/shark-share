@@ -22,7 +22,8 @@ class User extends CI_Model {
 		ON u.institution_id = i.id 
 		LEFT JOIN academic_statuses as a_s
 		ON u.academic_status_id = a_s.id";
-		return $this->db->query($query)->result_array();
+		$data = $this->db->query($query)->result_array();
+		return $data;
 	} // end of method
 
 // method to get the data for a single user
@@ -65,7 +66,7 @@ class User extends CI_Model {
  //            $delete_query = "DELETE FROM potential_users WHERE id=?";
  //            $this->db->query($delete_query, $id);
  //        }
-    } // end of method
+    //} // end of method
 
 // method to validate the form
 	public function setup_user_info($post)
@@ -80,19 +81,20 @@ class User extends CI_Model {
                 return false;
             }  // end if failure
             else { // we get all the data of the user from the potential users table
-                $user = ("SELECT * FROM potential_users WHERE id = ?", $post['id'])->row_array();
+                $user = $this->db->query("SELECT * FROM potential_users WHERE id = ?", $post['id'])->row_array();
                 // then we set up the value array to create a new user
                 $values = array(
                 	$post['username'], 
                 	0, 
                 	$user['email'],
                 	$post['password'],
-                	$post['field'],
+                	$user['field'],
                 	$user['first_name'], 
                 	$user['last_name'],
                 	$post['about'], 
-                	$user['institution_id']); 
-                	$user['status_id']); 
+                	$user['institution_id'], 
+                	$user['academic_status_id']
+                	); 
                 $admit_query  = "INSERT INTO users (user_name, level, email, password, field, first_name, last_name, about_user, institution_id, academic_status_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 if($this->db->query($admit_query, $values)) {
                 	$delete_query = "DELETE FROM potential_users WHERE id=?";

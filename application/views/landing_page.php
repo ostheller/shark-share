@@ -3,6 +3,7 @@
     <div class= "backwrapper">
       <div class ="sponsor-bar" id="leftspacing"> 
         <h1 style="font-size=80%">Our Sponsors and Partners</h1>
+        <hr>
         <a target="_blank" href="http://www.saveourseas.com/"> 
           <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
         </a>
@@ -42,17 +43,11 @@
         </div>
       </div>
       <div class="sponsor-bar heightfixed" id="margin-right">
-        <h1>
+        <h1 style="font-size=80%">
           Interested in joining?
         </h1>
-        <a style="font-size:150%" href="/register"> Sign up here!</a>
-    <p>!!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!</p>
-        <ul>
-          <li><a style="font-weight:bold" href="/edit/two"> Temporary Link: Edit T&amp;C Page</a></li>
-          <li><a style="font-weight:bold" href="/edit/three"> Temporary Link: Edit Registration Success Page</a></li>
-          <li><a style="font-weight:bold" href="/edit/profile_page"> Temporary Link: Edit Setup Profile Page</a></li>
-      </ul>
-     <p>!!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!</p>
+        <hr>
+        <span><a style="font-size:150%" href="/register"> Sign up here!</a></span>
       </div>
     </div>
   </div>

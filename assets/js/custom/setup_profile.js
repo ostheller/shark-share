@@ -152,18 +152,17 @@ $.ajax({
 	$('#setup_password').on('click', function(e){
 		e.preventDefault();
 		$( "#setup" ).submit();
-		$( "#password_result" ).html('<i class="glyphicon glyphicon-check"></i>');
-		form1 = true;
-		checkstatus();
 	})
 
-$('#setup').on('submit', function(e){
+$('#setup').submit(function(e){
 	e.preventDefault();
 	var data = $('#setup').serialize();
 	console.log(data);
 	$.post('/setup/submit', data, function(res){
-		var data_array = JSON.parse(res);
-	    var arr = [];
+		console.log(res);
+		$( "#password_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+		form1 = true;
+		checkstatus();
 	});
 });
 //  !!!!!!!!!!!!!!!!!! SUBMIT SET UP VERIFY FORM !!!!!!!!!!!!!!!!!! 
@@ -176,7 +175,7 @@ $('#verify_changes').on('click', function(e){
 })
 
 
-$('#verify').on('submit', function(e){
+$('#verify').submit(function(e){
 	e.preventDefault();
 	var data = $('#verify').serialize();
 	console.log(data);
