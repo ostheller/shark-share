@@ -20,6 +20,8 @@ $route['register/accept'] = 'logins/terms_confirmation';
 $route['register/complete'] = 'logins/visit_welcome_page';
 // Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
+// Reset the user's password
+$route['reset'] = 'logins/reset_password';
 // Temporary methods to edit the second and third registration pages
 $route['edit/two'] = 'logins/view_registration_two';
 $route['edit/three'] = 'logins/view_registration_three';

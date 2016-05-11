@@ -12,6 +12,10 @@
     </div>
       <?php $form = array('id' => 'login_form', 'class' => 'navbar-form navbar-right','method' => 'post'); ?>
          <?= form_open('login', $form); ?>
+         <?php $attributes = array(
+            'id' => 'forgot_password',
+          );
+            echo form_label('Forgot Password?', 'email', $attributes); ?>
            <div class="form-group">
             <?php $email = array(
               'type'=> 'text', 

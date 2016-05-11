@@ -57,3 +57,39 @@
     </div>
   </div>
 </div>
+<!-- start: Forgot Password Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h3 class="modal-title" id="myModalLabel">Forgot Your Password?</h3>
+
+              </div>
+              <div class="modal-body">
+                <h4>Create a New One</h4>
+                <p>The new password will be sent to the entered email address. The email address must be the one with which you have registered at Shark Share.</p>
+                <form id="new_password">
+                  <h5>Email:</h5>
+                    <input type="text" name="email" size="50" />
+                  <h5>Password:</h5>
+                    <input type="password" name="password" id="password" size="50" />
+                    <span id="result"></span>
+                  <h5>Confirm Password:</h5>
+                    <input type="password" name="confirm_password" id ="confirm_password" size="50" />
+                    <span id="confirm_result"></span>
+                </form> 
+                <span id="errors"></span>
+              </div>
+              <!--/modal-body-collapse -->
+             <div class="modal-footer">
+                  <button type="button" class="btn btn-primary disabled" id="reset_email" href="#">Send Email</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+              <!--/modal-footer-collapse -->
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->

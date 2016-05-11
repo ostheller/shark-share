@@ -15,7 +15,7 @@
           <a href="/taxonomy" class="btn btn-info dash-button" role="button">Manage Site Taxonomy</a>
         </div>
         <div class="col-sm-7 width-70 text-left"> 
-            <h1>Admin Dashboard</h1> <!--This is where I would want the "Welcome back, so-and-so"-->
+            <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, whoa, how did I get in here? sed do eiusmod tempor incididunt ut labore 
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <hr>
@@ -82,7 +82,7 @@
   </div>
 </div>
 <!--</div>-->
-    <!-- start: Delete Potential User Modal -->
+<!-- start: Delete Potential User Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">

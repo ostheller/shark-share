@@ -25,6 +25,32 @@ class Login extends CI_Model {
         return $this->db->query("SELECT * FROM countries")->result_array();
     }
 
+// Method to check existance of email
+    public function check_email($data)
+    {
+        $emails = $this->db->query("SELECT email FROM users")->result_array();
+        for ($i=0; $i < count($emails); $i++) { 
+            if ($emails[$i]['email'] == $data['email']) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+// Method to change password
+    public function change_password($data)
+    {
+        $query = 'UPDATE users SET password = ? WHERE email = ?';
+        $values = array($data['password'], $data['email']);
+        $update = $this->db->query($query, $values);
+        if ($update) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 // Method to validate the registration of one user
     public function registration_validation()
     {

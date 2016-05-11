@@ -160,6 +160,47 @@ class Logins extends CI_Controller {
    		redirect('/');
    	} // of method
 
+// method for validating reset password info
+   	public function reset_password()
+   	{
+   		$this->load->model('login');
+		$data = $this->input->post();
+		$email = $this->login->check_email($data);
+		if ($email) {
+			$update = $this->login->change_password($data);
+			if ($update){
+				$data = array(
+					'body' => 'Somone has reset your password for Shark Share. Your new password is: ' . $data['password']. ' If you recieved this email in error, log in to reset your password.',
+					'from_email' => 'molly.ostheller@gmail.com',
+					'from_name' => 'the Team @ Shark Share',
+					'to_email' => $data['email'],
+					'subject' => 'Your reset password for Shark Share'
+					);
+
+				$this->load->library('email');
+				$this->email->from($data['from_email'], $data['from_name']);
+				$this->email->to($data['to_email']);   
+
+				$this->email->subject($data['subject']);
+				$this->email->message($data['body']);
+				if ($this->email->send()) {
+					echo 1;
+					return;
+			       	} else {
+			       		echo 2;
+			        	return;
+			   		}
+			} else {
+				echo 3;
+				return;
+			}
+		} else {
+			echo 4;
+			return;
+		}
+   	} // of method
+
+
 // temporary method to view the second registration page in order to make edits to it
 public function view_registration_two()
 	{
