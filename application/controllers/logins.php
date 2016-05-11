@@ -39,7 +39,7 @@ class Logins extends CI_Controller {
         // if the validation fails
         if ($user_sess === false) {
         	$this->session->set_userdata('login_attempt_failed', true);
-        	reload();
+        	redirect('/');
         } else {
         	// check admin status
         	if ($user_sess['level'] == 1) {
@@ -246,7 +246,7 @@ public function view_edit_profile()
 			'sample_types' => $sample_types
 			);
 			$this->load->view('partials/header', $header);
-			$this->load->view('styles/registration');
+			$this->load->view('styles/setup_profile');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('setup_profile', $data);
 			$this->load->view('partials/footer');

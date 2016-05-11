@@ -6,10 +6,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a href="/about">
+      <a href="/">
         <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
       </a>
-      <a href="/about">
+      <a href="/">
         <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
       </a>
       <!--<a class="navbar-brand" style="color:blue;" href="/about">SHARKSHARE</a>-->

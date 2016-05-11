@@ -59,16 +59,12 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		if ($this->user->setup_user_info($user)) {
-			$this->user->create_user($user);
+		if($this->user->setup_user_info($user)) {
+			$this->user->delete_potential_user($user);
+			echo 'worked';
+		} else {
+			echo 'failure';
 		}
-		// if($this->user->create($user)) {
-		// 	$this->user->delete_potential_user();
-		// 	echo "User moved from potential_users table to users table";
-		// } else {
-  //       	echo "There is error in sending mail!";
-  //       	redirect('/');
-  //  		}
 	} // end of method
 
 // method for setting up their tagged preferences
@@ -99,13 +95,12 @@ class Users extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
-// method to process form action to update email & name on profile edit pages
-	public function update($id)
+// method to process form action to verify email & name on profile edit pages
+	public function update()
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		$this->user->create($user);
-		redirect('/');
+		$this->user->update($user);
 	} // end of method
 
 // method to process form action to update password on profile edit pages

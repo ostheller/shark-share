@@ -1,5 +1,56 @@
 $(document).ready(function() {
+var form1, form2, form3;
 
+	$('#password').keyup(function(){
+		//console.log($('#password').val());
+        $('#result').html(checkStrength($('#password').val()))
+    }); 
+
+	function checkStrength(password){ 
+		//initial strength 
+		var strength = 0 
+
+		//if the password length is less than 6, return message. 
+		if (password.length < 7) { 
+			$('#result').removeClass() 
+			$('#result').addClass('short') 
+			return 'Too short' } 
+
+		//length is ok, lets continue. 
+
+		//if length is 8 characters or more, increase strength value 
+		if (password.length > 7) strength += 1 
+
+		//if password contains both lower and uppercase characters, increase strength value 
+		if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1 
+
+		//if it has numbers and characters, increase strength value 
+		if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1 
+
+		//if it has one special character, increase strength value 
+
+		if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1 
+
+		//if it has two special characters, increase strength value 
+
+		if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,",%,&,@,#,$,^,*,?,_,~])/)) strength += 1 
+
+		//now we have calculated strength value, we can return messages 
+
+		//if value is less than 2 
+		if (strength < 2 ) { 
+			$('#result').removeClass() 
+			$('#result').addClass('weak') 
+			return 'Weak, add special characters (!,%,&,@,# etc.)' 
+		} else if (strength == 2 ) { 
+			$('#result').removeClass() 
+			$('#result').addClass('good')
+			return 'Good' 
+		} else { 
+			$('#result').removeClass() 
+			$('#result').addClass('strong')
+			return 'Strong' } 
+	} 
 /* !!!!!!!!!!!!!!!!!! GENUS AJAX !!!!!!!!!!!!!!!!!! */
 
 $.ajax({
@@ -10,7 +61,6 @@ $.ajax({
     var arr = [];
     for(var x in data_array){
  	  arr.push(data_array[x]['taxonomy_genus']);
- 	  console.log(x);
  	}
 
 	var substringMatcher = function(strs) {
@@ -99,34 +149,68 @@ $.ajax({
 });
 
 /* !!!!!!!!!!!!!!!!!! SUBMIT SET UP PROFILE FORM !!!!!!!!!!!!!!!!!! */
+	$('#setup_password').on('click', function(e){
+		e.preventDefault();
+		$( "#setup" ).submit();
+		$( "#password_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+		form1 = true;
+		checkstatus();
+	})
+
 $('#setup').on('submit', function(e){
 	e.preventDefault();
 	var data = $('#setup').serialize();
 	console.log(data);
-	$.post('/setup_user/submit', data, function(res){
+	$.post('/setup/submit', data, function(res){
 		var data_array = JSON.parse(res);
 	    var arr = [];
 	});
 });
 //  !!!!!!!!!!!!!!!!!! SUBMIT SET UP VERIFY FORM !!!!!!!!!!!!!!!!!! 
+$('#verify_changes').on('click', function(e){
+	e.preventDefault();
+	$( "#verify" ).submit();
+	$( "#verify_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+	form2 = true;
+	checkstatus();
+})
+
+
 $('#verify').on('submit', function(e){
 	e.preventDefault();
 	var data = $('#verify').serialize();
 	console.log(data);
-	$.post('/search', data, function(res){
+	$.post('/update/user', data, function(res){
 		var data_array = JSON.parse(res);
 	    var arr = [];
 	});
 });
+
 /* !!!!!!!!!!!!!!!!!! SUBMIT SET UP PREFERNCES FORM !!!!!!!!!!!!!!!!!! */
+$('#setup_tags').on('click', function(e){
+	e.preventDefault();
+	$( "#tags" ).submit();
+	$( "#tags_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+	form3 = true;
+	checkstatus();
+})
+
+
 $('#tags').on('submit', function(e){
 	e.preventDefault();
 	var data = $('#tags').serialize();
 	console.log(data);
-	$.post('/setup_user/tags', data, function(res){
+	$.post('/setup/tags', data, function(res){
 		var data_array = JSON.parse(res);
 	    console.log(data_array);
 	});
 });
 
+/* !!!!!!!!!!!!!!!!!! Move to the Main Site !!!!!!!!!!!!!!!!!! */
+function checkstatus(){
+	if (form1 == true && form2 == true && form3 == true) {
+		$('#success_button').removeClass()
+		$('#success_button').addClass('btn btn-lg btn-success')
+	}
+}
 });

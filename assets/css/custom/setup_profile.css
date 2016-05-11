@@ -1,3 +1,17 @@
+#forms {
+  margin: 0 auto;
+}
+
+.info_block {
+  display: inline-block;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.submit {
+  margin-top: 15px;
+}
+
 .tt-input, /* UPDATE: newer versions use tt-input instead of tt-input */
 .tt-hint {
     width: 396px;
@@ -68,4 +82,20 @@
   margin-top: 2%;
   margin-bottom: 0%;
   text-align: left;
+}
+
+#result .short{ 
+  color:#FF0000; 
+} 
+
+#result .weak{ 
+  color:#E66C2C; 
+} 
+
+#result .good{ 
+  color:#2D98F3; 
+} 
+
+#result .strong{ 
+  color:#006400; 
 }

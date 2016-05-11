@@ -65,7 +65,7 @@ $(document).ready(function() {
 		var strength = 0 
 
 		//if the password length is less than 6, return message. 
-		if (password.length < 6) { 
+		if (password.length < 7) { 
 			$('#result').removeClass() 
 			$('#result').addClass('short') 
 			return 'Too short' } 

@@ -1,6 +1,7 @@
-<div class="container">
-	<div class="row">
-		<div class="col-med-4 center-block" id="registration_form">
+<div class="container-fluid text-center">    
+  <div class="row content" id="forms">
+    <div class="col-sm-12 text-left center-block">
+		<div id="registration_form">
 			<?php echo form_open('register/validate'); ?>
 
 			<h5>First Name</h5>
@@ -42,7 +43,7 @@
 			<input type="text" name="reference_email" value="<?php echo set_value('reference_email'); ?>" size="50" />
 			<?php echo form_error('reference_email'); ?>
 
-			<div><input type="submit" value="Submit" /></div>
+			<div><input class="btn btn-primary" type="submit" value="Submit" /></div>
 
 			</form>
 		</div>
