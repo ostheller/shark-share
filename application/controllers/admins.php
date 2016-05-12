@@ -49,14 +49,17 @@ class Admins extends CI_Controller {
 		//send email
 		$this->load->library('email');
 
-		$this->email->from('molly.ostheller@gmail.com', 'Molly Ostheller');
-		$this->email->to('molly.ostheller@gmail.com'); 
-		$this->email->cc('mro4@uw.edu');   
-
+		$this->email->from('info@sharkshareglobal.org', 'the Team @ Shark Share');
+		//$this->email->to($userdata['userdata']['email']); 
+		$this->email->to('molly.ostheller@gmail.com');
 		$this->email->subject('Welcome to Shark Share!');
-		$this->email->message('Hello, '.$userdata['userdata']['first_name'] .'! Please click on <a href="http://localhost:8888/setup_user/'.$userdata["token"].'">this link</a> to set up your profile.');
-		// $attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/template.xlsx";
-		// $this->email->attach($attached_file);
+		$this->email->message('Hello '.$userdata['userdata']['first_name'] .' '. $userdata['userdata']['last_name'].
+			', <br><br>Welcome to Shark Share Global! <br> <br> Please visit <a href="http://localhost:8888/setup_user/'.$userdata["token"].'">this link</a> to set up your profile.
+			<br><br>Attached is a quick start guide to Shark Share. Included are tips in how to set up your profile and get started using the site.
+			<br><br>Thank you for signing up to Shark Share, we hope to provide all researchers a user-friendly experience for sample sharing and collaborations. 
+			<br> <br> If you have any inquires, concerns or good ideas we would love to hear from you. <br>Please contact us info@sharkshareglobal.org.');
+		$attached_file= $_SERVER["DOCUMENT_ROOT"]."/assets/downloads/tips.docx";
+		$this->email->attach($attached_file);
 		if ($this->email->send()) {
        		echo "Mail Sent!"; 
        	} else {

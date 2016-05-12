@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$approve = $('#approve'),
 	$reject = $('#reject'),
 	selections = [];
-
+	console.log('admin dash js script is loading');
 	$.ajax({
 	  type: "GET",
 	  url: "admin/view/potential_users",

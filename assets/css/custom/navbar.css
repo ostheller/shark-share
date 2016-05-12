@@ -1,3 +1,10 @@
+#forgot_password {
+	font-size: 12px;
+	padding: 1vh;
+	color: #1A2C54;
+	font-family: 'Droid Sans', sans-serif;
+}
+
 #myNavbar a {
 	color: #1A2C54;
 	font-family: 'Droid Sans', sans-serif;
@@ -27,3 +34,5 @@
 #search_form {
 	padding: 1vh 1vh 0vh 2vh;
 }
+
+#new_password .short{ color:#FF0000; } #new_password .weak{ color:#E66C2C; } #new_password .good{ color:#2D98F3; } #new_password .strong{ color:#006400; }

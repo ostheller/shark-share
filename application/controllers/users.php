@@ -32,6 +32,8 @@ class Users extends CI_Controller {
 		$this->load->model('login');
 		$this->load->model('sample');
 		$user = $this->login->check_token($token);
+		$session_data = array('setup_info' => $user);
+		$this->session->set_userdata($session_data);
 		$countries = $this->login->countries();
 		$sample_types = $this->sample->get_sample_types();
 		// var_dump($user);
@@ -47,7 +49,7 @@ class Users extends CI_Controller {
 				);
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/setup_profile');
-			$this->load->view('partials/navbar');
+			$this->load->view('partials/navbar_login');
 			$this->load->view('setup_profile', $data);
 			$this->load->view('partials/footer');	
 		} // end else
@@ -59,16 +61,8 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		if ($this->user->setup_user_info($user)) {
-			$this->user->create_user($user);
-		}
-		// if($this->user->create($user)) {
-		// 	$this->user->delete_potential_user();
-		// 	echo "User moved from potential_users table to users table";
-		// } else {
-  //       	echo "There is error in sending mail!";
-  //       	redirect('/');
-  //  		}
+		$this->user->setup_user_info($user);
+		echo 'done';
 	} // end of method
 
 // method for setting up their tagged preferences
@@ -76,8 +70,6 @@ class Users extends CI_Controller {
 	{
 		$this->load->model('user');
 		$tags = $this->input->post();
-		var_dump($tags);
-		die();
 		// $this->user->create($user);
 		// redirect('/');
 	} // end of method
@@ -86,7 +78,10 @@ class Users extends CI_Controller {
 	public function view_user($id)
 	{
 		$this->load->model('user');
+		$this->load->model('login');
 		$data = $this->user->view($id);
+		$countries = $this->login->countries();
+		$data['countries'] = $countries;
 		$header['title'] = $data['first_name'] . ' ' . $data['last_name'];
 
 		$this->load->view('partials/header', $header);
@@ -96,13 +91,12 @@ class Users extends CI_Controller {
 		$this->load->view('partials/footer');
 	} // end of method
 
-// method to process form action to update email & name on profile edit pages
-	public function update($id)
+// method to process form action to verify email & name on profile edit pages
+	public function update()
 	{
 		$this->load->model('user');
 		$user = $this->input->post();
-		$this->user->create($user);
-		redirect('/');
+		$this->user->update($user);
 	} // end of method
 
 // method to process form action to update password on profile edit pages

@@ -22,12 +22,13 @@ class User extends CI_Model {
 		ON u.institution_id = i.id 
 		LEFT JOIN academic_statuses as a_s
 		ON u.academic_status_id = a_s.id";
-		return $this->db->query($query)->result_array();
+		$data = $this->db->query($query)->result_array();
+		return $data;
 	} // end of method
 
 // method to get the data for a single user
 	public function view($id) {
-		$query = "SELECT u.id, u.first_name, u.last_name, i.name, i.city, a_s.status FROM users as u
+		$query = "SELECT u.id, u.user_name, u.first_name, u.last_name, u.email, u.date_created as 'date', u.about_user as 'about', u.field, i.name, i.country_id, i.city, u.academic_status_id as 'status', a_s.status as 'status_name' FROM users as u
 		LEFT JOIN institutions as i 
 		ON u.institution_id = i.id 
 		LEFT JOIN academic_statuses as a_s
@@ -50,26 +51,27 @@ class User extends CI_Model {
 	} // end of method
 
 // method to for user to set up their profile, with username, password and about themselves, get an automatic user level of 0 (not admin)
-	public function create_user($post)
-    {
-        for ($i=0; $i < count($post['id']); $i++) { 
-            $id = intval($post['id'][$i]);
-            // get the data about the potential user
-                $user_query = "SELECT * FROM potential_users WHERE id=?";
-                $user = $this->db->query($user_query, $id)->row_array();
-                $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
-           // first add to new users
-                $admit_query  = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
-                $values = array('NOT SET', 0, $user['email'],'TEMP',$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
-            // then delete from potential users
-            $delete_query = "DELETE FROM potential_users WHERE id=?";
-            $this->db->query($delete_query, $id);
-        }
-    } // end of method
+	// public function create_user($post)
+ //    {
+ //        for ($i=0; $i < count($post['id']); $i++) { 
+ //            $id = intval($post['id'][$i]);
+ //            // get the data about the potential user
+ //                $user_query = "SELECT * FROM potential_users WHERE id=?";
+ //                $user = $this->db->query($user_query, $id)->row_array();
+ //                $institution = $this->db->query("SELECT id FROM institutions WHERE name = ?", $user['institution']);
+ //           // first add to new users
+ //                $admit_query  = "INSERT INTO users (user_name, level, email, password, first_name, last_name, about_user, institution_id, status_id) VALUES (?,?,?,?,?,?,?,?,?)";
+ //                $values = array('NOT SET', 0, $user['email'],'TEMP',$user['first_name'], $user['first_name'], $institution, $user['status_id']); 
+ //            // then delete from potential users
+ //            $delete_query = "DELETE FROM potential_users WHERE id=?";
+ //            $this->db->query($delete_query, $id);
+ //        }
+    //} // end of method
 
+// method to validate the form
 	public function setup_user_info($post)
 	{
-		$this->form_validation->set_rules("username", "Username", "required|alpha|trim");
+		$this->form_validation->set_rules("username", "Username", "required|alpha|trim|is_unique[users.user_name]");
         $this->form_validation->set_rules("password", "Password", "trim|required|min_length[7]|md5");
         $this->form_validation->set_rules("passconf", "Confirm Password", "required|matches[password]");
         $this->form_validation->set_rules("about", "About", "required|alpha|trim");
@@ -78,31 +80,72 @@ class User extends CI_Model {
                 $this->session->set_flashdata('errors', validation_errors());
                 return false;
             }  // end if failure
-            else {
-                return true;
+            else { // we get all the data of the user from the potential users table
+                $user = $this->db->query("SELECT * FROM potential_users WHERE id = ?", $post['id'])->row_array();
+                // then we set up the value array to create a new user
+                $values = array(
+                	$post['username'], 
+                	0, 
+                	$user['email'],
+                	$post['password'],
+                	$user['field'],
+                	$user['first_name'], 
+                	$user['last_name'],
+                	$post['about'], 
+                	$user['institution_id'], 
+                	$user['academic_status_id']
+                	); 
+                $admit_query  = "INSERT INTO users (user_name, level, email, password, field, first_name, last_name, about_user, institution_id, academic_status_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                if($this->db->query($admit_query, $values)) {
+                	$delete_query = "DELETE FROM potential_users WHERE id=?";
+            		$this->db->query($delete_query, $user['id']);
+                	return true;
+                } else {
+                	return false;
+                }
             }
 	} // end of method
-
-// // method to associate tagged preferences
-// 		$query = "";
-// 		$values = array();
-// 		if($this->db->query($query, $user)) {
-// 			return $this->db->insert_id();
-// 		} else { 
-// 			return FALSE;
-// 		}
-	//} // end of method
 
 // method to update user data
 	public function update($user)
 	{
-		$query = "";
-		$values = array();
-		if($this->db->query($query, $user)) {
-			return $this->db->insert_id();
-		} else { 
-			return FALSE;
+		$new_id = $this->db->query('SELECT id FROM users WHERE email = ?', $this->session->userdata['setup_info']['email'])->row_array();
+		//var_dump($new_id);
+		$institution_id = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
+		//var_dump($institution_id);
+		if (empty($institution_id)) {
+			$this->db->query('INSERT INTO institutions (name, city, country_id) VALUES (?,?,?)', array($user['institution'], $user['city'], $user['country']));
+			$lastid = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
+			//var_dump($lastid['id']);
+
+			$values = array(
+				$user['first_name'],
+				$user['last_name'],
+				$user['email'],
+				$lastid['id'],
+				$user['field'],
+				intval($user['status_id']),
+				intval($new_id['id'])
+			);
+		} else {
+			$values = array(
+				$user['first_name'],
+				$user['last_name'],
+				$user['email'],
+				intval($institution_id['id']),
+				$user['field'],
+				intval($user['status_id']),
+				intval($new_id['id'])
+			);		
 		}
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, institution_id = ?, field = ?, academic_status_id = ? WHERE id = ?";
+		$this->db->query($query, $values);
+		return true;
+		// if ($result) {
+		// 	return TRUE;
+		// } else { 
+		// 	return FALSE;
+		// }
 	} // end of method
 
 // method to update tagged preferences

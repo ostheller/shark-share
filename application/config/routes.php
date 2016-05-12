@@ -14,12 +14,15 @@ $route['register'] = 'logins/registration_page';
 $route['register/validate'] = 'logins/registration_validation';
 // User passes registration, goes to next page
 $route['register/terms'] = 'logins/view_terms';
+$route['download/terms'] = 'logins/download_terms';
 // User submits terms of service form
 $route['register/accept'] = 'logins/terms_confirmation';
 // User passes terms form, goes to final page
 $route['register/complete'] = 'logins/visit_welcome_page';
 // Logout the user (end up back on the landing page)
 $route['logout'] = 'logins/logout';
+// Reset the user's password
+$route['reset'] = 'logins/reset_password';
 // Temporary methods to edit the second and third registration pages
 $route['edit/two'] = 'logins/view_registration_two';
 $route['edit/three'] = 'logins/view_registration_three';
@@ -30,9 +33,9 @@ $route['edit/profile_page'] = 'logins/view_edit_profile';
 // The new user gets to set up their account
 $route['setup_user/(:any)'] = 'users/view_setup_profile/$1';
 // Submit the form for setting their profile information
-$route['setup_user/submit'] = 'users/create_profile';
+$route['setup/submit'] = 'users/create_profile';
 // Submit the form for setting their tag preferences
-$route['setup_user/tags'] = 'users/create_tags';
+$route['setup/tags'] = 'users/create_tags';
 
 ////////////////////////// Admin Dashboard //////////////////////////////////////
 // Load the admin dashboard
@@ -119,7 +122,7 @@ $route['samples/delete/(:num)'] = 'samples/delete/$1';
 // Load a person profile page
 $route['user/(:any)'] = 'users/view_user/$1';
 // Submit the form to edit a user
-$route['user/(:num)/update'] = 'users/update/$1';
+$route['update/user'] = 'users/update/$1';
 
 ////////////////////////// Collection Page //////////////////////////////////////
 // Load a collection page

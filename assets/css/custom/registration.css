@@ -1,0 +1,19 @@
+#registration_form {
+  margin: 0 auto;
+}
+
+.btn {
+	margin: 10px 0;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+#box {
+	margin-top: 10vh;
+}
+
+span {
+	padding: 2vh 1vh;
+}

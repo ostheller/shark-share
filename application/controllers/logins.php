@@ -39,7 +39,7 @@ class Logins extends CI_Controller {
         // if the validation fails
         if ($user_sess === false) {
         	$this->session->set_userdata('login_attempt_failed', true);
-        	reload();
+        	redirect('/');
         } else {
         	// check admin status
         	if ($user_sess['level'] == 1) {
@@ -111,6 +111,15 @@ class Logins extends CI_Controller {
 		}
 	} // end of method
 
+// method for downloading the full terms and conditions
+	public function download_terms() {
+		$this->load->helper('download');
+		$data = file_get_contents("assets/downloads/terms.txt"); // Read the file's contents
+		$name = 'sharkShareTerms.txt';
+
+		force_download($name, $data);
+	}
+
 // method for processing the form data 
 	public function terms_confirmation()
 	{
@@ -141,6 +150,30 @@ class Logins extends CI_Controller {
 	public function visit_welcome_page()
 	{			
 		if ($this->session->userdata('potential_candidate') === true) {
+	// 		$data = array(
+	// 		'sample_ids' => explode(",", $post['sample_ids']), 
+	// 		'body' => $post['body'],
+	// 		'from_email' => $post['from_email'],
+	// 		'from_name' => $post['from_name'],
+	// 		'cc' => $post['cc'],
+	// 		'to_email' => $post['to_email'],
+	// 		'subject' => $post['subject']
+	// 		);
+
+	// 	$this->load->library('email');
+	// 	$this->email->from($data['from_email'], $data['from_name']);
+	// 	$this->email->to($data['to_email']); 
+	// 	$this->email->cc($data['cc']);   
+
+	// 	$this->email->subject($data['subject']);
+	// 	$this->email->message($data['body']);
+
+	// 	if ($this->email->send()) {
+	// 		echo "Success"
+ //       	} else {
+ //        	echo "There is error in sending mail!";
+ //   		}
+
 			$header['title'] = 'Registration Complete';
 			$this->load->view('partials/header', $header);
 			$this->load->view('styles/registration');
@@ -159,6 +192,47 @@ class Logins extends CI_Controller {
    		$this->session->sess_destroy();
    		redirect('/');
    	} // of method
+
+// method for validating reset password info
+   	public function reset_password()
+   	{
+   		$this->load->model('login');
+		$data = $this->input->post();
+		$email = $this->login->check_email($data);
+		if ($email) {
+			$update = $this->login->change_password($data);
+			if ($update){
+				$data = array(
+					'body' => 'Somone has reset your password for Shark Share. Your new password is: ' . $data['password']. ' If you recieved this email in error, log in to reset your password.',
+					'from_email' => 'molly.ostheller@gmail.com',
+					'from_name' => 'the Team @ Shark Share',
+					'to_email' => $data['email'],
+					'subject' => 'Your reset password for Shark Share'
+					);
+
+				$this->load->library('email');
+				$this->email->from($data['from_email'], $data['from_name']);
+				$this->email->to($data['to_email']);   
+
+				$this->email->subject($data['subject']);
+				$this->email->message($data['body']);
+				if ($this->email->send()) {
+					echo 1;
+					return;
+			       	} else {
+			       		echo 2;
+			        	return;
+			   		}
+			} else {
+				echo 3;
+				return;
+			}
+		} else {
+			echo 4;
+			return;
+		}
+   	} // of method
+
 
 // temporary method to view the second registration page in order to make edits to it
 public function view_registration_two()
@@ -205,7 +279,7 @@ public function view_edit_profile()
 			'sample_types' => $sample_types
 			);
 			$this->load->view('partials/header', $header);
-			$this->load->view('styles/registration');
+			$this->load->view('styles/setup_profile');
 			$this->load->view('partials/navbar_login');
 			$this->load->view('setup_profile', $data);
 			$this->load->view('partials/footer');
