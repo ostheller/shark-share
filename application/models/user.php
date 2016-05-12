@@ -109,38 +109,43 @@ class User extends CI_Model {
 // method to update user data
 	public function update($user)
 	{
-		$user['id'] = $this->db->query('SELECT id FROM users WHERE email = ?', $this->session->userdata['setup_info']['email'])->row_array();
+		$new_id = $this->db->query('SELECT id FROM users WHERE email = ?', $this->session->userdata['setup_info']['email'])->row_array();
+		//var_dump($new_id);
 		$institution_id = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
 		//var_dump($institution_id);
 		if (empty($institution_id)) {
 			$this->db->query('INSERT INTO institutions (name, city, country_id) VALUES (?,?,?)', array($user['institution'], $user['city'], $user['country']));
 			$lastid = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
+			//var_dump($lastid['id']);
+
 			$values = array(
-			$user['first_name'],
-			$user['last_name'],
-			$user['email'],
-			$lastid['id'],
-			$user['field'],
-			$user['status_id'],
-			intval($user['id'])
+				$user['first_name'],
+				$user['last_name'],
+				$user['email'],
+				$lastid['id'],
+				$user['field'],
+				intval($user['status_id']),
+				intval($new_id['id'])
 			);
 		} else {
-		$values = array(
-			$user['first_name'],
-			$user['last_name'],
-			$user['email'],
-			intval($institution_id['id']),
-			$user['field'],
-			$user['status_id'],
-			intval($user['id'])
-			);			
+			$values = array(
+				$user['first_name'],
+				$user['last_name'],
+				$user['email'],
+				intval($institution_id['id']),
+				$user['field'],
+				intval($user['status_id']),
+				intval($new_id['id'])
+			);		
 		}
-		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, institution_id = ?, field = ?, academic_status_id = ? WHERE id = ?)";
-		if($this->db->query($query, $values)->row_array()) {
-			return TRUE;
-		} else { 
-			return FALSE;
-		}
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, institution_id = ?, field = ?, academic_status_id = ? WHERE id = ?";
+		$this->db->query($query, $values);
+		return true;
+		// if ($result) {
+		// 	return TRUE;
+		// } else { 
+		// 	return FALSE;
+		// }
 	} // end of method
 
 // method to update tagged preferences
