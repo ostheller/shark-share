@@ -31,16 +31,19 @@
 }
 
 /* Class for the sponsors content box*/
+/* needs to be moved to custom.css eventually*/
 .sponsor-bar{
 	margin-top: 2%;
+	margin-bottom: 0%;
+	padding-bottom: 2%;
 	height: 95%;
 	width: 15%;
 	position:static;
 	float:left;
 	overflow:auto;
 	border-radius:1%;
-	background-color: #;
-	opacity: .9;
+	background-color: #000033;
+	opacity: .8;
     /*position: absolute;
     display:inline;*/
   }

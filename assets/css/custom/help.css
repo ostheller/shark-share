@@ -8,3 +8,35 @@
   background-attachment: fixed;
 }
 
+/*Class for a centered grey content box*/
+/* Needs to be moved to custom.css eventually*/
+.col-sm-8 {
+	height: 95%;
+	width: 60%;
+	border-radius: 1%;
+	background-color: #cccccc;
+	opacity: .9;
+	margin-right: 10%;
+	margin-left: 10%;
+	margin-top: 2%;
+	margin-bottom: 0%;
+	text-align: left;
+	float:left;
+	overflow:auto;
+}
+
+/* This is acting weird when I try to channge div*/
+/* Needs to be moved to custom.css eventually*/
+.sponsor-bar{
+	margin-top: 2%;
+	margin-bottom: 0%;
+	padding-bottom: 2%;
+	height: 95%;
+	width: 15%;
+	position:static;
+	float:left;
+	overflow:auto;
+	border-radius:1%;
+	background-color: #000033;
+	opacity: .8;
+  }

@@ -11,6 +11,9 @@
         <a target="_blank" href="http://www.iucnredlist.org">
           <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
         </a>
+         <a target="_blank" href="https://cites.org">
+          <img class = "sponsor-image" src="/assets/images/citeslogo.jpg" alt= "citeslogo">
+        </a>
       </div>
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>
