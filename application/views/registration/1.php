@@ -1,6 +1,9 @@
 <div class="container-fluid text-center">    
-  <div class="row content" id="forms">
-    <div class="col-sm-12 text-left center-block">
+  <div class="row content">
+    <div class="col-sm-5 col-sm-offset-1 text-left">
+    	<h1>Welcome to Shark Share</h1>
+    	<p>Simply register by filling out your details, including a reference (this is so we can be sure you belong to a certified research institution).</p>
+    	<hr>
 		<div id="registration_form">
 			<?php echo form_open('register/validate'); ?>
 
@@ -37,15 +40,18 @@
 			</select>
 			<?php echo form_error('country'); ?>
 			<h5>Name of Reference</h5>
-			<input type="text" name="reference_name" value="<?php echo set_value('reference'); ?>" size="50" />
+			<input type="text" name="reference_name" value="<?php echo set_value('reference_name'); ?>" size="50" />
 			<?php echo form_error('reference_name'); ?>
 			<h5>Email of Reference</h5>
 			<input type="text" name="reference_email" value="<?php echo set_value('reference_email'); ?>" size="50" />
 			<?php echo form_error('reference_email'); ?>
 
-			<div><input class="btn btn-primary" type="submit" value="Submit" /></div>
+			<div>
+				<input class="btn btn-primary" type="submit" value="Submit" />
+			</div>
 
 			</form>
 		</div>
 	</div>
+</div>
 </div>

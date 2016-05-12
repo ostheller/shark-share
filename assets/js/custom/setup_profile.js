@@ -161,6 +161,8 @@ $('#setup').submit(function(e){
 	$.post('/setup/submit', data, function(res){
 		console.log(res);
 		$( "#password_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+		$('#verify_changes').removeClass()
+		$('#verify_changes').addClass('btn btn-primary submit')
 		form1 = true;
 		checkstatus();
 	});
@@ -169,9 +171,6 @@ $('#setup').submit(function(e){
 $('#verify_changes').on('click', function(e){
 	e.preventDefault();
 	$( "#verify" ).submit();
-	$( "#verify_result" ).html('<i class="glyphicon glyphicon-check"></i>');
-	form2 = true;
-	checkstatus();
 })
 
 
@@ -180,8 +179,12 @@ $('#verify').submit(function(e){
 	var data = $('#verify').serialize();
 	console.log(data);
 	$.post('/update/user', data, function(res){
-		var data_array = JSON.parse(res);
-	    var arr = [];
+		console.log(res);
+		$( "#verify_result" ).html('<i class="glyphicon glyphicon-check"></i>');
+		$('#submit_tags').removeClass()
+		$('#submit_tags').addClass('btn btn-primary submit')
+		form2 = true;
+		checkstatus();
 	});
 });
 
@@ -193,7 +196,6 @@ $('#setup_tags').on('click', function(e){
 	form3 = true;
 	checkstatus();
 })
-
 
 $('#tags').on('submit', function(e){
 	e.preventDefault();
@@ -207,6 +209,7 @@ $('#tags').on('submit', function(e){
 
 /* !!!!!!!!!!!!!!!!!! Move to the Main Site !!!!!!!!!!!!!!!!!! */
 function checkstatus(){
+	console.log(form1 + form2 + form3);
 	if (form1 == true && form2 == true && form3 == true) {
 		$('#success_button').removeClass()
 		$('#success_button').addClass('btn btn-lg btn-success')

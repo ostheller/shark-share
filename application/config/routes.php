@@ -14,6 +14,7 @@ $route['register'] = 'logins/registration_page';
 $route['register/validate'] = 'logins/registration_validation';
 // User passes registration, goes to next page
 $route['register/terms'] = 'logins/view_terms';
+$route['download/terms'] = 'logins/download_terms';
 // User submits terms of service form
 $route['register/accept'] = 'logins/terms_confirmation';
 // User passes terms form, goes to final page

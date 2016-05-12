@@ -32,6 +32,8 @@ class Users extends CI_Controller {
 		$this->load->model('login');
 		$this->load->model('sample');
 		$user = $this->login->check_token($token);
+		$session_data = array('setup_info' => $user);
+		$this->session->set_userdata($session_data);
 		$countries = $this->login->countries();
 		$sample_types = $this->sample->get_sample_types();
 		// var_dump($user);

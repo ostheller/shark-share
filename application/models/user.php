@@ -109,31 +109,35 @@ class User extends CI_Model {
 // method to update user data
 	public function update($user)
 	{
-		$institution_id = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']));
-		if ($institution_id) {
-		$values = array(
-			$user['first_name'],
-			$user['last_name'],
-			$user['email'],
-			$institution_id,
-			$user['field'],
-			$user['status_id'],
-			);
-		} else {
-			$this->db->query('INSERT INTO institutions VALUES (?,?,?)', array($user['institution'], $user['city'], $user['country']));
-			$lastid = $this->db->insert_id();
+		$user['id'] = $this->db->query('SELECT id FROM users WHERE email = ?', $this->session->userdata['setup_info']['email'])->row_array();
+		$institution_id = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
+		//var_dump($institution_id);
+		if (empty($institution_id)) {
+			$this->db->query('INSERT INTO institutions (name, city, country_id) VALUES (?,?,?)', array($user['institution'], $user['city'], $user['country']));
+			$lastid = $this->db->query('SELECT id FROM institutions WHERE name = ? AND city = ? AND country_id = ?', array($user['institution'], $user['city'], $user['country']))->row_array();
 			$values = array(
 			$user['first_name'],
 			$user['last_name'],
 			$user['email'],
-			$lastid,
+			$lastid['id'],
 			$user['field'],
 			$user['status_id'],
+			intval($user['id'])
 			);
+		} else {
+		$values = array(
+			$user['first_name'],
+			$user['last_name'],
+			$user['email'],
+			intval($institution_id['id']),
+			$user['field'],
+			$user['status_id'],
+			intval($user['id'])
+			);			
 		}
-		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, institution_id = ?, field = ?, academic_status_id = ?)";
-		if($this->db->query($query, $values)) {
-			return $this->db->insert_id();
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, institution_id = ?, field = ?, academic_status_id = ? WHERE id = ?)";
+		if($this->db->query($query, $values)->row_array()) {
+			return TRUE;
 		} else { 
 			return FALSE;
 		}
