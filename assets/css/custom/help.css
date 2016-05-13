@@ -33,11 +33,11 @@
 	margin-left: 2%; 
 	padding-bottom: 2%;
 	height: 95%;
-	width: 15%;
+	width: 17%;
 	position:static;
 	float:left;
 	overflow:auto;
-	border-radius:1%;
+	border-radius:2%;
 	background-color: #000033;
 	opacity: .8;
   }
