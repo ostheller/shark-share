@@ -14,7 +14,8 @@ They may also be found in that file. Heather 4/22/2016*/
 }
 
 .backgroundsetting{
-  background: url("/assets/images/shark6.jpg");
+  /*background: url("/assets/images/shark6.jpg");*/
+  background-color: #fafafa;
   background-size:cover;
   background-attachment: fixed;
 }

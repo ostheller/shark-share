@@ -14,7 +14,8 @@ They may also be found in that file. Heather 4/22/2016*/
   overflow: auto;
 }
 .backgroundsetting{
-  background: url("/assets/images/researcher4.jpg");
+  /*background: url("/assets/images/researcher4.jpg");*/
+  background-color: #fafafa;
   background-size:cover;
   background-attachment: fixed;
 }

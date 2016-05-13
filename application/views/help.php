@@ -1,6 +1,6 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
+    <div class="sponsor-bar">
       <h1 class="helpwhite">Need Help?</h1>
       <p class="helpwhite">Let us take it from here.</p>
       <p class="helpwhite">Click on a link to move to a help topic.</p>
