@@ -76,7 +76,8 @@
 }
 
 .backgroundsetting{
-  background: url("/assets/images/shark3.jpg");
+  /*background: url("/assets/images/shark3.jpg");*/
+  background-color: #fafafa;
   background-size:cover;
   background-attachment: fixed;
 }

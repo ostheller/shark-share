@@ -79,7 +79,8 @@
 
 
 .backgroundsetting{
-  background: url("/assets/images/researcher3.jpg");
+  /*background: url("/assets/images/researcher3.jpg");*/
+  background-color: #fafafa;
   background-size:cover;
   background-attachment: fixed;
 }
