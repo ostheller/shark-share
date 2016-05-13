@@ -2,18 +2,22 @@
   <div class="row content">
     <div class= "backwrapper">
       <div class = "sponsor-bar" id="leftspacing">
-        <a target="_blank" href="http://www.saveourseas.com/"> 
-          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
-        </a>
+      <h1 style="font-size=80%">Our Sponsors and Partners</h1>
         <a target="_blank" href="http://www.shark-references.com">
           <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+        </a>
+        <a target="_blank" href="https://sharksrays.org">
+          <img class = "sponsor-image" src="/assets/images/sharksrays.png" alt= "treelife drawing">
+        </a>
+         <a target="_blank" href="http://www.saveourseas.com/"> 
+          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
         </a>
         <a target="_blank" href="http://www.iucnredlist.org">
           <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
         </a>
          <a target="_blank" href="https://cites.org">
           <img class = "sponsor-image" src="/assets/images/citeslogo.jpg" alt= "citeslogo">
-        </a>
+          </a>
       </div>
       <div class= "col-sm-8 text-left">
         <h1>What is Shark Share?</h1>
