@@ -32,22 +32,18 @@
 
 /* Class for the sponsors content box*/
 .sponsor-bar{
-	font-family: 'Droid Sans', sans-serif;
-	color: #cccccc;;
-	margin-top: 2%;
-	height: 95%;
-	width: 15%;
-	position:static;
-	float:left;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	margin-left: 2%;
+	margin-right: 2%;
+	padding-bottom: 1%;
+	height:15%;
+	width: 95%;*/
+	float:bottom;
 	overflow:auto;
-	border-radius:5%;
-	padding-left: 1%;
-	padding-right: 1%;
-	padding-bottom: 5%;
-	background-color: #001541;
+	border-radius:1%;
+	background-color: #000033;
 	opacity: .8;
-    /*position: absolute;
-    display:inline;*/
   }
 
   #leftspacing{
@@ -64,12 +60,13 @@
 
 /* Image formatting sponsor logos, also subject to change */
   .sponsor-image{
-   width:95%;
-   height: auto;
-   padding-top: 20%;
-   padding-left: 3%;
-   padding-right: 3%;
-   display:block;
+   width:auto%;
+   height: 15vh;
+   /*padding-top: 20%;*/
+   padding-left: 1%;
+   padding-right: 1%;*/
+   /*float:left;*/
+   /*display:inline-block;*/
   }
 
 .container-fluid {
@@ -80,4 +77,10 @@
   background: url("/assets/images/shark3.jpg");
   background-size:cover;
   background-attachment: fixed;
+}
+
+.horizontal{
+	display:table;
+  	width: 90%;
+  	margin: 20px auto;
 }
