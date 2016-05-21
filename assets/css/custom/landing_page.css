@@ -46,6 +46,24 @@
 	opacity: .8;
   }
 
+ .signup-bar{ 
+	font-family: 'Droid Sans', sans-serif;
+	color: #cccccc;;
+	margin-top: 2%;
+	height: 95%;
+	width: 15%;
+	position:static;
+	float:left;
+	overflow:auto;
+	border-radius:5%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-bottom: 5%;
+	background-color: #001541;
+	opacity: .8;
+    /*position: absolute;
+    display:inline;*/
+  }
   #leftspacing{
   	margin-left: 2%;
   }
@@ -74,7 +92,7 @@
 }
 
 .backgroundsetting{
-  background: url("/assets/images/shark3.jpg");
+  background: url("/assets/images/W_White6.jpg");
   background-size:cover;
   background-attachment: fixed;
 }

@@ -23,13 +23,15 @@
         </p>
         <hr>
         <div>
-          <img class="image-bar" src="/assets/images/shark1.jpg" alt="testpic">
-          <img class="image-bar" src="/assets/images/shark2.jpg" alt="testpic2">
-          <img class="image-bar" src="/assets/images/shark3.JPG" alt="testpic3">
-          <img class="image-bar" src="/assets/images/shark4.JPG" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed1.jpg" alt="testpic">
+          <img class="image-bar" src="/assets/images/C_speed2.jpg" alt="testpic2">
+          <img class="image-bar" src="/assets/images/C_speed3.jpg" alt="testpic3">
+          <img class="image-bar" src="/assets/images/C_speed4.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed5.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed6.jpg" alt="testpic4">        
         </div>
       </div>
-      <div class="sponsor-bar heightfixed" id="margin-right">
+      <div class="signup-bar heightfixed" id="margin-right">
         <h1 style="font-size=80%">
           Interested in joining?
         </h1>
