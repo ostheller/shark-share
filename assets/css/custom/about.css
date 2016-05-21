@@ -16,33 +16,34 @@
 
 /*Class for a centered grey content box*/
 .col-sm-8 {
-	height: 95%;
-	width: 60%;
+	height: 80%;
+	width: 70%;
 	border-radius: 1%;
 	background-color: #cccccc;
 	opacity: .9;
-	margin-right: 10%;
-	margin-left: 10%;
-	margin-top: 2%;
-	margin-bottom: 0%;
-	text-align: left;
-	float:left;
+	margin-right: 15%;
+	margin-left: 15%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	padding-bottom: 2%;
+	text-align:left;
+	float:top;
 	overflow:auto;
 }
 
 /* Class for the sponsors content box*/
 /* needs to be moved to custom.css eventually*/
 .sponsor-bar{
-	margin-top: 2%;
-	margin-bottom: 0%;
+	margin-top: 5%;
+	margin-bottom: 2%;
 	margin-left: 2%;
-	padding-bottom: 2%;
-	height: 95%;
-	width: 17%;
-	position:static;
-	float:left;
+	margin-right: 2%;
+	padding-bottom: 1%;
+	height:15%;
+	width: 95%;*/
+	float:bottom;
 	overflow:auto;
-	border-radius:2%;
+	border-radius:1%;
 	background-color: #000033;
 	opacity: .8;
   }
@@ -57,16 +58,23 @@
 
 /* Image formatting sponsor logos, also subject to change */
   .sponsor-image{
-   width:95%;
-   height: auto;
-   padding-top: 20%;
-   padding-left: 3%;
-   padding-right: 3%;
-   display:block;
+   width:auto%;
+   height: 15vh;
+   /*padding-top: 20%;*/
+   padding-left: 1%;
+   padding-right: 1%;*/
+   /*float:left;*/
+   /*display:inline-block;*/
   }
 
   .backgroundsetting{
   background: url("/assets/images/shark3.jpg");
   background-size:cover;
   background-attachment: fixed;
+}
+
+.horizontal{
+	display:table;
+  	width: 90%;
+  	margin: 20px auto;
 }

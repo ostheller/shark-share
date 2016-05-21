@@ -53,14 +53,15 @@
 .neutralwrapper {
   width: 100%;
   height: 100%;
-  background-color: #fcfcfc);
+  background-color: #fcfcfc;
   text-align: center;
 }
 
 .col-sm-8-2 {
   width: 90%;
   border-radius: 1%;
-  background-color: rgba(228, 228, 255, .8);
+  background-color: #ffffff;
+  /*background-color: rgba(228, 228, 255, .8);*/
   opacity: .9;
   margin-right: 5%;
   margin-left: 5%;
@@ -81,6 +82,7 @@
 .backgroundsetting{
   /*background: url("/assets/images/researcher3.jpg");*/
   background-color: #fafafa;
+  opacity: .8;
   background-size:cover;
   background-attachment: fixed;
 }
