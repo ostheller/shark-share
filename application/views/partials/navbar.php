@@ -7,12 +7,11 @@
         <span class="icon-bar"></span>                        
       </button>
       <a href="/">
-        <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
+        <img class="image-logo" src="/assets/images/logo.png" alt="logo">
       </a>
       <a href="/">
-        <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+        <img class="text-logo"src="/assets/images/logoname.png" alt="logoname">
       </a>
-      <!--<a class="navbar-brand" style="color:blue;" href="/about">SHARKSHARE</a>-->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">

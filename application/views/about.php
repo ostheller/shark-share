@@ -1,8 +1,7 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
-   
-      <div class= "col-sm-8 text-left">
+      <div class= "col-sm-8 about-grey text-left">
         <h1>What is Shark Share?</h1>
         <p> 
           Shark Share is a virtual tissue bank for all species 

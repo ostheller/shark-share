@@ -1,71 +1,16 @@
 
-/*Image formatting. Will be subject to change.*/
-.image-bar{
-	height: 20vh;
-	width: auto;
-	padding-bottom: 1%;
-}
-
-/*Provides background image and div for content divs to nest in*/
-.backwrapper {
-	/*width: 100%;
-	height: 100%;
-	background-image: url("/assets/images/pseudobackground1.jpg");
-	text-align: center;*/
-}
-
 /*Class for a centered grey content box*/
-.col-sm-8 {
-	height: 60%;
-	width: 70%;
+.about-grey {
+	height: 70%;
+	width: 95%;
 	border-radius: 1%;
 	background-color: #cccccc;
-	opacity: .9;
-	margin-right: 15%;
-	margin-left: 15%;
-	margin-top: 5%;
-	margin-bottom: 5%;
 	padding-bottom: 2%;
 	text-align:left;
 	float:top;
-	overflow:auto;
 }
 
-/* Class for the sponsors content box*/
-/* needs to be moved to custom.css eventually*/
-.sponsor-bar{
-	margin-top: 5%;
-	margin-bottom: 2%;
-	margin-left: 2%;
-	margin-right: 2%;
-	padding-bottom: 1%;
-	height:20%;
-	width: 95%;*/
-	float:bottom;
-	overflow:auto;
-	border-radius:1%;
-	background-color: #000033;
-	opacity: .8;
-  }
-
-  #leftspacing{
-  	margin-left: 2%;
-  }
-
-  #rightspacing{
-  	margin-right:2%;
-  }
-
 /* Image formatting sponsor logos, also subject to change */
-  .sponsor-image{
-   width:auto;
-   height: 15vh;
-   /*padding-top: 20%;*/
-   padding-left: 1%;
-   padding-right: 1%;*/
-   /*float:left;*/
-   /*display:inline-block;*/
-  }
 
   .backgroundsetting{
   background: url("/assets/images/W_White6.jpg");
@@ -73,8 +18,3 @@
   background-attachment: fixed;
 }
 
-.horizontal{
-	display:table;
-  	width: 90%;
-  	margin: 20px auto;
-}

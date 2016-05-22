@@ -7,10 +7,10 @@
         <span class="icon-bar"></span>                        
       </button>
        <a href="/">
-        <img class="image-logo" style="height:7vh" src="/assets/images/logo.png" alt="logo">
+        <img class="image-logo"src="/assets/images/logo.png" alt="logo">
       </a>
       <a href="/">
-        <img class="image-logo" style="height:3vh" src="/assets/images/logoname.png" alt="logoname">
+        <img class="text-logo" src="/assets/images/logoname.png" alt="logoname">
       </a>
     </div>
       <?php $form = array('id' => 'login_form', 'class' => 'navbar-form navbar-right','method' => 'post'); ?>
