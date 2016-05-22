@@ -30,25 +30,25 @@
       background-color: #cccccc;
       color: white;
       padding: 15px;
-  
+    }
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;} 
-     
+      .row.content {height:auto;}    
     }
 
    #sos-image {
-    height:10vh;
+    height:6vh;
     width:auto;
   }  
 
     body {
-    background-color:#FCFCFC; /* Try to make a stack with #fcfcfc and #ffffff.
-}
+    background-color:#FCFCFC; /* Try to make a stack with #fcfcfc and #ffffff. */
+  }
 
 /*Heather's work, isolated in case of potential errors */
 
