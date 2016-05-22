@@ -38,7 +38,13 @@
         padding: 15px;
       }
       .row.content {height:auto;} 
+     
     }
+
+   #sos-image {
+    height:10vh;
+    width:auto;
+  }  
 
     body {
     background-color:#FCFCFC; /* Try to make a stack with #fcfcfc and #ffffff.

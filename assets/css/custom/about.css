@@ -2,7 +2,7 @@
 /*Image formatting. Will be subject to change.*/
 .image-bar{
 	height: 20vh;
-	width: auto%;
+	width: auto;
 	padding-bottom: 1%;
 }
 
@@ -58,7 +58,7 @@
 
 /* Image formatting sponsor logos, also subject to change */
   .sponsor-image{
-   width:auto%;
+   width:auto;
    height: 15vh;
    /*padding-top: 20%;*/
    padding-left: 1%;
