@@ -94,6 +94,20 @@ body {
   overflow:auto;
 }
 
+/*Formatting for alt. main div (v.l.grey) on some pages*/
+.col-sm-8-2 {
+  height: 95%;
+  width: 90%;
+  border-radius: 1%;
+  background-color: #fcfcfc;
+  opacity: .9;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 0%;
+  text-align: left;
+}
+/*background for all but LP/A pages*/
 .backgroundsetting{
   background-color: #fafafa;
   background-size:cover;

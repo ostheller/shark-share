@@ -38,23 +38,10 @@
 .tt-suggestion.tt-is-under-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
     color: #fff;
     background-color: #0097cf;
-
 }
 
 .tt-suggestion p {
     margin: 0;
-}
-
-.col-sm-8-2 {
-  width: 90%;
-  border-radius: 1%;
-  background-color: #fcfcfc;
-  opacity: .9;
-  margin-right: 5%;
-  margin-left: 5%;
-  margin-top: 2.5%;
-  margin-bottom: 2.5%;
-  text-align: left;
 }
 
 .height-70 {
@@ -63,15 +50,6 @@
 
 .height-10 {
   height: 10%;
-}
-
-
-.backgroundsetting{
-  /*background: url("/assets/images/researcher3.jpg");*/
-  background-color: #fafafa;
-  opacity: .8;
-  background-size:cover;
-  background-attachment: fixed;
 }
 
 #search_results_table {
