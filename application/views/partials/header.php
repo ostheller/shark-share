@@ -13,4 +13,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="<?= base_url();?>bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="<?= base_url();?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="<?= base_url();?>/assets/js/custom/navbar.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>

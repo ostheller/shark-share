@@ -1,26 +1,7 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class= "backwrapper">
-      <div class ="sponsor-bar" id="leftspacing"> 
-        <h1 style="font-size=80%">Our Sponsors and Partners</h1>
-        <hr>
-         <a target="_blank" href="http://www.shark-references.com">
-          <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
-        </a>
-        <a target="_blank" href="https://sharksrays.org">
-          <img class = "sponsor-image" src="/assets/images/sharksrays.png" alt= "treelife drawing">
-        </a>
-         <a target="_blank" href="http://www.saveourseas.com/"> 
-          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
-        </a>
-        <a target="_blank" href="http://www.iucnredlist.org">
-          <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
-        </a>
-         <a target="_blank" href="https://cites.org">
-          <img class = "sponsor-image" src="/assets/images/citeslogo.jpg" alt= "citeslogo">
-          </a>
-      </div>
-      <div class= "col-sm-8 text-left">
+      <div class= "col-sm-8 landgrey text-left">
         <h1>What is Shark Share?</h1>
         <p> 
           Shark Share is a virtual tissue bank for all species 
@@ -42,18 +23,40 @@
         </p>
         <hr>
         <div>
-          <img class="image-bar" src="/assets/images/shark1.jpg" alt="testpic">
-          <img class="image-bar" src="/assets/images/shark2.jpg" alt="testpic2">
-          <img class="image-bar" src="/assets/images/shark3.JPG" alt="testpic3">
-          <img class="image-bar" src="/assets/images/shark4.JPG" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed1.jpg" alt="testpic">
+          <img class="image-bar" src="/assets/images/C_speed2.jpg" alt="testpic2">
+          <img class="image-bar" src="/assets/images/C_speed3.jpg" alt="testpic3">
+          <img class="image-bar" src="/assets/images/C_speed4.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed5.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed6.jpg" alt="testpic4">        
         </div>
       </div>
-      <div class="sponsor-bar heightfixed" id="margin-right">
+      <div class="signup-bar heightfixed" id="margin-right">
         <h1 style="font-size=80%">
           Interested in joining?
         </h1>
         <hr>
         <span><a style="font-size:150%" href="/register"> Sign up here!</a></span>
+      </div>
+      <div class ="sponsor-bar" id="leftspacing"> 
+        <h1 style="font-size=80%">Our Sponsors and Partners</h1>
+        <p class = "horizontal">
+         <a target="_blank" href="http://www.shark-references.com">
+          <img class = "sponsor-image" src="/assets/images/sharkreflogo.png" alt= "sharkreflogo">
+        </a>
+        <a target="_blank" href="https://sharksrays.org">
+          <img class = "sponsor-image" src="/assets/images/sharksrays.png" alt= "treelife drawing">
+        </a>
+         <a target="_blank" href="http://www.saveourseas.com/"> 
+          <img class = "sponsor-image" src="/assets/images/soslogo.png" alt= "soslogo">
+        </a>
+        <a target="_blank" href="http://www.iucnredlist.org">
+          <img class = "sponsor-image" src="/assets/images/redlistlogo.jpg" alt= "redlistlogo">
+        </a>
+         <a target="_blank" href="https://cites.org">
+          <img class = "sponsor-image" src="/assets/images/citeslogo.jpg" alt= "citeslogo">
+          </a>
+        </p>
       </div>
     </div>
   </div>

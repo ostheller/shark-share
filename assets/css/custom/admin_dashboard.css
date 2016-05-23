@@ -1,45 +1,15 @@
-/*Items below are included to get around problems with custom.css integration. 
-They may also be found in that file. Heather 4/22/2016*/
 .col-sm-8 {
-  height: 95%;
-  width: 60%;
-  border-radius: 1%;
-  background-color: #e4e4ff;
   margin-right: 5%;
   margin-left: 10%;
-  margin-top: 2%;
   margin-bottom: 0%;
-  text-align: left;
   float:left;
-  overflow: auto;
 }
-.backgroundsetting{
-  /*background: url("/assets/images/researcher4.jpg");*/
-  background-color: #fafafa;
-  background-size:cover;
-  background-attachment: fixed;
-}
-
-.backwrapper0 {
-  /*width: 100%;
-  height: auto;
-  background-color: #fcfcfc;
-  background-size: 100% 100%;
-  /*background-color: #f5f5f5;
-  text-align: center;*/
-}
-
-/*Admin dash specific */
-.columnone {
-  width: 25%;
-}
-
 
 .col-sm-7 {
   height: 100%;
   padding-bottom: 2%;
   border-radius: 1%;
-  background-color: rgba(228, 228, 255, .8);
+  background-color: #cccccc; /*rgba(228, 228, 255, .8);*/
   margin-right: 1%;
   margin-left: 2%;
   margin-top: 2%;
@@ -54,7 +24,7 @@ They may also be found in that file. Heather 4/22/2016*/
   padding-bottom: 2%;
   width: 95vw;
   border-radius: 1%;
-  background-color: rgba(228, 228, 255, .8);
+  background-color:#cccccc; /*rgba(228, 228, 255, .8);*/
   margin-right: 1%;
   margin-left: 2%;
   margin-top: 2%;
@@ -70,11 +40,6 @@ They may also be found in that file. Heather 4/22/2016*/
 
 .width-70{
   width: 72%;
-}
-
-.dash-button {
-  padding-top: 2%;
-  padding-bottom: 2%;
 }
 
 #email_sent_table {

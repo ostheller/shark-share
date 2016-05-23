@@ -2,23 +2,16 @@
 	color:#cccccc;
 }
 
-.backgroundsetting{
-  /*background: url("/assets/images/shark3.jpg");*/
-  background-color: #fafafa;
-  background-size:cover;
-  background-attachment: fixed;
-}
-
 /*Class for a centered grey content box*/
 /* Needs to be moved to custom.css eventually*/
-.col-sm-8 {
+.help-content {
 	height: 95%;
-	width: 60%;
+	width: 75%;
 	border-radius: 1%;
 	background-color: #cccccc;
 	opacity: .9;
-	margin-right: 10%;
-	margin-left: 10%;
+	margin-right: 2%;
+	margin-left: 2%;
 	margin-top: 2%;
 	margin-bottom: 0%;
 	text-align: left;
@@ -26,9 +19,7 @@
 	overflow:auto;
 }
 
-/* This is acting weird when I try to channge div*/
-/* Needs to be moved to custom.css eventually*/
-.sponsor-bar{
+.help-bar{
 	margin-top: 2%;
 	margin-bottom: 0%;
 	margin-left: 2%; 
