@@ -13,8 +13,8 @@ Navy Blue Website Color: #000033;
 body {
   /*site-wide font styling will also go here!
   Don't do Tangerine. For example only. */
-  /*font-family: 'Tangerine', serif;
-  font-size: 20px;*/
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
   background-color:#fcfcfc;
 }
 
