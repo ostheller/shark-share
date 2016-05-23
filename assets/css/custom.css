@@ -11,6 +11,10 @@ Navy Blue Website Color: #000033;
 
 /*Provides very light grey background color for less eye strain*/
 body {
+  /*site-wide font styling will also go here!
+  Don't do Tangerine. For example only. */
+  /*font-family: 'Tangerine', serif;
+  font-size: 20px;*/
   background-color:#fcfcfc;
 }
 
