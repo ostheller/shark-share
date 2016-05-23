@@ -4,6 +4,11 @@ Navy Blue Website Color: #000033;
 
 /*-----!!!!!BODY!!!!!-----*/
 
+/*Provides font adjustment in autofill fields*/
+.fitfont {
+    font-size: 85%;
+}
+
 /*Provides very light grey background color for less eye strain*/
 body {
   background-color:#fcfcfc;
@@ -89,6 +94,22 @@ body {
   overflow:auto;
 }
 
+.backgroundsetting{
+  background-color: #fafafa;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
+/*Common styles for dashboards*/
+/*restrains sm column*/
+.columnone {
+  width: 25%;
+}
+
+.dash-button {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
 
 /*-----!!!!!HEADER/FOOTER!!!!!-------*/ 
 

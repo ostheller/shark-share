@@ -1,6 +1,6 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
-    <div class="sponsor-bar">
+    <div class="help-bar">
       <h1 class="helpwhite">Need Help?</h1>
       <p class="helpwhite">Let us take it from here.</p>
       <p class="helpwhite">Click on a link to move to a help topic.</p>
@@ -8,7 +8,7 @@
       <p><a href="#helprequestsamples">Requesting Samples</a></p>
       <p><a href="#helpsharesamples">Sharing Samples</a></p>
     </div>
-    <div class="col-sm-8 text-left"> 
+    <div class="help-content text-left"> 
       <h1>Help / FAQ</h1>
       <a name="helpgettingstarted"></a>
       <h1>Getting Started</h1>

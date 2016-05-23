@@ -55,13 +55,6 @@
     margin: 0;
 }
 
-/*.neutralwrapper {
-  width: 100%;
-  height: 100%;
-  background-color: #fcfcfc);
-  text-align: center;
-}*/
-
 .col-sm-8-2 {
   height: 95%;
   width: 90%;
@@ -73,11 +66,4 @@
   margin-top: 2%;
   margin-bottom: 0%;
   text-align: left;
-}
-
-.backgroundsetting{
-  /*background: url("/assets/images/shark3.jpg");*/
-  background-color: #fafafa;
-  background-size:cover;
-  background-attachment: fixed;
 }
