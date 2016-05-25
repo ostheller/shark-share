@@ -26,3 +26,17 @@ span,select,input{
 input{
 	margin-right:5%;
 }*/
+
+.form_div {
+	display: block;
+}
+
+#search_bar {
+/*	border-style: groove;
+	border-width: 5px;*/
+	padding: 20px;
+}
+
+#search_submit {
+	margin: 10px 10px 0px 20px;
+}
