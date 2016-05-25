@@ -9,3 +9,20 @@
 #search_results_table {
   height: 90%;
 }
+
+.fitfont {
+    font-size: 80%;
+    margin-right: 2%;
+}
+
+span,select,input{
+	margin-right: 3%;
+}
+
+/*select{
+	margin-right:5%;
+}
+
+input{
+	margin-right:5%;
+}*/
