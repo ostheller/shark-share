@@ -3,13 +3,15 @@
 .about-grey {
 	height: 70%;
 	width: 95%;
-	border-radius: 1%;
+	border-radius: 0%;
 	background-color: #cccccc;
 	padding-bottom: 2%;
 	text-align:left;
-	float:top;
 }
 
+.sponsor-bar{
+	width:95%;
+}
 /* Image formatting sponsor logos, also subject to change */
 
   .backgroundsetting{
