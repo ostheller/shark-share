@@ -157,6 +157,13 @@ public function get_sample_types()
 	    return $this->db->query($query)->result_array();
 	}
 // method to generate location dropdown
+public function get_oceans() 
+	{
+		$query = "SELECT * FROM oceans";
+	    return $this->db->query($query)->result_array();
+	}
+
+// method to generate location dropdown
 public function get_locations() 
 	{
 		$query = "SELECT * FROM locations";

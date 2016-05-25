@@ -1,52 +1,87 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
-    <div class="backwrapper">
       <!--<div class="col-sm-8-2 height-10 text-left">
       <h1>Search Samples</h1>
       </div-->
-      <div class="col-sm-8-2 height-70 text-left"> 
+      <div class="col-sm-8-2 text-left"> 
         <h1>Search Samples</h1>      
-        <hr>  
-        <form id = "search" method="post" action="search">
-          Genus:
-          <input type="text" name="genus" id="genus" class="fitfont">
-          Species:
-          <input type="text" name="species" id="species" class="fitfont">
+        <hr>
+        <div id="search_bar" class="col-md-12 well">  
+        <form class="form" id = "search" method="post" action="search">
+          <div class="col-md-6">
+          <div class="form-group row">
+            <label for="genus" class="col-sm-3 form-control-label">Genus</label> 
+            <div class="col-sm-9">
+              <input type="text" name="genus" id="genus" class="fitfont">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="species" class="col-sm-3 form-control-label">Species</label> 
+            <div class="col-sm-9">
+              <input type="text" name="species" id="species" class="fitfont">
+            </div>
+          </div>
           <!--  Family:
           <input type="text" name="family" id="family">
           Order:
           <input type="text" name="order" id="order"> -->
-          Sample Type:
-          <select name="sample_type_id">
-            <option></option>
-            <?php foreach ($sample_types as $sample_type) { ?>
-              <option value="<?= $sample_type['id'] ?>"><?= $sample_type['type'] ?></option>
-            <?php } ?>
-          </select>
-          Location:
-         <select name="country_id">
-          <option></option>
-            <?php foreach ($countries as $country) { ?>
-              <option value="<?= $country['id'] ?>"><?= $country['code'] ?> (<?= $country['name'] ?>)</option>
-            <?php } ?>
-          </select>
-          Contributer Name:
-          <input type="text" name="name" id="name">
-          Institution:
-          <select name="institution_id">
-            <option></option>
-            <?php foreach ($institutions as $institution) { ?>
-              <option value="<?= $institution['id'] ?>"><?= $institution['name'] ?></option>
-            <?php } ?>
-          </select>
-          Sex
-          <select name="gender">
-            <option></option>
-            <option value="1"> Male</option>
-            <option value="2"> Female</option>
-          </select>
-         <button type="submit" class="btn btn-primary" id="search_submit">Submit</button>
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 form-control-label">Contributer Name</label> 
+            <div class="col-sm-9">
+              <input type="text" name="name" id="name" size="50">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="sample_type_id" class="col-sm-3 form-control-label">Sample Type</label> 
+            <div class="col-sm-9">
+            <select name="sample_type_id">
+              <option></option>
+              <?php foreach ($sample_types as $sample_type) { ?>
+                <option value="<?= $sample_type['id'] ?>"><?= $sample_type['type'] ?></option>
+              <?php } ?>
+            </select>
+            </div>
+          </div>
+        </div>
+          <div class="col-md-6">
+          <div class="form-group row">
+            <label for="ocean_id" class="col-sm-3 form-control-label">Ocean Source</label> 
+            <div class="col-sm-9">
+             <select name="ocean_id">
+              <option></option>
+                <?php foreach ($oceans as $ocean) { ?>
+                  <option value="<?= $ocean['id'] ?>"> <?= $ocean['name'] ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="institution_id" class="col-sm-3 form-control-label">Institution</label> 
+            <div class="col-sm-9">
+              <select name="institution_id">
+                <option></option>
+                <?php foreach ($institutions as $institution) { ?>
+                  <option value="<?= $institution['id'] ?>"><?= $institution['name'] ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-roup row">
+            <label for="gender" class="col-sm-3 form-control-label">Sex</label> 
+            <div class="col-sm-9">
+              <select name="gender">
+                <option></option>
+                <option value="1"> Male</option>
+                <option value="2"> Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-roup row">
+          <button type="submit" class="btn btn-primary" id="search_submit">Submit</button>
+          </div>
         </form>
+      </div>
+    </div>
       <div id="toolbar">
           <button id="request" class="btn btn-primary" disabled>
               <i class="glyphicon"></i> Request
