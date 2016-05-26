@@ -184,10 +184,10 @@ public function get_institutions()
 		//$family = $post['family'];
 		//$order = $post['order'];
 		$sample_type = $post['sample_type_id'];
-		$country = $post['country_id'];
+		//$country = $post['country_id'];
 		$gender = $post['gender'];
 		$name = $post['name'];
-		$institution = $post['institution_id'];
+		$ocean = $post['ocean_id'];
 
 		$condition_array = array();
 
@@ -206,21 +206,42 @@ public function get_institutions()
 		if ($sample_type != '') {
 			$condition_array[] = "samp.sample_type_id = $sample_type";
 		}
-		if ($country != '') {
-			$condition_array[] = "samp.country_id = '$country'";
-		}
+		// if ($country != '') {
+		// 	$condition_array[] = "samp.country_id = '$country'";
+		// }
 		if ($gender != '') {
 			$condition_array[] = "whol.sex_id = $gender";
 		}
 		if ($name != '') {
 			$condition_array[] = "(us.first_name LIKE '%".$name."%' OR us.last_name LIKE '%".$name."%')";
 		}
-		if ($institution != '') {
-			$condition_array[] = "us.institution_id = '$institution'";
+		if ($ocean != '') {
+			$condition_array[] = "loc.ocean_id = '$ocean'";
 		}
 
 		if(count($condition_array) > 0) {
-		$query = "SELECT samp.id as 'id', taxo.taxonomy_genus as 'Genus', taxo.taxonomy_species as 'Species', stypes.type as 'Sample Type', sexes.sex as 'Sex', pres.preservation_medium as 'Preservation Medium', pho.status as 'Photo Available', samp.sample_size_mm as 'Size (mm)', samp.available_until as 'Avail. Until', samp.comments as 'Comments', loc.region as 'Region', loc.lat_degree as 'Lat. Degree', loc.long_degree as 'Long. Degree', loc.lat_decimal as 'Lat. Decimal', loc.long_decimal as 'Long.Decimal', coun.name as 'Current Country Location', us.id as 'User id', us.first_name as 'First Name', us.last_name as 'Last Name', i.name as 'Institution Name', i.city as 'Institution City' 
+		$query = "SELECT samp.id as 'id', 
+		taxo.taxonomy_genus as 'Genus', 
+		taxo.taxonomy_species as 'Species', 
+		stypes.type as 'Sample Type', 
+		sexes.sex as 'Sex', 
+		pres.preservation_medium as 'Preservation Medium', 
+		pho.status as 'Photo Available', 
+		samp.sample_size_mm as 'Size (mm)', 
+		samp.available_until as 'Avail. Until', 
+		samp.comments as 'Comments', 
+		loc.region as 'Region', 
+		loc.lat_degree as 'Lat. Degree', 
+		loc.long_degree as 'Long. Degree', 
+		loc.lat_decimal as 'Lat. Decimal', 
+		loc.long_decimal as 'Long.Decimal',
+		oceans.name as 'Ocean Source', 
+		coun.name as 'Current Country Location', 
+		us.id as 'User id', 
+		us.first_name as 'First Name', 
+		us.last_name as 'Last Name',
+		i.name as 'Institution Name', 
+		i.city as 'Institution City' 
 			FROM sharkshare.samples as samp
 			LEFT JOIN taxonomy as taxo
 				ON samp.taxonomy_id = taxo.id
@@ -234,6 +255,8 @@ public function get_institutions()
 				ON whol.sex_id = sexes.id
 			LEFT JOIN locations as loc
 				ON samp.location_id = loc.id
+			LEFT JOIN oceans
+				ON loc.ocean_id = oceans.id
 			LEFT JOIN countries as coun
 				ON samp.country_id = coun.id
 			LEFT JOIN users as us
@@ -252,52 +275,56 @@ public function get_institutions()
 	public function browse($id) {
 		$return = array();
 		$alerts = $this->db->query("SELECT alert_id FROM user_alerts WHERE user_id = ?", $id)->result_array();
-		$query = 
-			"SELECT samp.id as 'id', 
-				taxo.taxonomy_genus as 'Genus', 
-				taxo.taxonomy_species as 'Species', 
-				stypes.type as 'Sample Type', 
-				sexes.sex as 'Sex', 
-				pres.preservation_medium as 'Preservation Medium', 
-				pho.status as 'Photo Available', 
-				samp.sample_size_mm as 'Size (mm)', 
-				samp.available_until as 'Avail. Until', 
-				samp.comments as 'Comments', 
-				loc.region as 'Region', 
-				loc.lat_degree as 'Lat. Degree', 
-				loc.long_degree as 'Long. Degree', 
-				loc.lat_decimal as 'Lat. Decimal',
-				loc.long_decimal as 'Long.Decimal', 
-				coun.name as 'Current Country Location', 
-				users.id as 'User id', 
-				users.first_name as 'First Name', 
-				users.last_name as 'Last Name', 
-				i.name as 'Institution Name', 
-				i.city as 'Institution City' 
-		    	FROM alerts
-				LEFT JOIN users
-					ON alerts.user_id = users.id
-				LEFT JOIN samples as samp
-					ON samp.user_id = users.id
-				LEFT JOIN taxonomy as taxo
-					ON samp.taxonomy_id = taxo.id
-				LEFT JOIN sample_types as stypes
-					ON alerts.sample_type_id = stypes.id
-				LEFT JOIN preservation_mediums as pres
-					ON samp.preservation_medium_id = pres.id
-				LEFT JOIN whole_specimens as whol
-					ON samp.whole_specimen_id = whol.id
-				LEFT JOIN sexes
-					ON whol.sex_id = sexes.id
-				LEFT JOIN locations as loc
-					ON samp.location_id = loc.id
-				LEFT JOIN countries as coun
-					ON samp.country_id = coun.id
-				LEFT JOIN institutions as i
-					ON users.institution_id = i.id
-				LEFT JOIN photo_statuses as pho
-					ON samp.photo_status_id = pho.id
-				WHERE alerts.id = ?";			
+		$query = "SELECT samp.id as 'id', 
+		taxo.taxonomy_genus as 'Genus', 
+		taxo.taxonomy_species as 'Species', 
+		stypes.type as 'Sample Type', 
+		sexes.sex as 'Sex', 
+		pres.preservation_medium as 'Preservation Medium', 
+		pho.status as 'Photo Available', 
+		samp.sample_size_mm as 'Size (mm)', 
+		samp.available_until as 'Avail. Until', 
+		samp.comments as 'Comments', 
+		loc.region as 'Region', 
+		loc.lat_degree as 'Lat. Degree', 
+		loc.long_degree as 'Long. Degree', 
+		loc.lat_decimal as 'Lat. Decimal', 
+		loc.long_decimal as 'Long.Decimal',
+		oceans.name as 'Ocean Source', 
+		coun.name as 'Current Country Location', 
+		us.id as 'User id', 
+		us.first_name as 'First Name', 
+		us.last_name as 'Last Name',
+		i.name as 'Institution Name', 
+		i.city as 'Institution City' 
+			FROM alerts
+			LEFT JOIN users
+				ON alerts.user_id = users.id
+			LEFT JOIN samples as samp
+				ON samp.user_id = users.id
+			LEFT JOIN taxonomy as taxo
+				ON samp.taxonomy_id = taxo.id
+			LEFT JOIN sample_types as stypes
+				ON samp.sample_type_id = stypes.id
+			LEFT JOIN preservation_mediums as pres
+				ON samp.preservation_medium_id = pres.id
+			LEFT JOIN whole_specimens as whol
+				ON samp.whole_specimen_id = whol.id
+			LEFT JOIN sexes
+				ON whol.sex_id = sexes.id
+			LEFT JOIN locations as loc
+				ON samp.location_id = loc.id
+			LEFT JOIN oceans
+				ON loc.ocean_id = oceans.id
+			LEFT JOIN countries as coun
+				ON samp.country_id = coun.id
+			LEFT JOIN users as us
+				ON samp.user_id = us.id
+			LEFT JOIN institutions as i
+				ON us.institution_id = i.id
+			LEFT JOIN photo_statuses as pho
+				ON samp.photo_status_id = pho.id
+			WHERE alerts.id = ?";			
 		for ($i = 0; $i < count($alerts); $i++) {
 			$value = $alerts[$i];
 			$return = $this->db->query($query, $value)->result_array();

@@ -230,12 +230,12 @@ $.ajax({
                     //     sortable: true,
                     //     footerFormatter: totalTextFormatter
                     // }, {
-                        title: 'Item Detail',
-                        colspan: 5,
+                         title: 'Item Detail',
+                        colspan: 6,
                         align: 'center'
                     }, {
                         title: 'Location',
-                        colspan: 3,
+                        colspan: 2,
                         align: 'center'
                     }
                 ],
@@ -271,6 +271,12 @@ $.ajax({
                         footerFormatter: totalNameFormatter,
                         align: 'center'
                     },{
+                        field: 'Ocean Source',
+                        title: 'Ocean Source',
+                        sortable: true,
+                        footerFormatter: totalNameFormatter,
+                        align: 'center'
+                    },{
                         field: 'Institution Name',
                         title: 'Institution Name',
                         sortable: true,
@@ -279,12 +285,6 @@ $.ajax({
                     }, {
                         field: 'Last Name',
                         title: 'Contributer',
-                        sortable: true,
-                        footerFormatter: totalNameFormatter,
-                        align: 'center'
-                    }, {
-                        field: 'Current Country Location',
-                        title: 'Current Country Location',
                         sortable: true,
                         footerFormatter: totalNameFormatter,
                         align: 'center'
@@ -484,9 +484,12 @@ $('#search').on('submit', function(e){
 	e.preventDefault();
 	$table.bootstrapTable('destroy');
 	var data = $('#search').serialize();
+	console.log(data);
 	$.post('/search', data, function(res){
+		console.log(res);
 		arr=[];
 		var data_array = JSON.parse(res);
+		console.log(data_array);
 	    for(var x in data_array){
 	 	  arr.push(data_array[x]);
 	 	}
@@ -513,11 +516,11 @@ $('#search').on('submit', function(e){
                     //     footerFormatter: totalTextFormatter
                     // }, {
                         title: 'Item Detail',
-                        colspan: 5,
+                        colspan: 6,
                         align: 'center'
                     }, {
                         title: 'Location',
-                        colspan: 3,
+                        colspan: 2,
                         align: 'center'
                     }
                 ],
@@ -553,6 +556,12 @@ $('#search').on('submit', function(e){
                         footerFormatter: totalNameFormatter,
                         align: 'center'
                     },{
+                        field: 'Ocean Source',
+                        title: 'Ocean Source',
+                        sortable: true,
+                        footerFormatter: totalNameFormatter,
+                        align: 'center'
+                    },{
                         field: 'Institution Name',
                         title: 'Institution Name',
                         sortable: true,
@@ -561,12 +570,6 @@ $('#search').on('submit', function(e){
                     }, {
                         field: 'Last Name',
                         title: 'Contributer',
-                        sortable: true,
-                        footerFormatter: totalNameFormatter,
-                        align: 'center'
-                    }, {
-                        field: 'Current Country Location',
-                        title: 'Current Country Location',
                         sortable: true,
                         footerFormatter: totalNameFormatter,
                         align: 'center'
