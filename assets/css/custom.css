@@ -61,9 +61,10 @@ body {
 
 /*Image formatting*/
 .image-bar{
-  height: 20vh;
-  width: auto;
-  padding-bottom: 1%;
+ height: 10em;
+ width: auto;
+ padding-bottom: 1%;
+ text-align: center;
 }
 
 /*Sponsors Content Boxes on Landing and About Pages*/

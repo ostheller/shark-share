@@ -26,6 +26,18 @@
 	opacity: .8;
   }
 
+.image-bar{
+    margin-top: 2%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.image-bar img {
+	width: 96%;
+	max-width: 1284px;
+	max-height: 179px;
+}
+
 .backgroundsetting{
   background: url("/assets/images/W_White6.jpg");
   background-size:cover;

@@ -2,6 +2,14 @@
   <div class="row content">
     <div class= "backwrapper">
       <div class= "col-sm-8 landgrey text-left">
+        <div class="image-bar">
+          <img src="/assets/images/fullstrip.jpg" alt="testpic">
+          <!--<img class="image-bar" src="/assets/images/C_speed2.jpg" alt="testpic2">
+          <img class="image-bar" src="/assets/images/C_speed3.jpg" alt="testpic3">
+          <img class="image-bar" src="/assets/images/C_speed4.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed5.jpg" alt="testpic4">
+          <img class="image-bar" src="/assets/images/C_speed6.jpg" alt="testpic4">-->        
+        </div>
         <h1>What is Shark Share?</h1>
         <p> 
           Shark Share is a virtual tissue bank for all species 
@@ -12,6 +20,27 @@
         platform coordinated sampling approaches are more easily 
         arranged.
         </p>
+        <p>
+          Currently of the 1041 known shark and ray species, 47 per cent 
+          lack basic biological data needed to assess if populations are 
+          at risk. Of the remaining 53 per cent which we do have knowledge 
+          of, more than a quarter are considered threatened by human 
+          impacts such as overfishing, finning and coastal development.
+           More than ever we need to understand shark and ray populations
+            in order to adequately manage and protect populations. 
+            As research scientists our team know first-hand Shark 
+            Share Global will benefit not one species but all 
+            species of sharks and rays. 
+        </p>
+        <p>
+          The not-for-profit Shark Share Global was created in order 
+          to establish an online database that will act as a paradigm 
+          shift for shark and ray researcher globally. The database will 
+          be an online platform helping shark and ray researchers share 
+          and receive tissues collected out in the field during scientific 
+          sampling. 
+        </p>
+
         <hr>
         <h1>Who can use it?</h1>
         <p>
@@ -21,15 +50,23 @@
         requirements around sample collection. For more information 
         please email <a href="info@sharkshareglobal.org">info@sharksharglobal.org</a>.
         </p>
-        <hr>
-        <div>
-          <img class="image-bar" src="/assets/images/C_speed1.jpg" alt="testpic">
-          <img class="image-bar" src="/assets/images/C_speed2.jpg" alt="testpic2">
-          <img class="image-bar" src="/assets/images/C_speed3.jpg" alt="testpic3">
-          <img class="image-bar" src="/assets/images/C_speed4.jpg" alt="testpic4">
-          <img class="image-bar" src="/assets/images/C_speed5.jpg" alt="testpic4">
-          <img class="image-bar" src="/assets/images/C_speed6.jpg" alt="testpic4">        
-        </div>
+        <!--<h1>What we hope to achieve</h1>
+        <p>
+        By having an online presence, no longer will researchers 
+        have to rely on personal communication or personnel 
+        networks to source available tissue. In time, Shark Share 
+        Global will help reduce the costs of travelling into the 
+        field without limiting the caliber of research as samples 
+        are available all at the click of the button. Additionally, 
+        we hope to provide a platform encouraging global 
+        collaborations, spanning vast geographic boundaries to 
+        allow researchers to address issues facing the world’s 
+        sharks and rays. We are also seeking to enable scientists 
+        from underrepresented or developing nations by providing 
+        access to a global platform, connecting members to 
+        scientists on the cutting-edge of research, with well 
+        established research facilities.
+        </p>-->
       </div>
       <div class="signup-bar heightfixed" id="margin-right">
         <h1 style="font-size=80%">

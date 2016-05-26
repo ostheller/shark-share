@@ -12,6 +12,19 @@
 .sponsor-bar{
 	width:95%;
 }
+
+.image-bar{
+    margin-top: 2%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.image-bar img {
+	width: 96%;
+	max-width: 1284px;
+	max-height: 179px;
+}
+
 /* Image formatting sponsor logos, also subject to change */
 
   .backgroundsetting{
