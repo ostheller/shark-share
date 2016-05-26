@@ -1,6 +1,6 @@
 <div class="container-fluid text-center">    
   <div class="row content" id="forms">
-    <div class="col-sm-18 col-sm-offset-1 text-left">
+    <div class="col-sm-10 col-sm-offset-1 text-left border" id = "box">
 		<h1 class="display-1">Almost there.</h1>
 		<hr>
 		<p class="lead">Thanks for registering, our team will look over your details before confirming registration.</p>
