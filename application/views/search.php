@@ -3,7 +3,7 @@
       <!--<div class="col-sm-8-2 height-10 text-left">
       <h1>Search Samples</h1>
       </div-->
-      <div class="col-sm-8-2 text-left border"> 
+      <div class="col-sm-8-2 text-left"> 
         <h1>Search Samples</h1>      
         <hr>
         <div id="search_bar" class="col-md-12 well">  
