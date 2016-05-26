@@ -16,7 +16,7 @@
               </div>';
             } ?>
             <hr>
-              <div class="well">
+              <div>
                 <table id="collection_table"
                      data-toolbar="#toolbar"
                      data-search="true"
