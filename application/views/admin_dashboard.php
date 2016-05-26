@@ -13,7 +13,10 @@
         <div class="col-sm-7 width-70 text-left well about"> 
             <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
             <p>
-              Welcome back to Shark Share Global! This is your Administrative Dashboard- where you can check incoming requests,
+              Welcome back to Shark Share Global! 
+            </p>
+            <p>
+            This is your Administrative Dashboard- where you can check incoming requests,
               track new users as they utilize the setup process, send notifications, and monitor the site in general. In order to
               see your samples and interact with other researchers as a regular user would, please click 'User View' in your side
               menu.
@@ -29,7 +32,6 @@
               <li><a style="font-weight:bold" href="/edit/profile_page"> Temporary Link: Edit Setup Profile Page</a></li>
             </ul>
             <p>!!!!!!!!!   THESE LINKS ARE FOR THE EDITING PROCESS AND NEED TO BE COMMENTED OUT FOR THE FINAL PROJECT !!!!!!</p>-->
->>>>>>> origin/front-end
         </div>
       </div>
       <!--<div class="col-sm-10">-->

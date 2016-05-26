@@ -11,11 +11,15 @@
         </div>
         <div class="col-sm-7 width-70 text-left well about"> 
               <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p>Welcome back to Shark Share Global!</p>
+            <hr>
+            <p>
+              Further Notifications will appear here as needed!
+            </p>
           </div>
         </div>
           <div class="row col-sm-9 text-left well" id="padbottom">
-                  <h2>Sent requests</h2>
+                  <h2>Request History</h2>
                   <div>
                     <table id="sent_requests"
                          data-search="true"
