@@ -1,7 +1,7 @@
 <div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
       <div class="row">
-        <div class="col-sm-5 width-20 text-left well">
+        <div class="col-sm-5 width-20 height-set text-left well">
           <h1 class="fontbold">Admin Tools</h1>
           <ul id="sidebar_nav">
             <li><a href="/dashboard" class=" btn btn-primary">User View</a></li>
@@ -12,7 +12,7 @@
  -->            <li><a href="/taxonomy" class="btn btn-primary ">Manage Site Taxonomy</a></li>
           <ul>
         </div>
-        <div class="col-sm-7 width-70 text-left well about"> 
+        <div class="col-sm-7 width-70 height-set text-left well about"> 
             <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
             <p>
               Welcome back to Shark Share Global.
