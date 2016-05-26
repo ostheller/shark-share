@@ -15,7 +15,8 @@
                 </button>
               </div>';
             } ?>
-              <div>
+            <hr>
+              <div class="well">
                 <table id="collection_table"
                      data-toolbar="#toolbar"
                      data-search="true"

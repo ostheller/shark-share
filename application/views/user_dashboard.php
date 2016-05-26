@@ -9,13 +9,9 @@
              <?php if($this->session->userdata['admin'] == TRUE) echo '<li><a href="/admin" class="btn btn-info">Return to Admin Dashboard</a></li>'; ?>
           </ul>
         </div>
-        <div class="col-sm-7 width-70 text-left well"> 
-            <div class="row">
-            <div class="text-left"> 
+        <div class="col-sm-7 width-70 text-left well about"> 
               <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-              </div>
           </div>
         </div>
           <div class="row col-sm-9 text-left well" id="padbottom">
