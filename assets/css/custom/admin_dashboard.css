@@ -4,6 +4,7 @@ ul {
 
 li {
   padding: 10px 0;
+  margin-left: -20px;
 }
 
 .col-sm-8 {
