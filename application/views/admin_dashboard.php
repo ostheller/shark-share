@@ -1,9 +1,9 @@
 <div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
       <div class="row">
-        <div class="col-sm-7 width-20 text-left well">
+        <div class="col-sm-5 width-20 text-left well">
           <h1 class="fontbold">Admin Tools</h1>
-          <ul>
+          <ul id="sidebar_nav">
             <li><a href="/dashboard" class=" btn btn-info">User View</a></li>
             <li><a href="/upload" class="btn btn-info ">Upload</a></li>
             <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info ">Profile</a></li>
