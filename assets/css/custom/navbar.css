@@ -29,11 +29,11 @@
 }
 
 #login_form {
-	padding: 1vh 1vh 0vh 2vh;
+	padding: 0vh 1vh 0vh 2vh;
 }
 
 #search_form {
-	padding: 1vh 1vh 0vh 2vh;
+	padding: 0vh 1vh 0vh 2vh;
 }
 
 #new_password .short{ color:#FF0000; } #new_password .weak{ color:#E66C2C; } #new_password .good{ color:#2D98F3; } #new_password .strong{ color:#006400; }

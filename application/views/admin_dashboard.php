@@ -6,14 +6,14 @@
           <ul id="sidebar_nav">
             <li><a href="/dashboard" class=" btn btn-info">User View</a></li>
             <li><a href="/upload" class="btn btn-info ">Upload</a></li>
-            <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info ">Profile</a></li>
-            <li><a href="/taxonomy" class="btn btn-info ">Manage Site Taxonomy</a></li>
+<!--             <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info ">Profile</a></li>
+ -->            <li><a href="/taxonomy" class="btn btn-info ">Manage Site Taxonomy</a></li>
           <ul>
         </div>
         <div class="col-sm-7 width-70 text-left well about"> 
             <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
             <p>
-              Welcome back to Shark Share Global! 
+              Welcome back to Shark Share Global.
             </p>
             <p>
             This is your Administrative Dashboard- where you can check incoming requests,
