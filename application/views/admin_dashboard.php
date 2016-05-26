@@ -31,7 +31,7 @@
       </div>
       <!--<div class="col-sm-10">-->
       <div class="row">
-        <div class="col-sm-9 text-left">
+        <div class="col-sm-9 text-left border">
             <h2>Registration Requests</h2>
               <div id="toolbar">
                 <button id="approve" class="btn btn-primary" disabled>
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-9 text-left" id="padbottom">
+        <div class="col-sm-9 text-left border" id="padbottom">
           <h2>Pending Email Invites</h2>
           <div>
             <table class="col-sm-9" id="email_sent_table"
