@@ -40,3 +40,11 @@ input{
 #search_submit {
 	margin: 10px 10px 0px 20px;
 }
+
+.well{
+	border-radius:0%;
+}
+
+.fixed-table-container{
+	border-radius:0%;
+}
