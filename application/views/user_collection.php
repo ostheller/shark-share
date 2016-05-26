@@ -1,7 +1,7 @@
 <div class="backgroundsetting container-fluid text-center">    
   <div class="row content">
     <div class="neutralwrapper">
-      <div class="col-sm-8-2 text-left"> 
+      <div class="col-sm-8-2 text-left border"> 
             <?php if ($user != NULL) { ?>
               <h1><?php echo $user['first_name'] . " " . $user['last_name']?>'s Collection of Samples</h1>
             <?php } else {echo "<h1>This user does not exist</h1>";} ?>
