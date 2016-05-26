@@ -4,8 +4,8 @@
         <div class="col-sm-5 width-20 text-left well">
           <h1 class="fontbold">User Tools</h1>
           <ul id="sidebar_nav">
-            <li><a href="/upload" class="btn btn-info">Upload</a></li>
-            <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info">Profile</a></li>
+            <li><a href="/upload" class="btn btn-info">Upload Samples</a></li>
+            <li><a href="/collection/<?=$this->session->userdata('id')?>" class="btn btn-info">View Collection</a></li>
              <?php if($this->session->userdata['admin'] == TRUE) echo '<li><a href="/admin" class="btn btn-info">Return to Admin Dashboard</a></li>'; ?>
           </ul>
         </div>

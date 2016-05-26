@@ -5,7 +5,9 @@
           <h1 class="fontbold">Admin Tools</h1>
           <ul id="sidebar_nav">
             <li><a href="/dashboard" class=" btn btn-info">User View</a></li>
-            <li><a href="/upload" class="btn btn-info ">Upload</a></li>
+            <li><a href="/upload" class="btn btn-info ">Upload Samples</a></li>
+            <li><a href="/collection/<?=$this->session->userdata('id')?>" class="btn btn-info">View Collection</a></li>
+
 <!--             <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info ">Profile</a></li>
  -->            <li><a href="/taxonomy" class="btn btn-info ">Manage Site Taxonomy</a></li>
           <ul>
