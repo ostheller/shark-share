@@ -4,12 +4,12 @@
         <div class="col-sm-5 width-20 text-left well">
           <h1 class="fontbold">Admin Tools</h1>
           <ul id="sidebar_nav">
-            <li><a href="/dashboard" class=" btn btn-info">User View</a></li>
-            <li><a href="/upload" class="btn btn-info ">Upload Samples</a></li>
-            <li><a href="/collection/<?=$this->session->userdata('id')?>" class="btn btn-info">View Collection</a></li>
+            <li><a href="/dashboard" class=" btn btn-primary">User View</a></li>
+            <li><a href="/upload" class="btn btn-primary ">Upload Samples</a></li>
+            <li><a href="/collection/<?=$this->session->userdata('id')?>" class="btn btn-primary">View Collection</a></li>
 
-<!--             <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-info ">Profile</a></li>
- -->            <li><a href="/taxonomy" class="btn btn-info ">Manage Site Taxonomy</a></li>
+<!--             <li><a href="/user/<?=$this->session->userdata('id')?>" class="btn btn-primary ">Profile</a></li>
+ -->            <li><a href="/taxonomy" class="btn btn-primary ">Manage Site Taxonomy</a></li>
           <ul>
         </div>
         <div class="col-sm-7 width-70 text-left well about"> 
