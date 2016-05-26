@@ -9,10 +9,6 @@ Navy Blue Website Color: #000033;
     font-size: 85%;
 }
 
-.btn{
-  height: 15%;
-}
-
 /*Provides very light grey background color for less eye strain*/
 body {
   /*site-wide font styling will also go here!
@@ -100,12 +96,12 @@ body {
   overflow:auto;
 }
 
-/*Formatting for alt. main div (v.l.grey) on some pages*/
+/*Formatting for alt. main div (white) on some pages*/
 .col-sm-8-2 {
   height: 95%;
   width: 90%;
   border-radius: 1%;
-  background-color: #fcfcfc;
+  background-color: #ffffff;
   opacity: .9;
   margin-right: 5%;
   margin-left: 5%;
@@ -113,14 +109,54 @@ body {
   margin-bottom: 0%;
   text-align: left;
 }
+
+.border {
+  border-style: solid;
+  border-color:#cccccc;
+  border-width: 1%;
+}
+
 /*background for all but LP/A pages*/
 .backgroundsetting{
-  background-color: #fafafa;
+  background-color: #ffffff;
   background-size:cover;
   background-attachment: fixed;
 }
 
 /*Common styles for dashboards*/
+
+/*Makes left side dash nav*/
+.dashnav{
+  height:100%;
+  width:16%;
+  background-color: #cccccc; /*rgba(228, 228, 255, .8);*/
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 0%;
+  text-align:left;
+  float:left;
+  overflow: auto;
+  padding-left: 1%;
+}
+
+/*Makes right side dash blurb*/
+.dashtext{
+  height:100%;
+  width: 77%;
+  background-color: #cccccc; /*rgba(228, 228, 255, .8);*/
+  margin-right: 3%;
+  margin-left: 0%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-left: 1%;
+  padding-right: 1%;
+  text-align: left;
+  float:right;
+  overflow: auto;
+}
+
+
 /*restrains sm column*/
 .columnone {
   width: 25%;
@@ -200,10 +236,11 @@ body {
 }
 
 .navbar-nav {
-  margin-top:4px;
-  margin-bottom:0px;
-  margin-left:4px;
-  margin-right:4px;
+  margin-top:.25em;
+  margin-bottom:.5em;
+  padding-top:0em;
+  margin-left:.5em;
+  margin-right:.5em;
 }
 
 /* Set footer background color (grey), white text and some padding */

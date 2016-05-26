@@ -1,6 +1,6 @@
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-10 col-sm-offset-1 text-left" id="box">
+    <div class="col-sm-10 col-sm-offset-1 text-left border" id="box">
 	<div>
 		<?php echo form_open('register/accept'); ?>
 		<h3>To save you time reading T&amp;Cs, here are the main aspects of Shark Share you are agreeing to when signing up.</h3> 

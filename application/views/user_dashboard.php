@@ -1,12 +1,12 @@
 <div class="backgroundsetting container-fluid">    
     <div class= "backwrapper0">
-        <div class="col-sm-2 text-left">
+        <div class="col-left dashnav text-left">
           <h1 class="fontbold">User Tools</h1>
             <p><a href="/upload">Upload</a></p>
             <p><a href="/user/<?=$this->session->userdata('id')?>">Profile</a></p>
       <?php if($this->session->userdata['admin'] == TRUE) echo '<p><a href="/admin">Return to Admin Dashboard</a></p>'; ?>
         </div>
-         <div class="col-sm-10">
+         <div class="col-sm-10 dashtext">
             <div class="row">
             <div class="text-left"> 
               <h1>Hello, <?= $this->session->userdata('first_name') ?> <?= $this->session->userdata('last_name') ?>!</h1>
